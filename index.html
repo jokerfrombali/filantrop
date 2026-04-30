@@ -981,7 +981,13 @@
   .footer-bottom a:hover { color: var(--gold); }
 
   @media (max-width: 1120px) {
-    nav { position: static !important; top: auto !important; }
+    nav {
+      position: sticky !important;
+      top: 0 !important;
+      background: oklch(0.30 0.13 23 / 0.94);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 12px 28px oklch(0.05 0.01 38 / 0.22);
+    }
     .nav-inner { padding: 0 28px; }
     .nav-logo { flex: 1 1 auto; margin-right: 16px; }
     .nav-links,
@@ -1089,7 +1095,12 @@
   @media (max-width: 700px) {
     body { font-size: 16px; }
     section { padding: 70px 0; }
-    nav { position: static !important; top: auto !important; }
+    nav {
+      position: sticky !important;
+      top: 0 !important;
+      background: oklch(0.30 0.13 23 / 0.94);
+      backdrop-filter: blur(12px);
+    }
     .nav-inner { height: 62px; min-height: 62px; padding: 0 16px; }
     .nav-logo { gap: 10px; }
     .nav-logo > img:not(.nav-wordmark) { height: 36px; }
