@@ -124,8 +124,53 @@
     white-space: nowrap;
   }
   .nav-links a:hover { color: var(--white); border-bottom-color: var(--gold); }
+  .language-switcher {
+    position: relative;
+    margin-left: 16px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .language-current {
+    border: 1px solid oklch(0.76 0.08 78 / 0.46);
+    background: transparent;
+    color: var(--gold-light);
+    font: 700 12px/1 var(--ff-sans);
+    letter-spacing: 0.08em;
+    padding: 9px 11px;
+    cursor: pointer;
+    text-transform: uppercase;
+  }
+  .language-menu {
+    position: absolute;
+    right: 0;
+    top: calc(100% - 8px);
+    min-width: 96px;
+    padding: 8px;
+    background: oklch(0.16 0.07 24);
+    border: 1px solid oklch(0.70 0.08 78 / 0.34);
+    box-shadow: 0 18px 30px oklch(0.04 0.01 38 / 0.38);
+    display: none;
+    z-index: 150;
+  }
+  .language-switcher:hover .language-menu,
+  .language-switcher:focus-within .language-menu { display: grid; gap: 2px; }
+  .language-menu a {
+    color: oklch(0.88 0.04 78);
+    text-decoration: none;
+    font-size: 12px;
+    line-height: 1;
+    padding: 9px 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .language-menu a:hover {
+    background: oklch(0.28 0.12 24);
+    color: var(--gold-light);
+  }
   .nav-cta {
-    margin-left: 24px;
+    margin-left: 14px;
     background: var(--gold); color: var(--ink);
     font-size: 13px; font-weight: 700; letter-spacing: 0.04em;
     text-transform: uppercase; text-decoration: none;
@@ -898,6 +943,7 @@
     .nav-inner { height: auto; min-height: 62px; padding: 10px 18px; }
     .nav-logo img { height: 38px; }
     .nav-brand-note { display: none; }
+    .language-switcher { display: none; }
     .nav-cta { margin-left: 12px; padding: 9px 12px; font-size: 11px; }
     .hero-left { min-height: auto; padding: 58px 22px 34px; }
     .hero-years { font-size: 112px; }
@@ -959,6 +1005,17 @@
       <a href="#">Команда</a>
       <a href="#">Партнёры</a>
       <a href="#">Контакты</a>
+    </div>
+    <div class="language-switcher">
+      <button class="language-current" type="button" aria-haspopup="true" aria-expanded="false">HE</button>
+      <div class="language-menu" aria-label="Выбор языка">
+        <a href="#" lang="en">EN</a>
+        <a href="#" lang="ru">RU</a>
+        <a href="#" lang="he">HE</a>
+        <a href="#" lang="es">ES</a>
+        <a href="#" lang="fr">FR</a>
+        <a href="#" lang="de">DE</a>
+      </div>
     </div>
     <a href="#prize" class="nav-cta">Стать спонсором</a>
   </div>
