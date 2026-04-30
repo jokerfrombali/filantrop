@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Фонд «Филантроп» — 35 лет</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=PT+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=PT+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -28,6 +28,7 @@
     --white: oklch(0.998 0.002 80);
 
     --ff-serif: 'Playfair Display', Georgia, serif;
+    --ff-cormorant: 'Cormorant Garamond', Georgia, serif;
     --ff-sans: 'PT Sans', Arial, sans-serif;
   }
 
@@ -56,7 +57,7 @@
 
   /* ── NAV ── */
   nav {
-    position: sticky; top: 0; z-index: 100;
+    position: relative; z-index: 100;
     background: var(--red);
     border-bottom: none;
   }
@@ -254,17 +255,21 @@
     user-select: none;
   }
   .hero-tagline {
-    font-family: var(--ff-serif); font-size: clamp(48px, 4.55vw, 64px); font-weight: 400;
-    line-height: 1.08; color: var(--white);
+    font-family: var(--ff-cormorant); font-size: clamp(52px, 5.2vw, 78px); font-weight: 300;
+    line-height: 1.05; color: var(--white);
     margin-top: 0;
     text-wrap: pretty;
-    max-width: 660px;
+    max-width: 720px;
+    letter-spacing: -0.01em;
   }
-  .hero-tagline em { font-style: italic; color: var(--gold-light); }
+  .hero-tagline strong { font-weight: 600; }
+  .hero-tagline em { font-style: italic; color: var(--gold-light); font-weight: 300; }
   .hero-sub {
     margin-top: 22px;
-    color: oklch(0.82 0.04 20); font-size: 16px;
-    max-width: 460px; line-height: 1.7;
+    color: oklch(0.82 0.04 20);
+    font-family: var(--ff-sans); font-size: 15.5px;
+    max-width: 480px; line-height: 1.78;
+    font-style: normal;
   }
   .hero-proof {
     max-width: 560px;
@@ -497,6 +502,65 @@
     letter-spacing: 0.04em;
   }
 
+  /* ── SIGNIFICANCE — что значит стать лауреатом ── */
+  .significance-section {
+    background:
+      radial-gradient(circle at 78% 50%, oklch(0.72 0.11 68 / 0.10), transparent 40%),
+      linear-gradient(160deg, var(--velvet) 0%, oklch(0.14 0.06 30) 55%, oklch(0.10 0.02 38) 100%);
+    color: var(--white);
+    position: relative; overflow: hidden;
+    padding: 112px 0;
+  }
+  .significance-section::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .sig-inner {
+    max-width: 1280px; margin: 0 auto; padding: 0 80px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center;
+  }
+  .sig-quote {
+    position: relative; padding-left: 36px;
+    border-left: 2px solid var(--gold);
+  }
+  .sig-quote::before {
+    content: '\201C';
+    position: absolute; top: -36px; left: 20px;
+    font-family: var(--ff-cormorant); font-size: 140px; font-weight: 300;
+    color: var(--gold); opacity: 0.25; line-height: 1;
+  }
+  .sig-quote-text {
+    font-family: var(--ff-cormorant); font-size: 34px; font-weight: 300; font-style: italic;
+    color: var(--white); line-height: 1.45; margin-bottom: 28px;
+  }
+  .sig-quote-text strong { font-weight: 600; font-style: normal; color: var(--gold-light); }
+  .sig-quote-attr {
+    font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: oklch(0.55 0.08 65); display: flex; align-items: center; gap: 12px;
+  }
+  .sig-quote-attr::before { content: '—'; }
+  .sig-pillars { display: flex; flex-direction: column; gap: 2px; }
+  .sig-pillar {
+    background: oklch(0.16 0.07 28 / 0.6);
+    border: 1px solid oklch(0.35 0.10 60 / 0.25);
+    padding: 28px 32px;
+    display: flex; align-items: flex-start; gap: 20px;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .sig-pillar:hover { background: oklch(0.20 0.09 26 / 0.7); border-color: oklch(0.55 0.10 65 / 0.4); }
+  .sig-pillar-num {
+    font-family: var(--ff-cormorant); font-size: 36px; font-weight: 600;
+    color: var(--gold); line-height: 1; flex-shrink: 0; width: 36px;
+  }
+  .sig-pillar-body {}
+  .sig-pillar-title {
+    font-family: var(--ff-serif); font-size: 16px; font-weight: 600;
+    color: var(--white); margin-bottom: 6px; line-height: 1.3;
+  }
+  .sig-pillar-text {
+    font-size: 14px; color: oklch(0.66 0.04 60); line-height: 1.65;
+  }
+
   /* ── LEGACY ── */
   .legacy-section {
     position: relative;
@@ -513,12 +577,16 @@
     pointer-events: none;
   }
   .legacy-lead {
-    max-width: 780px;
-    font-family: var(--ff-serif);
-    font-size: 28px;
-    line-height: 1.35;
+    max-width: 820px;
+    font-family: var(--ff-cormorant);
+    font-size: 34px;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.4;
     color: var(--ink);
     margin-bottom: 52px;
+    padding-left: 24px;
+    border-left: 2px solid var(--gold);
   }
   .legacy-grid {
     display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
@@ -538,12 +606,13 @@
     background: linear-gradient(90deg, transparent, var(--gold), transparent);
   }
   .legacy-year {
-    font-family: var(--ff-serif);
-    font-size: 56px;
-    font-weight: 700;
+    font-family: var(--ff-cormorant);
+    font-size: 72px;
+    font-weight: 300;
     color: var(--red);
-    line-height: 1;
-    margin-bottom: 24px;
+    line-height: 0.9;
+    margin-bottom: 20px;
+    letter-spacing: -0.03em;
   }
   .legacy-card h3 {
     font-family: var(--ff-serif);
@@ -559,12 +628,19 @@
   .legacy-card.featured {
     background:
       radial-gradient(circle at 72% 18%, oklch(0.78 0.10 68 / 0.28), transparent 28%),
+      radial-gradient(circle at 20% 80%, oklch(0.50 0.15 22 / 0.3), transparent 40%),
       var(--red);
     color: var(--white);
+    position: relative;
   }
-  .legacy-card.featured .legacy-year,
-  .legacy-card.featured h3 { color: var(--gold-light); }
-  .legacy-card.featured p { color: oklch(0.85 0.035 78); }
+  .legacy-card.featured::before {
+    content: ''; position: absolute; inset: 14px;
+    border: 1px solid oklch(0.60 0.10 65 / 0.28);
+    pointer-events: none;
+  }
+  .legacy-card.featured .legacy-year { color: var(--gold-light); font-size: 88px; }
+  .legacy-card.featured h3 { color: var(--gold-light); font-size: 26px; }
+  .legacy-card.featured p { color: oklch(0.88 0.035 78); font-family: var(--ff-cormorant); font-size: 18px; font-style: italic; line-height: 1.75; }
 
   /* ── LAUREATES ── */
   .laureates-section {
@@ -582,7 +658,7 @@
     pointer-events: none;
   }
   .laureates-section .container { position: relative; }
-  .laureates-section .section-title { color: var(--white); }
+  .laureates-section .section-title { color: var(--white); font-family: var(--ff-cormorant); font-size: 52px; font-weight: 300; }
   .laureates-map {
     display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 64px; align-items: center;
   }
@@ -618,8 +694,9 @@
   .laureates-copy p {
     color: oklch(0.80 0.025 78);
     margin-bottom: 18px;
-    font-size: 16px;
-    line-height: 1.75;
+    font-size: 18px;
+    line-height: 1.85;
+    font-family: var(--ff-cormorant); font-style: italic;
   }
   .laureates-list {
     display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px;
@@ -674,9 +751,9 @@
     content: ''; display: block; width: 28px; height: 1px; background: var(--gold);
   }
   .section-title {
-    font-family: var(--ff-serif); font-size: 40px; font-weight: 400;
-    line-height: 1.2; color: var(--ink);
-    text-wrap: pretty;
+    font-family: var(--ff-cormorant); font-size: 48px; font-weight: 400;
+    line-height: 1.1; color: var(--ink);
+    text-wrap: pretty; letter-spacing: -0.01em;
   }
   .section-header {
     display: flex; justify-content: space-between; align-items: flex-end;
@@ -739,31 +816,51 @@
 
   /* ── PRIZE ── */
   .prize-section {
-    background: var(--ink); color: var(--white);
+    background:
+      radial-gradient(circle at 20% 50%, oklch(0.28 0.14 24 / 0.5), transparent 45%),
+      linear-gradient(135deg, oklch(0.16 0.09 26) 0%, oklch(0.10 0.025 36) 60%, var(--stage-black) 100%);
+    color: var(--white);
+    position: relative; overflow: hidden;
+  }
+  .prize-section::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent 0%, var(--gold) 30%, var(--gold-light) 50%, var(--gold) 70%, transparent 100%);
+  }
+  .prize-section::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--gold) 30%, transparent 100%);
   }
   .prize-inner {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    display: grid; grid-template-columns: minmax(0, 760px); gap: 0; align-items: center; justify-content: center;
   }
   .prize-visual {
-    aspect-ratio: 1;
-    background: repeating-linear-gradient(
-      -45deg,
-      oklch(0.22 0.008 65) 0px, oklch(0.22 0.008 65) 1px,
-      oklch(0.20 0.006 65) 1px, oklch(0.20 0.006 65) 16px
-    );
-    display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 16px;
     position: relative;
+    display: none; align-items: center; justify-content: center;
+    padding: 40px 0;
   }
   .prize-visual::before {
-    content: ''; position: absolute; inset: 24px;
-    border: 1px solid oklch(0.32 0.05 65);
+    content: ''; position: absolute; inset: 0;
+    border: 1px solid oklch(0.40 0.10 60 / 0.35);
   }
-  .prize-visual span {
-    font-family: monospace; font-size: 10px; color: oklch(0.42 0.01 65);
-    letter-spacing: 0.05em; text-align: center; padding: 0 32px; position: relative; z-index: 1;
+  .prize-visual::after {
+    content: ''; position: absolute; inset: 16px;
+    border: 1px solid oklch(0.40 0.10 60 / 0.18);
+  }
+  .prize-visual img {
+    width: 62%; max-width: 320px;
+    position: relative; z-index: 2;
+    filter: drop-shadow(0 32px 48px oklch(0.04 0.01 38 / 0.8)) drop-shadow(0 0 40px oklch(0.72 0.11 68 / 0.25));
+  }
+  .prize-visual-caption {
+    position: absolute; bottom: 24px; left: 0; right: 0;
+    text-align: center; z-index: 3;
+    font-family: var(--ff-cormorant); font-style: italic;
+    font-size: 14px; color: var(--gold-light); letter-spacing: 0.08em; opacity: 0.75;
   }
   .prize-content .section-title { color: var(--white); margin-bottom: 24px; }
-  .prize-content p { color: oklch(0.72 0.01 75); font-size: 16px; line-height: 1.75; margin-bottom: 20px; }
+  .prize-content p { color: oklch(0.80 0.03 78); font-size: 17px; line-height: 1.85; margin-bottom: 20px; font-family: var(--ff-cormorant); font-size: 19px; }
   .prize-organizers { margin-top: 40px; }
   .prize-org-label {
     font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em;
@@ -907,8 +1004,8 @@
     display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
   }
   .about-strip h2 {
-    font-family: var(--ff-serif); font-size: 36px; font-weight: 400;
-    line-height: 1.25; color: var(--ink);
+    font-family: var(--ff-cormorant); font-size: 44px; font-weight: 300; font-style: italic;
+    line-height: 1.2; color: var(--ink);
   }
   .about-strip p { font-size: 16px; color: var(--ink); line-height: 1.75; opacity: 0.8; }
   .about-strip .btn-dark {
@@ -980,10 +1077,171 @@
   .footer-bottom a { color: oklch(0.55 0.01 65); text-decoration: none; }
   .footer-bottom a:hover { color: var(--gold); }
 
+  /* ── MODAL ── */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 1000;
+    background: oklch(0.08 0.02 38 / 0.82);
+    backdrop-filter: blur(6px);
+    overflow-y: auto;
+    padding: 40px 20px;
+  }
+  .modal-overlay.open { display: flex; align-items: flex-start; justify-content: center; }
+  .modal-box {
+    background: #faf6ef;
+    width: 100%; max-width: 1080px;
+    position: relative;
+    border-top: 3px solid #9b1c1c;
+    box-shadow: 0 32px 80px oklch(0.04 0.01 38 / 0.6);
+    animation: modalIn 0.3s ease;
+  }
+  @keyframes modalIn {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .modal-close {
+    position: sticky; top: 0; z-index: 10;
+    background: #1a1a1a; color: #faf6ef;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 32px;
+  }
+  .modal-close-title {
+    font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 400;
+    color: #d4a52e; letter-spacing: 0.02em;
+  }
+  .modal-close-btn {
+    background: none; border: 1px solid oklch(0.40 0.02 40);
+    color: #faf6ef; cursor: pointer; font-size: 13px; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 8px 18px;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .modal-close-btn:hover { border-color: #d4a52e; color: #d4a52e; }
+
+  /* Form styles inside modal */
+  .modal-body {
+    padding: 0;
+    font-family: 'PT Serif', Georgia, serif;
+    font-size: 16px; color: #1a1a1a; line-height: 1.6;
+  }
+  .modal-body *{ box-sizing: border-box; }
+  .modal-intro {
+    max-width: 860px; margin: 0 auto;
+    padding: 40px 48px 20px; text-align: center;
+  }
+  .modal-intro p {
+    font-family: 'Cormorant Garamond', 'Playfair Display', serif;
+    font-size: clamp(20px, 2.2vw, 26px); line-height: 1.5; color: #4a4a4a;
+  }
+  .modal-intro em { color: #9b1c1c; font-style: italic; }
+  .modal-intro .intro-small {
+    font-family: 'PT Sans', sans-serif; font-size: 13px; color: #4a4a4a; margin-top: 12px;
+  }
+  .m-form-section { max-width: 1080px; margin: 0 auto; padding: 16px 48px 64px; }
+  .m-form-tabs { display: flex; border-bottom: 2px solid #1a1a1a; }
+  .m-form-tab {
+    flex: 1; padding: 22px 28px 20px; background: transparent; border: 0; cursor: pointer;
+    font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 500; color: #4a4a4a;
+    border-bottom: 4px solid transparent; margin-bottom: -2px; text-align: left;
+    display: flex; gap: 12px; align-items: baseline; transition: color 0.15s;
+  }
+  .m-form-tab .roman { font-style: italic; font-size: 17px; color: #b8860b; }
+  .m-form-tab.active { color: #1a1a1a; border-bottom-color: #9b1c1c; }
+  .m-form-panel { display: none; background: rgba(250,246,239,0.96); padding: 44px 52px; border: 1px solid rgba(26,26,26,0.13); border-top: 0; box-shadow: 0 1px 3px rgba(122,20,20,.08), 0 14px 38px rgba(122,20,20,.08); }
+  .m-form-panel.active { display: block; animation: fadeIn .35s ease; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
+  .m-preamble {
+    font-family: 'Cormorant Garamond', serif; font-size: 18px; font-style: italic; color: #4a4a4a;
+    line-height: 1.55; margin: 0 auto 36px; padding-bottom: 24px;
+    border-bottom: 1px solid rgba(26,26,26,0.13); text-align: center; max-width: 700px;
+  }
+  .m-section-header {
+    display: flex; align-items: baseline; gap: 16px;
+    margin: 40px 0 20px; padding-bottom: 12px; border-bottom: 1px solid #1a1a1a;
+  }
+  .m-section-header .num { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 22px; color: #9b1c1c; }
+  .m-section-header .title-text { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 500; }
+  .m-section-header .label { font-family: 'PT Sans', sans-serif; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: #888; margin-left: auto; }
+  .m-field-group { margin-bottom: 20px; }
+  .m-field-group label { display: block; font-family: 'PT Sans', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #4a4a4a; margin-bottom: 8px; }
+  .m-field-group .req { color: #9b1c1c; }
+  .m-field-group input[type=text],
+  .m-field-group input[type=email],
+  .m-field-group input[type=tel],
+  .m-field-group input[type=date],
+  .m-field-group input[type=number],
+  .m-field-group select,
+  .m-field-group textarea {
+    width: 100%; padding: 12px 16px; background: #fff;
+    border: 1px solid rgba(26,26,26,0.22); color: #1a1a1a;
+    font-family: 'PT Serif', serif; font-size: 15px;
+    outline: none; transition: border-color 0.15s;
+    -webkit-appearance: none;
+  }
+  .m-field-group input:focus,
+  .m-field-group select:focus,
+  .m-field-group textarea:focus { border-color: #9b1c1c; }
+  .m-field-group textarea { min-height: 110px; resize: vertical; }
+  .m-field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .m-field-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .m-hint { font-family: 'PT Sans', sans-serif; font-size: 12px; color: #888; line-height: 1.55; margin-top: 6px; }
+  .m-soft-box {
+    background: rgba(155,28,28,0.06); border-left: 3px solid #9b1c1c;
+    padding: 20px 24px; margin: 20px 0;
+  }
+  .m-soft-box h3 { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 600; margin-bottom: 10px; }
+  .m-soft-box ul { padding-left: 18px; }
+  .m-soft-box li { font-size: 14px; color: #4a4a4a; line-height: 1.6; margin-bottom: 4px; }
+  .m-soft-box p { font-size: 14px; color: #4a4a4a; line-height: 1.6; }
+  .m-nom-block { margin-bottom: 28px; }
+  .m-nom-heading { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px dashed rgba(26,26,26,0.18); }
+  .m-nom-heading .roman { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 22px; color: #b8860b; }
+  .m-nom-heading .name { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 500; }
+  .m-nom-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .m-nom-item { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border: 1px solid rgba(26,26,26,0.14); cursor: pointer; transition: background 0.15s; font-family: 'PT Sans', sans-serif; font-size: 13px; }
+  .m-nom-item:hover { background: rgba(155,28,28,0.05); }
+  .m-nom-item.checked { background: rgba(155,28,28,0.08); border-color: rgba(155,28,28,0.35); }
+  .m-nom-item input { width: 14px; height: 14px; accent-color: #9b1c1c; flex-shrink: 0; }
+  .m-nom-note { display: none; background: #fff8f0; border: 1px solid rgba(184,134,11,0.3); padding: 14px 18px; margin-top: 12px; font-family: 'PT Sans', sans-serif; font-size: 13px; line-height: 1.6; color: #4a4a4a; }
+  .m-nom-note.show { display: block; }
+  .m-doc-checklist { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 16px; }
+  .m-check-item { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border: 1px solid rgba(26,26,26,0.14); font-family: 'PT Sans', sans-serif; font-size: 13px; cursor: pointer; }
+  .m-check-item input { accent-color: #9b1c1c; width: 14px; height: 14px; flex-shrink: 0; }
+  .m-file-zone {
+    border: 1.5px dashed rgba(26,26,26,0.25); padding: 24px 20px; text-align: center;
+    cursor: pointer; transition: border-color 0.15s, background 0.15s;
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+  }
+  .m-file-zone:hover { border-color: #9b1c1c; background: rgba(155,28,28,0.03); }
+  .m-file-zone .icon { font-size: 22px; color: #b8860b; }
+  .m-file-zone .main-text { font-family: 'PT Sans', sans-serif; font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .m-file-zone .sub-text { font-family: 'PT Sans', sans-serif; font-size: 11px; color: #888; letter-spacing: 0.08em; }
+  .m-file-zone input[type=file] { display: none; }
+  .m-file-list { display: flex; flex-direction: column; gap: 4px; margin-top: 8px; }
+  .m-file-tag { display: flex; align-items: center; justify-content: space-between; padding: 7px 12px; background: rgba(26,26,26,0.05); font-size: 12px; font-family: 'PT Sans', sans-serif; }
+  .m-file-tag button { background: none; border: none; cursor: pointer; color: #9b1c1c; font-size: 13px; }
+  .m-submit-area { margin-top: 40px; padding-top: 32px; border-top: 1px solid rgba(26,26,26,0.13); }
+  .m-consent { display: flex; align-items: flex-start; gap: 12px; cursor: pointer; font-family: 'PT Sans', sans-serif; font-size: 13px; color: #4a4a4a; line-height: 1.55; margin-bottom: 24px; }
+  .m-consent input { accent-color: #9b1c1c; width: 15px; height: 15px; flex-shrink: 0; margin-top: 2px; }
+  .m-submit-row { display: flex; align-items: center; gap: 20px; }
+  .m-submit-btn {
+    background: #9b1c1c; color: #faf6ef;
+    font-family: 'PT Sans', sans-serif; font-size: 13px; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    border: none; cursor: pointer; padding: 16px 44px;
+    transition: background 0.18s;
+  }
+  .m-submit-btn:hover { background: #7a1414; }
+  .m-submit-meta { font-family: 'PT Sans', sans-serif; font-size: 12px; color: #888; }
+  .m-success {
+    display: none; background: rgba(47,107,79,0.1); border: 1px solid rgba(47,107,79,0.35);
+    padding: 24px 28px; margin-bottom: 28px; text-align: center;
+  }
+  .m-success.show { display: block; }
+  .m-success .heading { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: #2f6b4f; margin-bottom: 6px; }
+  .m-success p { font-size: 14px; color: #4a4a4a; }
+
   @media (max-width: 1120px) {
     nav {
-      position: sticky !important;
-      top: 0 !important;
+      position: relative !important;
       background: oklch(0.30 0.13 23 / 0.94);
       backdrop-filter: blur(12px);
       box-shadow: 0 12px 28px oklch(0.05 0.01 38 / 0.22);
@@ -1096,8 +1354,7 @@
     body { font-size: 16px; }
     section { padding: 70px 0; }
     nav {
-      position: sticky !important;
-      top: 0 !important;
+      position: relative !important;
       background: oklch(0.30 0.13 23 / 0.94);
       backdrop-filter: blur(12px);
     }
@@ -1263,8 +1520,9 @@
 <section class="hero" style="padding:0;">
   <div class="hero-left">
     <div class="hero-main">
-      <div class="hero-years">35</div>
-      <h1 class="hero-tagline">Международная премия<br>для <em>выдающихся</em><br>талантов мира</h1>
+
+<div class="hero-years">35</div>
+      <h1 class="hero-tagline"><strong>Международная премия</strong><br>для <em>выдающихся</em><br>талантов мира</h1>
       <p class="hero-sub">Фонд «Филантроп» с 1991 года открывает людям с ограниченными возможностями путь к признанию в культуре и искусстве. Премия объединяет артистов, художников, музыкантов, литераторов и театральных мастеров из разных стран.</p>
       <div class="hero-proof">
         <div class="hero-proof-label">Номинации премии</div>
@@ -1339,37 +1597,36 @@
         <div class="section-label">Новости фонда</div>
         <h2 class="section-title">Последние события</h2>
       </div>
-      <a href="#" class="link-all">Все новости</a>
+      <a href="https://www.filantrop.ru/news/" target="_blank" rel="noopener" class="link-all">Все новости</a>
     </div>
     <div class="news-grid">
-      <a href="#" class="news-card">
-        <div class="news-card-img" style="aspect-ratio:16/8;">
-          <span>ФОТО СОБЫТИЯ<br>концерт / выставка / церемония<br>~760 × 380 px</span>
+      <a href="https://www.filantrop.ru/news/?ELEMENT_ID=2303" target="_blank" rel="noopener" class="news-card">
+        <div class="news-card-img" style="aspect-ratio:16/8; overflow:hidden;">
+          <img src="https://www.filantrop.ru/upload/iblock/5ab/eso46ti9fuxjobgydsxvf1iod6e2ozp0.JPG" alt="Выставка в МРО Тропарёво-Никулино" style="width:100%;height:100%;object-fit:cover;display:block;">
         </div>
         <div class="news-card-body">
-          <div class="news-card-date">24 апреля 2026</div>
-          <div class="news-card-title">Концерт для пациентов и сотрудников Главного военного клинического госпиталя имени Н.Н. Бурденко</div>
-          <p class="news-card-excerpt">Артисты фонда «Филантроп» выступили перед ранеными военнослужащими в рамках благотворительной программы поддержки участников СВО.</p>
-          <span class="news-card-tag">Мероприятия</span>
-        </div>
-      </a>
-      <a href="#" class="news-card">
-        <div class="news-card-img">
-          <span>ФОТО<br>~360 × 200 px</span>
-        </div>
-        <div class="news-card-body">
-          <div class="news-card-date">18 апреля 2026</div>
-          <div class="news-card-title">Выставка работ лауреатов Премии открылась в Москве</div>
+          <div class="news-card-date">20 апреля 2026</div>
+          <div class="news-card-title">В МРО «Тропарёво-Никулино» МГО ВОИ открылась выставка картин художников</div>
+          <p class="news-card-excerpt">Новая экспозиция объединила работы художников с инвалидностью — участников программ фонда «Филантроп».</p>
           <span class="news-card-tag">Выставки</span>
         </div>
       </a>
-      <a href="#" class="news-card">
-        <div class="news-card-img">
-          <span>ФОТО<br>~360 × 200 px</span>
+      <a href="https://www.filantrop.ru/news/?ELEMENT_ID=2302" target="_blank" rel="noopener" class="news-card">
+        <div class="news-card-img" style="overflow:hidden;">
+          <img src="https://www.filantrop.ru/upload/iblock/7a5/6xj9ht9l9czgv8vgzl382boh2ba76wlp.JPG" alt="Диалог в красках РХТУ" style="width:100%;height:100%;object-fit:cover;display:block;">
         </div>
         <div class="news-card-body">
-          <div class="news-card-date">10 апреля 2026</div>
-          <div class="news-card-title">Объявлен приём заявок на Международную Премию «Филантроп» 2027</div>
+          <div class="news-card-date">15 апреля 2026</div>
+          <div class="news-card-title">В РХТУ им. Д.И. Менделеева проходит выставка «Диалог в красках»</div>
+          <span class="news-card-tag">Выставки</span>
+        </div>
+      </a>
+      <a href="https://www.filantrop.ru/news/?ELEMENT_ID=2292" target="_blank" rel="noopener" class="news-card">
+        <div class="news-card-img" style="overflow:hidden; background: repeating-linear-gradient(-45deg, var(--cream-dark) 0px, var(--cream-dark) 1px, var(--cream) 1px, var(--cream) 14px);">
+        </div>
+        <div class="news-card-body">
+          <div class="news-card-date">2 марта 2026</div>
+          <div class="news-card-title">В Москве огласили даты приёма заявок на XIV Международную премию «Филантроп»</div>
           <span class="news-card-tag">Премия</span>
         </div>
       </a>
@@ -1382,7 +1639,8 @@
   <div class="container">
     <div class="prize-inner">
       <div class="prize-visual">
-        <span>ФОТО ЦЕРЕМОНИИ<br>или статуэтки Премии<br>~560 × 560 px</span>
+        <img src="statuetka.png" alt="Статуэтка Премии Филантроп">
+        <div class="prize-visual-caption">Статуэтка Международной Премии «Филантроп»</div>
       </div>
       <div class="prize-content">
         <div class="section-label" style="color: var(--gold);">Главная программа</div>
@@ -1412,26 +1670,67 @@
   </div>
 </section>
 
+<!-- ── SIGNIFICANCE ── -->
+<section class="significance-section">
+  <div class="sig-inner">
+    <div class="sig-quote">
+      <div class="sig-quote-text">Стать лауреатом Премии «Филантроп» — значит занять своё место<br>в <strong>истории мировой культуры</strong></div>
+      <div class="sig-quote-attr">Фонд «Филантроп», основан в 1991 году</div>
+    </div>
+    <div class="sig-pillars">
+      <div class="sig-pillar">
+        <div class="sig-pillar-num">I</div>
+        <div class="sig-pillar-body">
+          <div class="sig-pillar-title">Признание государственного уровня</div>
+          <div class="sig-pillar-text">Премия учреждена при поддержке Правительства РФ — это знак национального признания таланта, преодолевшего любые обстоятельства.</div>
+        </div>
+      </div>
+      <div class="sig-pillar">
+        <div class="sig-pillar-num">II</div>
+        <div class="sig-pillar-body">
+          <div class="sig-pillar-title">Международная сцена</div>
+          <div class="sig-pillar-text">Лауреаты выходят на одну сцену с художниками, музыкантами и поэтами из разных стран и культурных школ мира.</div>
+        </div>
+      </div>
+      <div class="sig-pillar">
+        <div class="sig-pillar-num">III</div>
+        <div class="sig-pillar-body">
+          <div class="sig-pillar-title">Более 1000 лауреатов за 35 лет</div>
+          <div class="sig-pillar-text">За три с половиной десятилетия Премия открыла сотни имён, которые вошли в профессиональную историю культуры и искусства.</div>
+        </div>
+      </div>
+      <div class="sig-pillar">
+        <div class="sig-pillar-num">IV</div>
+        <div class="sig-pillar-body">
+          <div class="sig-pillar-title">Традиция великих театральных сцен</div>
+          <div class="sig-pillar-text">Церемония Премии наследует торжественность Большого и Малого театра — пространств, где личная победа становится культурным событием.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ── LEGACY ── -->
 <section class="legacy-section" id="legacy">
   <div class="container">
     <div class="section-label">Историческая сцена</div>
-    <p class="legacy-lead">«Филантроп» говорит с аудиторией языком большой культуры: от традиций русской сцены до международной премии, где талант важнее любых границ.</p>
+    <div class="section-label">Историческая сцена</div>
+    <p class="legacy-lead">Фонд «Филантроп» наследует традицию великих русских театральных институций — пространств, где искусство говорит на языке подлинного достоинства.</p>
     <div class="legacy-grid">
       <div class="legacy-card">
         <div class="legacy-year">1776</div>
         <h3>Большой театр</h3>
-        <p>История Большого театра начинается в 1776 году. Его сцена стала символом высшего уровня оперы и балета, торжественности церемонии и национального культурного достоинства.</p>
+        <p>История Большого театра начинается в 1776 году. Его сцена стала символом высшего мирового уровня оперы и балета. Именно здесь сложилось понятие о торжественности церемонии и национальном культурном достоинстве — традиция, которую наследует Премия «Филантроп».</p>
       </div>
       <div class="legacy-card">
         <div class="legacy-year">1824</div>
         <h3>Малый театр</h3>
-        <p>Малый театр обрёл постоянный дом в 1824 году и стал одной из главных драматических школ России. Его традиция напоминает: сила сцены в человеческой правде и живом слове.</p>
+        <p>Малый театр обрёл постоянный дом в 1824 году. Он стал хранителем живого драматического слова и человеческой правды на сцене. «Дом Островского» напоминает: величие театра — в историях людей, которым дают право голоса.</p>
       </div>
       <div class="legacy-card featured">
         <div class="legacy-year">1991</div>
         <h3>Фонд «Филантроп»</h3>
-        <p>Фонд продолжает эту культурную линию в современной благотворительности: открывает новые имена, поддерживает творческую реабилитацию и превращает личные истории лауреатов в общественное признание.</p>
+        <p>Фонд продолжает эту культурную линию: открывает новые имена, поддерживает творческую реабилитацию и превращает личные истории лауреатов со всего мира в событие мирового масштаба. 35 лет — и тысячи судеб, изменённых силой искусства и признания.</p>
       </div>
     </div>
   </div>
@@ -1544,7 +1843,8 @@
       </div>
       <div class="laureates-copy">
         <p>Премия «Филантроп» международная по смыслу и масштабу: она собирает авторов и исполнителей из разных культурных школ, стран и художественных традиций.</p>
-        <p>На одной сцене встречаются камерная музыка, драматический театр, танец, литература, живопись и скульптура. Поэтому фонд выглядит не как локальный проект, а как институция с большой историей и устойчивой репутацией.</p>
+        <p>На одной сцене встречаются камерная музыка, драматический театр, танец, литература, живопись и скульптура. Это не локальный проект — это институция с тридцатипятилетней историей и репутацией, признанной на государственном уровне.</p>
+        <p>Среди лауреатов — музыканты-виртуозы, поэты, скульпторы, хореографы и актёры из России, стран СНГ и дальнего зарубежья.</p>
         <div class="laureates-list">
           <span>Музыка</span>
           <span>Театр</span>
@@ -1623,7 +1923,7 @@
 <section class="about-strip" id="about">
   <div class="container">
     <div class="about-strip-inner">
-      <h2>35 лет фонд доказывает: искусство сильнее барьеров, а признание должно быть доступно таланту</h2>
+      <h2>35 лет фонд доказывает: искусство сильнее барьеров, а признание должно быть доступно каждому таланту</h2>
       <div>
         <p>Фонд «Филантроп» основан в 1991 году. За три с половиной десятилетия он создал систему поддержки людей с инвалидностью — от реабилитационных программ до международной премии, где звучат голоса талантливых лауреатов со всего мира.</p>
         <a href="#" class="btn-dark">Читать об истории фонда</a>
@@ -1689,7 +1989,319 @@
   </div>
 </footer>
 
+<!-- ── MODAL FORM ── -->
+<div class="modal-overlay" id="applicationModal">
+  <div class="modal-box">
+    <div class="modal-close">
+      <span class="modal-close-title">Международная Премия «Филантроп» — Заявка 2027</span>
+      <button class="modal-close-btn" onclick="closeModal()">✕ Закрыть</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-intro">
+        <p>Заполните форму и приложите полный комплект материалов. Заявка регистрируется только при наличии всех обязательных документов.</p>
+        <p class="intro-small">На сайте форма помогает собрать данные, но юридически важные документы — заявка, анкета, согласие и рекомендация — должны быть загружены отдельными файлами.</p>
+      </div>
+      <div class="m-form-section">
+        <div class="m-form-tabs">
+          <button class="m-form-tab active" onclick="mSwitchTab('individual',this)"><span class="roman">I.</span>Индивидуальная заявка</button>
+          <button class="m-form-tab" onclick="mSwitchTab('collective',this)"><span class="roman">II.</span>Коллективная заявка</button>
+        </div>
+
+        <!-- INDIVIDUAL -->
+        <div class="m-form-panel active" id="m-panel-individual">
+          <p class="m-preamble">Прошу рассмотреть мою кандидатуру на соискание Международной премии «Филантроп» за выдающиеся достижения в области культуры и искусства.</p>
+          <div class="m-success" id="m-success-individual"><div class="heading">Заявка подготовлена к отправке</div><p>Проверьте, что все обязательные документы приложены.</p></div>
+          <form onsubmit="mHandleSubmit(event,'individual')">
+            <div class="m-section-header"><span class="num">i.</span><span class="title-text">Кто выдвигает кандидата</span><span class="label">Recommendation</span></div>
+            <div class="m-field-row">
+              <div class="m-field-group"><label>Тип выдвижения <span class="req">*</span></label><select required name="submitter_type"><option value="">Выберите</option><option>Государственная организация</option><option>Общественная организация</option><option>Некоммерческая организация</option><option>Организация инвалидов</option><option>Оргкомитет конкурса / фестиваля</option><option>Иное основание</option></select></div>
+              <div class="m-field-group"><label>Название организации <span class="req">*</span></label><input required type="text" name="recommend_org" placeholder="Полное название организации"></div>
+            </div>
+            <div class="m-field-row">
+              <div class="m-field-group"><label>Контактное лицо</label><input type="text" name="recommend_person" placeholder="ФИО, должность"></div>
+              <div class="m-field-group"><label>Контакт организации</label><input type="text" name="recommend_contact" placeholder="Телефон или e-mail"></div>
+            </div>
+            <div class="m-soft-box"><h3>Важно</h3><ul><li>Рекомендация прикладывается отдельным файлом на бланке организации.</li><li>Документ должен быть заверен подписью руководителя и печатью.</li></ul></div>
+
+            <div class="m-section-header"><span class="num">ii.</span><span class="title-text">Сведения о номинанте</span><span class="label">Personal data</span></div>
+            <div class="m-field-group"><label>Фамилия, имя, отчество <span class="req">*</span></label><input type="text" name="fio" required placeholder="Иванов Иван Иванович"></div>
+            <div class="m-field-row-3">
+              <div class="m-field-group"><label>Дата рождения <span class="req">*</span></label><input type="date" name="dob" required></div>
+              <div class="m-field-group"><label>Гражданство <span class="req">*</span></label><input type="text" name="country" required placeholder="Российская Федерация"></div>
+              <div class="m-field-group"><label>Возрастная категория</label><select name="age_group"><option>Взрослый участник</option><option>До 16 лет — «Растущие надежды»</option></select></div>
+            </div>
+            <div class="m-field-row">
+              <div class="m-field-group"><label>Телефон <span class="req">*</span></label><input type="tel" name="phone" required placeholder="+7 (___) ___-__-__"></div>
+              <div class="m-field-group"><label>E-mail <span class="req">*</span></label><input type="email" name="email" required placeholder="example@mail.ru"></div>
+            </div>
+            <div class="m-field-group"><label>Адрес / страна, город <span class="req">*</span></label><input type="text" name="address" required placeholder="Страна, город, адрес для связи"></div>
+            <div class="m-field-row">
+              <div class="m-field-group"><label>Документ об инвалидности <span class="req">*</span></label><input type="text" name="disability_doc" required placeholder="Справка ВТЭК / МСЭ, серия/номер"></div>
+              <div class="m-field-group"><label>Особые условия коммуникации</label><input type="text" name="accessibility" placeholder="Например: сурдоперевод, связь через представителя"></div>
+            </div>
+
+            <div class="m-section-header"><span class="num">iii.</span><span class="title-text">Номинация</span><span class="label">Category</span></div>
+            <div class="m-nom-block">
+              <div class="m-nom-heading"><span class="roman">1.</span><span class="name">Исполнительские виды искусства</span></div>
+              <div class="m-nom-grid">
+                <label class="m-nom-item"><input data-mtype="performing" type="checkbox" name="nom" value="Вокал академический"><span>Вокал академический</span></label>
+                <label class="m-nom-item"><input data-mtype="performing" type="checkbox" name="nom" value="Вокал народный"><span>Вокал народный</span></label>
+                <label class="m-nom-item"><input data-mtype="performing" type="checkbox" name="nom" value="Вокал эстрадный"><span>Вокал эстрадный</span></label>
+                <label class="m-nom-item"><input data-mtype="performing" type="checkbox" name="nom" value="Хореография"><span>Хореография</span></label>
+                <label class="m-nom-item"><input data-mtype="performing" type="checkbox" name="nom" value="Театральное искусство"><span>Театральное искусство</span></label>
+                <label class="m-nom-item"><input data-mtype="performing" type="checkbox" name="nom" value="Инструментальное исполнение"><span>Инструментальное исполнение</span></label>
+                <label class="m-nom-item"><input data-mtype="performing" type="checkbox" name="nom" value="Авторская песня"><span>Авторская песня</span></label>
+              </div>
+            </div>
+            <div class="m-nom-block">
+              <div class="m-nom-heading"><span class="roman">2.</span><span class="name">Изобразительные виды искусства</span></div>
+              <div class="m-nom-grid">
+                <label class="m-nom-item"><input data-mtype="visual" type="checkbox" name="nom" value="Живопись и графика"><span>Живопись и графика</span></label>
+                <label class="m-nom-item"><input data-mtype="visual" type="checkbox" name="nom" value="Декоративно-прикладное искусство"><span>Декоративно-прикладное</span></label>
+                <label class="m-nom-item"><input data-mtype="visual" type="checkbox" name="nom" value="Скульптура"><span>Скульптура</span></label>
+              </div>
+            </div>
+            <div class="m-nom-block">
+              <div class="m-nom-heading"><span class="roman">3.</span><span class="name">Литературное творчество</span></div>
+              <div class="m-nom-grid">
+                <label class="m-nom-item"><input data-mtype="literature" type="checkbox" name="nom" value="Малая проза"><span>Малая проза</span></label>
+                <label class="m-nom-item"><input data-mtype="literature" type="checkbox" name="nom" value="Поэзия"><span>Поэзия</span></label>
+              </div>
+            </div>
+            <div class="m-nom-note" data-mnote="performing"><b>Для исполнительских номинаций:</b> приложите видеозапись не менее 3 номеров. В записи номинант должен представить себя и название номера.</div>
+            <div class="m-nom-note" data-mnote="visual"><b>Для изобразительного искусства:</b> не менее 5 цветных фото работ с подписью: ФИО, название, размер, техника, год.</div>
+            <div class="m-nom-note" data-mnote="literature"><b>Для литературы:</b> малая проза — до 40 000 знаков; поэзия — от 10 до 30 произведений.</div>
+
+            <div class="m-section-header"><span class="num">iv.</span><span class="title-text">Творческий путь</span><span class="label">Biography</span></div>
+            <div class="m-field-group"><label>Автобиография <span class="req">*</span></label><textarea required name="bio" placeholder="Расскажите о себе, творческом пути, образовании, конкурсах, фестивалях..."></textarea></div>
+            <div class="m-field-group"><label>Роль творчества в преодолении инвалидности <span class="req">*</span></label><textarea required name="overcoming" placeholder="Как искусство помогает в реабилитации и социальной адаптации?"></textarea></div>
+            <div class="m-field-group"><label>Награды и достижения</label><textarea name="awards" placeholder="Основные награды, звания, участие в конкурсах и фестивалях."></textarea></div>
+
+            <div class="m-section-header"><span class="num">v.</span><span class="title-text">Обязательные документы</span><span class="label">Checklist</span></div>
+            <div class="m-soft-box"><h3>Проверьте комплект</h3><p>Отметьте каждый пункт перед отправкой.</p>
+              <div class="m-doc-checklist">
+                <label class="m-check-item"><input required type="checkbox"><span>Заявка</span></label>
+                <label class="m-check-item"><input required type="checkbox"><span>Анкета с личной подписью</span></label>
+                <label class="m-check-item"><input required type="checkbox"><span>Портретная фотография 10×15</span></label>
+                <label class="m-check-item"><input required type="checkbox"><span>Автобиография</span></label>
+                <label class="m-check-item"><input required type="checkbox"><span>Рекомендация организации</span></label>
+                <label class="m-check-item"><input required type="checkbox"><span>Авторские материалы по номинации</span></label>
+                <label class="m-check-item"><input required type="checkbox"><span>Справка ВТЭК / МСЭ</span></label>
+                <label class="m-check-item"><input required type="checkbox"><span>Согласие на обработку данных</span></label>
+              </div>
+            </div>
+
+            <div class="m-section-header"><span class="num">vi.</span><span class="title-text">Прикрепить файлы</span><span class="label">Upload</span></div>
+            <div class="m-field-row">
+              <div class="m-field-group"><label>Заявка и анкета <span class="req">*</span></label><div class="m-file-zone" onclick="this.querySelector('input').click()"><div class="icon">⌘</div><div class="main-text">Загрузить документы</div><div class="sub-text">PDF · DOC · DOCX</div><input required type="file" accept=".pdf,.doc,.docx" multiple onchange="mShowFiles(this,'mf-1')"></div><div class="m-file-list" id="mf-1"></div></div>
+              <div class="m-field-group"><label>Фото 10×15 <span class="req">*</span></label><div class="m-file-zone" onclick="this.querySelector('input').click()"><div class="icon">◊</div><div class="main-text">Портретная фотография</div><div class="sub-text">JPG · PNG</div><input required type="file" accept=".jpg,.jpeg,.png" onchange="mShowFiles(this,'mf-2')"></div><div class="m-file-list" id="mf-2"></div></div>
+            </div>
+            <div class="m-field-row">
+              <div class="m-field-group"><label>Рекомендация <span class="req">*</span></label><div class="m-file-zone" onclick="this.querySelector('input').click()"><div class="icon">§</div><div class="main-text">Файл рекомендации</div><div class="sub-text">PDF · DOC · DOCX</div><input required type="file" accept=".pdf,.doc,.docx" onchange="mShowFiles(this,'mf-3')"></div><div class="m-file-list" id="mf-3"></div></div>
+              <div class="m-field-group"><label>Справка ВТЭК / МСЭ <span class="req">*</span></label><div class="m-file-zone" onclick="this.querySelector('input').click()"><div class="icon">✕</div><div class="main-text">Скан документа</div><div class="sub-text">PDF · JPG · PNG</div><input required type="file" accept=".pdf,.jpg,.jpeg,.png" onchange="mShowFiles(this,'mf-4')"></div><div class="m-file-list" id="mf-4"></div></div>
+            </div>
+            <div class="m-field-group"><label>Авторские материалы <span class="req">*</span></label><div class="m-file-zone" onclick="this.querySelector('input').click()"><div class="icon">∗</div><div class="main-text">Работы, портфолио, тексты</div><div class="sub-text">PDF · DOC · JPG · PNG · MP4</div><input required type="file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.mp4" multiple onchange="mShowFiles(this,'mf-5')"></div><div class="m-file-list" id="mf-5"></div></div>
+            <div class="m-field-group"><label>Ссылка на видео / облачную папку</label><input type="text" name="links" placeholder="YouTube, Rutube, Яндекс.Диск, Google Drive..."><div class="m-hint">Для больших видеофайлов вставьте ссылку с открытым доступом.</div></div>
+            <div class="m-field-group"><label>Согласие на обработку данных <span class="req">*</span></label><div class="m-file-zone" onclick="this.querySelector('input').click()"><div class="icon">✓</div><div class="main-text">Загрузить подписанное согласие</div><div class="sub-text">PDF · DOC · DOCX · JPG</div><input required type="file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" onchange="mShowFiles(this,'mf-6')"></div><div class="m-file-list" id="mf-6"></div></div>
+
+            <div class="m-section-header"><span class="num">vii.</span><span class="title-text">Оставайтесь в курсе событий</span><span class="label">Social</span></div>
+            <div class="m-soft-box" style="background:rgba(184,134,11,0.07);border-left-color:#b8860b;">
+              <h3 style="color:#7a1414;">Подпишитесь на наши социальные сети</h3>
+              <p style="margin-bottom:16px;">Следите за объявлениями о Премии, итогами церемоний и новостями фонда — первыми узнавайте о важных событиях.</p>
+              <div style="display:flex;gap:12px;flex-wrap:wrap;">
+                <a href="https://vk.com/club71460075" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;background:#0077FF;color:#fff;font-family:'PT Sans',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.04em;text-decoration:none;padding:11px 20px;transition:opacity 0.15s;" onmouseover="this.style.opacity='.82'" onmouseout="this.style.opacity='1'">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm6.206 8.36c.09-.282 0-.49-.4-.49h-1.322c-.337 0-.492.178-.582.374 0 0-.68 1.656-1.642 2.732-.311.311-.452.41-.622.41-.085 0-.208-.099-.208-.381V8.36c0-.337-.097-.49-.376-.49H11.35c-.21 0-.336.156-.336.304 0 .319.477.392.526 1.29v1.95c0 .427-.077.505-.247.505-.452 0-1.552-1.664-2.205-3.568-.128-.37-.257-.52-.596-.52H7.17c-.378 0-.454.178-.454.374 0 .35.452 2.083 2.107 4.376 1.103 1.583 2.656 2.44 4.069 2.44.848 0 .953-.19.953-.518v-1.195c0-.378.08-.453.346-.453.196 0 .533.098 1.319.857.898.898 1.046 1.302 1.551 1.302h1.322c.378 0 .567-.19.458-.564-.12-.372-.552-.911-1.127-1.55-.311-.367-.778-.762-.919-.958-.196-.252-.14-.364 0-.588z"/></svg>
+                  ВКонтакте
+                </a>
+                <a href="https://t.me/fund_filantrop" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;background:#229ED9;color:#fff;font-family:'PT Sans',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.04em;text-decoration:none;padding:11px 20px;transition:opacity 0.15s;" onmouseover="this.style.opacity='.82'" onmouseout="this.style.opacity='1'">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-1.97 9.289c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.31 14.617l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.506.97z"/></svg>
+                  Telegram
+                </a>
+                <a href="https://ok.ru/group/52125787291862" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;background:#EE8208;color:#fff;font-family:'PT Sans',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.04em;text-decoration:none;padding:11px 20px;transition:opacity 0.15s;" onmouseover="this.style.opacity='.82'" onmouseout="this.style.opacity='1'">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 5.04a3.12 3.12 0 110 6.24A3.12 3.12 0 0112 5.04zm0 1.92a1.2 1.2 0 100 2.4 1.2 1.2 0 000-2.4zm5.04 5.76a.96.96 0 01-.672 1.176 8.64 8.64 0 01-2.208.48l2.16 2.16a.96.96 0 11-1.357 1.357L12 14.736l-2.963 2.957a.96.96 0 11-1.357-1.357l2.16-2.16a8.64 8.64 0 01-2.208-.48.96.96 0 01.504-1.848 6.72 6.72 0 007.728 0 .96.96 0 011.176.672z"/></svg>
+                  Одноклассники
+                </a>
+              </div>
+            </div>
+
+            <div class="m-section-header"><span class="num">viii.</span><span class="title-text">Подтверждение и подпись</span><span class="label">Signature</span></div>
+            <div class="m-field-row">
+              <div class="m-field-group"><label>Дата подачи <span class="req">*</span></label><input required type="date" name="date"></div>
+              <div class="m-field-group"><label>ФИО заявителя (электронная подпись) <span class="req">*</span></label><input required type="text" name="signature" placeholder="Фамилия Имя Отчество"></div>
+            </div>
+            <div class="m-submit-area">
+              <label class="m-consent"><input type="checkbox" required><span>Подтверждаю достоверность сведений, наличие полного комплекта документов и согласие на обработку персональных данных.</span></label>
+              <div class="m-submit-row"><button type="submit" class="m-submit-btn">Отправить заявку →</button><span class="m-submit-meta">* обязательные поля</span></div>
+            </div>
+          </form>
+        </div>
+
+        <!-- COLLECTIVE -->
+        <div class="m-form-panel" id="m-panel-collective">
+          <p class="m-preamble">Просим рассмотреть кандидатуру нашего творческого коллектива на соискание Международной премии «Филантроп».</p>
+          <div class="m-success" id="m-success-collective"><div class="heading">Заявка коллектива подготовлена к отправке</div><p>Проверьте список участников и документы каждого участника.</p></div>
+          <form onsubmit="mHandleSubmit(event,'collective')">
+            <div class="m-section-header"><span class="num">i.</span><span class="title-text">Сведения о коллективе</span><span class="label">Group data</span></div>
+            <div class="m-field-group"><label>Полное название коллектива <span class="req">*</span></label><input required type="text" name="cname" placeholder="Творческий коллектив «Название»"></div>
+            <div class="m-field-row">
+              <div class="m-field-group"><label>ФИО руководителя <span class="req">*</span></label><input required type="text" name="leader"></div>
+              <div class="m-field-group"><label>Количество участников <span class="req">*</span></label><input required type="number" min="1" name="count" placeholder="12"></div>
+            </div>
+            <div class="m-field-row">
+              <div class="m-field-group"><label>Телефон <span class="req">*</span></label><input required type="tel" name="cphone" placeholder="+7 (___) ___-__-__"></div>
+              <div class="m-field-group"><label>E-mail <span class="req">*</span></label><input required type="email" name="cemail" placeholder="example@mail.ru"></div>
+            </div>
+            <div class="m-field-row">
+              <div class="m-field-group"><label>Город / регион / страна <span class="req">*</span></label><input required type="text" name="city" placeholder="Москва, Россия"></div>
+              <div class="m-field-group"><label>Организация / учреждение</label><input type="text" name="org" placeholder="Если коллектив действует при организации"></div>
+            </div>
+
+            <div class="m-section-header"><span class="num">ii.</span><span class="title-text">Кто выдвигает коллектив</span><span class="label">Recommendation</span></div>
+            <div class="m-field-row">
+              <div class="m-field-group"><label>Название рекомендующей организации <span class="req">*</span></label><input required type="text" name="crecommend_org"></div>
+              <div class="m-field-group"><label>Контактное лицо</label><input type="text" name="crecommend_person"></div>
+            </div>
+
+            <div class="m-section-header"><span class="num">iii.</span><span class="title-text">Номинация</span><span class="label">Category</span></div>
+            <div class="m-soft-box"><h3>Для коллектива</h3><ul><li>Анкета заполняется на руководителя коллектива.</li><li>Отдельно прикладывается список участников с ФИО и ролями.</li><li>Для каждого участника с инвалидностью прикладываются подтверждающие документы.</li></ul></div>
+            <div class="m-nom-grid" style="margin-top:16px;">
+              <label class="m-nom-item"><input type="checkbox" name="cnom" value="Вокал академический"><span>Вокал академический</span></label>
+              <label class="m-nom-item"><input type="checkbox" name="cnom" value="Вокал народный"><span>Вокал народный</span></label>
+              <label class="m-nom-item"><input type="checkbox" name="cnom" value="Хореография"><span>Хореография</span></label>
+              <label class="m-nom-item"><input type="checkbox" name="cnom" value="Театральное искусство"><span>Театральное искусство</span></label>
+              <label class="m-nom-item"><input type="checkbox" name="cnom" value="Инструментальное исполнение"><span>Инструментальное исполнение</span></label>
+              <label class="m-nom-item"><input type="checkbox" name="cnom" value="Авторская песня"><span>Авторская песня</span></label>
+            </div>
+
+            <div class="m-section-header"><span class="num">iv.</span><span class="title-text">История и достижения</span><span class="label">History</span></div>
+            <div class="m-field-group"><label>Творческий путь коллектива <span class="req">*</span></label><textarea required name="cbio" placeholder="История, достижения, фестивали, конкурсы, гастроли..."></textarea></div>
+            <div class="m-field-group"><label>Роль творчества в реабилитации участников <span class="req">*</span></label><textarea required name="covercoming" placeholder="Как участие в коллективе помогает участникам через искусство?"></textarea></div>
+
+            <div class="m-section-header"><span class="num">v.</span><span class="title-text">Файлы и документы</span><span class="label">Upload</span></div>
+            <div class="m-doc-checklist">
+              <label class="m-check-item"><input required type="checkbox"><span>Коллективная заявка</span></label>
+              <label class="m-check-item"><input required type="checkbox"><span>Анкета руководителя с подписью</span></label>
+              <label class="m-check-item"><input required type="checkbox"><span>Фото коллектива 15×21</span></label>
+              <label class="m-check-item"><input required type="checkbox"><span>Список участников с ФИО</span></label>
+              <label class="m-check-item"><input required type="checkbox"><span>Рекомендация организации</span></label>
+              <label class="m-check-item"><input required type="checkbox"><span>Авторские материалы</span></label>
+              <label class="m-check-item"><input required type="checkbox"><span>Справки ВТЭК / МСЭ участников</span></label>
+              <label class="m-check-item"><input required type="checkbox"><span>Согласие на обработку данных</span></label>
+            </div>
+            <div class="m-field-row" style="margin-top:24px;">
+              <div class="m-field-group"><label>Заявка и анкета руководителя <span class="req">*</span></label><div class="m-file-zone" onclick="this.querySelector('input').click()"><div class="icon">⌘</div><div class="main-text">Загрузить документы</div><div class="sub-text">PDF · DOC · DOCX</div><input required type="file" accept=".pdf,.doc,.docx" multiple onchange="mShowFiles(this,'mc-1')"></div><div class="m-file-list" id="mc-1"></div></div>
+              <div class="m-field-group"><label>Фото коллектива 15×21 <span class="req">*</span></label><div class="m-file-zone" onclick="this.querySelector('input').click()"><div class="icon">◊</div><div class="main-text">Цветная фотография коллектива</div><div class="sub-text">JPG · PNG</div><input required type="file" accept=".jpg,.jpeg,.png" onchange="mShowFiles(this,'mc-2')"></div><div class="m-file-list" id="mc-2"></div></div>
+            </div>
+            <div class="m-field-row">
+              <div class="m-field-group"><label>Список участников <span class="req">*</span></label><div class="m-file-zone" onclick="this.querySelector('input').click()"><div class="icon">≡</div><div class="main-text">ФИО и роли</div><div class="sub-text">PDF · DOC · DOCX · XLSX</div><input required type="file" accept=".pdf,.doc,.docx,.xlsx" onchange="mShowFiles(this,'mc-3')"></div><div class="m-file-list" id="mc-3"></div></div>
+              <div class="m-field-group"><label>Справки ВТЭК / МСЭ <span class="req">*</span></label><div class="m-file-zone" onclick="this.querySelector('input').click()"><div class="icon">✕</div><div class="main-text">Можно несколько файлов</div><div class="sub-text">PDF · JPG · PNG</div><input required type="file" accept=".pdf,.jpg,.jpeg,.png" multiple onchange="mShowFiles(this,'mc-4')"></div><div class="m-file-list" id="mc-4"></div></div>
+            </div>
+            <div class="m-field-group"><label>Авторские материалы <span class="req">*</span></label><div class="m-file-zone" onclick="this.querySelector('input').click()"><div class="icon">∗</div><div class="main-text">Выступления, портфолио</div><div class="sub-text">PDF · DOC · JPG · PNG · MP4</div><input required type="file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.mp4" multiple onchange="mShowFiles(this,'mc-5')"></div><div class="m-file-list" id="mc-5"></div></div>
+            <div class="m-field-group"><label>Ссылка на видео / облачную папку</label><input type="text" name="cvideo" placeholder="YouTube, Rutube, Яндекс.Диск, Google Drive..."></div>
+            <div class="m-field-group"><label>Согласия на обработку данных <span class="req">*</span></label><div class="m-file-zone" onclick="this.querySelector('input').click()"><div class="icon">✓</div><div class="main-text">Подписанные согласия участников</div><div class="sub-text">PDF · DOC · DOCX · JPG</div><input required type="file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" multiple onchange="mShowFiles(this,'mc-6')"></div><div class="m-file-list" id="mc-6"></div></div>
+
+            <div class="m-section-header"><span class="num">vi.</span><span class="title-text">Оставайтесь в курсе событий</span><span class="label">Social</span></div>
+            <div class="m-soft-box" style="background:rgba(184,134,11,0.07);border-left-color:#b8860b;">
+              <h3 style="color:#7a1414;">Подпишитесь на наши социальные сети</h3>
+              <p style="margin-bottom:16px;">Следите за объявлениями о Премии, итогами церемоний и новостями фонда.</p>
+              <div style="display:flex;gap:12px;flex-wrap:wrap;">
+                <a href="https://vk.com/club71460075" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;background:#0077FF;color:#fff;font-family:'PT Sans',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.04em;text-decoration:none;padding:11px 20px;" >ВКонтакте</a>
+                <a href="https://t.me/fund_filantrop" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;background:#229ED9;color:#fff;font-family:'PT Sans',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.04em;text-decoration:none;padding:11px 20px;">Telegram</a>
+                <a href="https://ok.ru/group/52125787291862" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;background:#EE8208;color:#fff;font-family:'PT Sans',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.04em;text-decoration:none;padding:11px 20px;">Одноклассники</a>
+              </div>
+            </div>
+
+            <div class="m-section-header"><span class="num">vii.</span><span class="title-text">Подтверждение и подпись</span><span class="label">Signature</span></div>
+            <div class="m-field-row">
+              <div class="m-field-group"><label>Дата подачи <span class="req">*</span></label><input required type="date" name="cdate"></div>
+              <div class="m-field-group"><label>ФИО руководителя (электронная подпись) <span class="req">*</span></label><input required type="text" name="csignature"></div>
+            </div>
+            <div class="m-submit-area">
+              <label class="m-consent"><input type="checkbox" required><span>Подтверждаю достоверность сведений, наличие полного комплекта документов и согласие на обработку персональных данных.</span></label>
+              <div class="m-submit-row"><button type="submit" class="m-submit-btn">Отправить заявку →</button><span class="m-submit-meta">* обязательные поля</span></div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
+  // ── MODAL ──
+  function openModal() {
+    document.getElementById('applicationModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    document.getElementById('applicationModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  // Close on overlay click
+  document.getElementById('applicationModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+  // Close on Escape
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+  });
+  // Hook all CTA buttons
+  document.querySelectorAll('a[href="#prize"], .nav-cta, .mobile-menu-cta').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      openModal();
+    });
+  });
+
+  // ── MODAL FORM LOGIC ──
+  function mSwitchTab(tab, btn) {
+    document.querySelectorAll('.m-form-tab').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.m-form-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('m-panel-' + tab).classList.add('active');
+  }
+  function mShowFiles(input, listId) {
+    const list = document.getElementById(listId);
+    if (!list) return;
+    list.innerHTML = '';
+    Array.from(input.files).forEach(file => {
+      const tag = document.createElement('div');
+      tag.className = 'm-file-tag';
+      const size = (file.size / 1024 / 1024).toFixed(1);
+      tag.innerHTML = '<span>' + file.name + '</span><span style="opacity:.5">' + size + ' МБ</span><button type="button" onclick="this.parentElement.remove()">✕</button>';
+      list.appendChild(tag);
+    });
+  }
+  function mHandleSubmit(e, type) {
+    e.preventDefault();
+    const success = document.getElementById('m-success-' + type);
+    success.classList.add('show');
+    success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+  function mUpdateNotes() {
+    const types = new Set();
+    document.querySelectorAll('input[data-mtype]:checked').forEach(i => types.add(i.dataset.mtype));
+    document.querySelectorAll('.m-nom-note').forEach(n => n.classList.toggle('show', types.has(n.dataset.mnote)));
+  }
+  document.querySelectorAll('.m-nom-item input[type="checkbox"]').forEach(cb => {
+    cb.addEventListener('change', function(e) {
+      e.target.closest('.m-nom-item').classList.toggle('checked', e.target.checked);
+      mUpdateNotes();
+    });
+  });
+  document.querySelectorAll('.m-file-zone').forEach(zone => {
+    zone.addEventListener('dragover', e => { e.preventDefault(); zone.style.borderStyle = 'solid'; });
+    zone.addEventListener('dragleave', () => zone.style.borderStyle = 'dashed');
+    zone.addEventListener('drop', e => {
+      e.preventDefault(); zone.style.borderStyle = 'dashed';
+      const input = zone.querySelector('input[type=file]');
+      if (!input) return;
+      try { input.files = e.dataTransfer.files; } catch(err) {}
+      const list = zone.nextElementSibling;
+      if (list) mShowFiles(input, list.id);
+    });
+  });
+
   const menuButton = document.querySelector('.mobile-menu-toggle');
   const mobileMenu = document.querySelector('#mobile-menu');
 
@@ -1717,4 +2329,3 @@
 </script>
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
 </html>
-
