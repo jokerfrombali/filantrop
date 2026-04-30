@@ -1,0 +1,2334 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Фонд «Филантроп» — 35 лет</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=PT+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    /* Brand palette from Филантроп identity */
+    --cream: oklch(0.91 0.045 82);        /* пергаментный бежевый фон */
+    --cream-light: oklch(0.95 0.03 82);   /* светлее */
+    --cream-dark: oklch(0.85 0.055 78);   /* тёмнее */
+    --red: oklch(0.40 0.175 22);          /* фирменный бордово-красный */
+    --red-dark: oklch(0.32 0.16 22);      /* тёмный красный */
+    --red-mid: oklch(0.50 0.16 22);       /* средний красный */
+    --ink: oklch(0.16 0.01 40);
+    --ink-mid: oklch(0.35 0.01 40);
+    --ink-light: oklch(0.55 0.01 40);
+    --gold: oklch(0.72 0.12 68);          /* золото статуэтки */
+    --gold-deep: oklch(0.58 0.13 60);
+    --gold-light: oklch(0.88 0.08 78);
+    --velvet: oklch(0.22 0.13 22);
+    --stage-black: oklch(0.10 0.012 38);
+    --white: oklch(0.998 0.002 80);
+
+    --ff-serif: 'Playfair Display', Georgia, serif;
+    --ff-cormorant: 'Cormorant Garamond', Georgia, serif;
+    --ff-sans: 'PT Sans', Arial, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; overflow-x: hidden; }
+  body {
+    font-family: var(--ff-sans);
+    background: var(--cream);
+    color: var(--ink);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  .theatre-ornament {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0.28;
+    background:
+      linear-gradient(90deg, transparent 0 8px, var(--gold) 8px 10px, transparent 10px 18px),
+      linear-gradient(var(--gold), var(--gold));
+    background-size: 18px 1px, 100% 1px;
+    background-position: 0 0, 0 100%;
+    background-repeat: repeat-x, no-repeat;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--red);
+    border-bottom: none;
+  }
+  .nav-inner {
+    max-width: 1280px; margin: 0 auto;
+    display: flex; align-items: center; gap: 0;
+    padding: 0 48px; height: 64px;
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 14px;
+    text-decoration: none; color: var(--white);
+    flex: 0 0 320px;
+    margin-right: 10px;
+    min-width: 0;
+  }
+  .nav-logo > img:not(.nav-wordmark) {
+    height: 42px;
+    width: auto;
+    object-fit: contain;
+    object-position: center;
+    filter: brightness(0) invert(1);
+  }
+  .nav-brand-note {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-left: 1px solid oklch(0.84 0.06 78 / 0.42);
+    padding-left: 12px;
+    width: 220px;
+    overflow: visible;
+  }
+  .nav-brand-note strong {
+    display: none;
+  }
+  .nav-brand-note em {
+    display: none;
+  }
+  .nav-wordmark {
+    display: block;
+    width: 206px;
+    height: 17px !important;
+    object-fit: contain;
+    object-position: left center;
+    margin-top: 1px;
+    filter: none !important;
+    opacity: 0.96;
+  }
+  .nav-logo-mark {
+    width: 40px; height: 40px;
+    background: var(--gold);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-logo-mark svg { width: 22px; height: 22px; }
+  .nav-logo-text { line-height: 1.15; }
+  .nav-logo-text strong { font-family: var(--ff-serif); font-size: 15px; font-weight: 600; letter-spacing: 0.02em; display: block; color: var(--white); }
+  .nav-logo-text span { font-size: 10.5px; color: oklch(0.80 0.04 82); letter-spacing: 0.08em; text-transform: uppercase; }
+  .nav-links { display: flex; gap: 0; margin-left: auto; }
+  .nav-links a {
+    font-size: 13.5px; color: oklch(0.88 0.03 20); text-decoration: none;
+    padding: 0 16px; height: 64px; display: flex; align-items: center;
+    border-bottom: 2px solid transparent;
+    transition: color 0.18s, border-color 0.18s;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+  .nav-links a:hover { color: var(--white); border-bottom-color: var(--gold); }
+  .language-switcher {
+    position: relative;
+    margin-left: 16px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .language-current {
+    border: 1px solid oklch(0.76 0.08 78 / 0.46);
+    background: transparent;
+    color: var(--gold-light);
+    font: 700 12px/1 var(--ff-sans);
+    letter-spacing: 0.08em;
+    padding: 9px 11px;
+    cursor: pointer;
+    text-transform: uppercase;
+  }
+  .language-menu {
+    position: absolute;
+    right: 0;
+    top: calc(100% - 8px);
+    min-width: 96px;
+    padding: 8px;
+    background: oklch(0.16 0.07 24);
+    border: 1px solid oklch(0.70 0.08 78 / 0.34);
+    box-shadow: 0 18px 30px oklch(0.04 0.01 38 / 0.38);
+    display: none;
+    z-index: 150;
+  }
+  .language-switcher:hover .language-menu,
+  .language-switcher:focus-within .language-menu { display: grid; gap: 2px; }
+  .language-menu a {
+    color: oklch(0.88 0.04 78);
+    text-decoration: none;
+    font-size: 12px;
+    line-height: 1;
+    padding: 9px 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .language-menu a:hover {
+    background: oklch(0.28 0.12 24);
+    color: var(--gold-light);
+  }
+  .nav-cta {
+    margin-left: 14px;
+    background: var(--gold); color: var(--ink);
+    font-size: 13px; font-weight: 700; letter-spacing: 0.04em;
+    text-transform: uppercase; text-decoration: none;
+    padding: 10px 22px; border-radius: 2px;
+    transition: background 0.18s;
+    flex-shrink: 0;
+  }
+  .nav-cta:hover { background: var(--gold-deep); color: var(--white); }
+  .mobile-menu-toggle {
+    display: none;
+    width: 44px;
+    height: 44px;
+    border: 1px solid oklch(0.78 0.08 78 / 0.42);
+    background:
+      radial-gradient(circle at 50% 50%, oklch(0.74 0.10 68 / 0.14), transparent 62%),
+      transparent;
+    color: var(--gold-light);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    flex: 0 0 auto;
+  }
+  .mobile-menu-toggle span {
+    display: block;
+    width: 19px;
+    height: 1.5px;
+    background: currentColor;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  body.mobile-menu-open .mobile-menu-toggle span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  body.mobile-menu-open .mobile-menu-toggle span:nth-child(2) { opacity: 0; }
+  body.mobile-menu-open .mobile-menu-toggle span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+  .mobile-menu {
+    display: none;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 88vh;
+    background:
+      radial-gradient(circle at 22% 18%, oklch(0.46 0.17 24 / 0.62), transparent 31%),
+      radial-gradient(circle at 72% 38%, oklch(0.34 0.13 24 / 0.38), transparent 36%),
+      linear-gradient(105deg, var(--red) 0%, oklch(0.32 0.14 23) 42%, oklch(0.18 0.07 24) 67%, var(--stage-black) 100%);
+    display: grid; grid-template-columns: 1fr 1fr;
+    position: relative; overflow: hidden;
+  }
+  .hero::before,
+  .hero::after {
+    content: ''; position: absolute; top: 0; bottom: 0; width: 18vw; min-width: 160px;
+    background:
+      repeating-linear-gradient(90deg, oklch(0.29 0.14 22) 0 18px, oklch(0.21 0.11 22) 18px 36px);
+    opacity: 0.34; z-index: 1;
+    clip-path: polygon(0 0, 100% 0, 82% 100%, 0 100%);
+  }
+  .hero::before { left: 0; transform: translateX(-58%); }
+  .hero::after { right: 0; transform: translateX(58%) scaleX(-1); }
+  .hero-left {
+    padding: 62px 64px 54px 80px;
+    display: flex; flex-direction: column; justify-content: center;
+    position: relative; z-index: 2;
+  }
+  .hero-eyebrow {
+    display: flex; align-items: center; gap: 12px;
+    color: var(--gold-light); font-size: 12px; letter-spacing: 0.14em;
+    text-transform: uppercase; font-weight: 700;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block; width: 32px; height: 1px;
+    background: var(--gold);
+  }
+  .hero-main { padding: 0 0 24px; }
+  .hero-years {
+    display: none;
+    font-family: var(--ff-serif); font-size: 172px; font-weight: 700;
+    line-height: 0.9; color: transparent;
+    -webkit-text-stroke: 1.5px oklch(0.55 0.12 22);
+    letter-spacing: -0.04em;
+    user-select: none;
+  }
+  .hero-tagline {
+    font-family: var(--ff-cormorant); font-size: clamp(52px, 5.2vw, 78px); font-weight: 300;
+    line-height: 1.05; color: var(--white);
+    margin-top: 0;
+    text-wrap: pretty;
+    max-width: 720px;
+    letter-spacing: -0.01em;
+  }
+  .hero-tagline strong { font-weight: 600; }
+  .hero-tagline em { font-style: italic; color: var(--gold-light); font-weight: 300; }
+  .hero-sub {
+    margin-top: 22px;
+    color: oklch(0.82 0.04 20);
+    font-family: var(--ff-sans); font-size: 15.5px;
+    max-width: 480px; line-height: 1.78;
+    font-style: normal;
+  }
+  .hero-proof {
+    max-width: 560px;
+    margin-top: 26px;
+    padding-top: 16px;
+    border-top: 1px solid oklch(0.58 0.10 68 / 0.55);
+  }
+  .hero-proof-label {
+    color: var(--gold-light);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .hero-proof-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .hero-proof-list span {
+    border: 1px solid oklch(0.58 0.10 68 / 0.38);
+    color: oklch(0.88 0.04 78);
+    font-size: 12px;
+    line-height: 1;
+    letter-spacing: 0.04em;
+    padding: 8px 10px;
+    text-transform: uppercase;
+  }
+  .foundation-seal {
+    display: block;
+    max-width: 520px;
+    margin-top: 0;
+    margin-bottom: 24px;
+    padding: 0 0 0 18px;
+    border-left: 2px solid var(--gold);
+    background: transparent;
+    box-shadow: none;
+  }
+  .foundation-seal-text strong {
+    display: block;
+    font-family: var(--ff-serif);
+    color: var(--gold-light);
+    font-size: 24px;
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+  .foundation-seal-text span {
+    display: block;
+    color: oklch(0.90 0.045 78);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .hero-actions {
+    display: flex; gap: 16px; align-items: center; flex-wrap: wrap;
+  }
+  .btn-gold {
+    background: var(--gold); color: var(--ink);
+    font-weight: 700; font-size: 13px; letter-spacing: 0.06em;
+    text-transform: uppercase; text-decoration: none;
+    padding: 15px 32px; border-radius: 2px;
+    transition: background 0.18s;
+  }
+  .btn-gold:hover { background: oklch(0.78 0.13 68); }
+  .btn-outline {
+    border: 1.5px solid oklch(0.45 0.02 65); color: oklch(0.78 0.01 75);
+    font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase;
+    text-decoration: none; padding: 14px 28px; border-radius: 2px;
+    transition: border-color 0.18s, color 0.18s;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-right {
+    position: relative; overflow: hidden;
+  }
+  .hero-right::before {
+    content: none;
+    position: absolute;
+    left: 64px;
+    top: 54px;
+    z-index: 6;
+    color: var(--gold-light);
+    font-size: 11px;
+    line-height: 1.45;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 700;
+    max-width: 300px;
+  }
+  .hero-right::after {
+    content: none;
+    position: absolute;
+    left: 64px;
+    top: 63px;
+    z-index: 6;
+    width: 28px;
+    height: 1px;
+    transform: translateX(-42px);
+    background: var(--gold);
+  }
+  .hero-image-placeholder {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 58% 38%, oklch(0.76 0.10 70 / 0.22), transparent 22%),
+      radial-gradient(ellipse at 56% 62%, oklch(0.42 0.12 22 / 0.24), transparent 54%),
+      linear-gradient(126deg, oklch(0.28 0.12 23) 0%, oklch(0.18 0.07 25) 34%, oklch(0.10 0.025 34) 76%, oklch(0.06 0.012 38) 100%);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 16px;
+  }
+  .hero-image-placeholder::before {
+    content: '';
+    position: absolute;
+    inset: 0 auto 0 -30%;
+    width: 62%;
+    background: linear-gradient(90deg, oklch(0.42 0.16 23 / 0.62), oklch(0.24 0.09 24 / 0.34), transparent);
+    pointer-events: none;
+  }
+  .stage-scene {
+    width: min(82%, 600px);
+    aspect-ratio: 0.86;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    filter: drop-shadow(0 34px 42px oklch(0.04 0.01 38 / 0.55));
+  }
+  .stage-kicker {
+    position: absolute;
+    z-index: 5;
+    left: 0;
+    top: 23%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--gold-light);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 700;
+    max-width: 230px;
+    white-space: normal;
+    line-height: 1.45;
+    text-align: left;
+    pointer-events: none;
+  }
+  .stage-kicker::before {
+    content: '';
+    display: block;
+    width: 30px;
+    height: 1px;
+    background: var(--gold);
+    flex: 0 0 auto;
+  }
+  .stage-arch {
+    display: none;
+    position: absolute; inset: 4% 5% 13%;
+    border: 18px solid oklch(0.66 0.11 68);
+    border-bottom: 0;
+    border-radius: 52% 52% 0 0 / 30% 30% 0 0;
+    box-shadow: inset 0 0 0 2px oklch(0.90 0.07 78 / 0.42), 0 0 0 1px oklch(0.24 0.04 60);
+  }
+  .stage-curtain {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 58% 76%, oklch(0.74 0.07 72 / 0.16), transparent 50%),
+      radial-gradient(circle at 58% 31%, oklch(0.88 0.08 78 / 0.10), transparent 30%);
+    opacity: 1;
+  }
+  .stage-figure {
+    position: relative;
+    z-index: 4;
+    width: 74%;
+    height: 88%;
+    margin-bottom: 5%;
+    object-fit: cover;
+    object-position: center bottom;
+    border-radius: 2px;
+    filter:
+      contrast(1.14)
+      saturate(1.16)
+      brightness(1.06)
+      drop-shadow(0 28px 34px oklch(0.02 0.01 38 / 0.72))
+      drop-shadow(0 0 24px oklch(0.86 0.10 78 / 0.32));
+  }
+  .stage-scene::after {
+    content: '';
+    position: absolute;
+    left: 8%;
+    right: 8%;
+    bottom: 5%;
+    height: 24%;
+    z-index: 3;
+    background: radial-gradient(ellipse at 50% 32%, oklch(0.80 0.08 72 / 0.26), oklch(0.08 0.018 38 / 0.20) 45%, transparent 70%);
+    transform: perspective(420px) rotateX(58deg);
+    transform-origin: center bottom;
+  }
+  .stage-caption {
+    position: absolute;
+    left: 0; bottom: 15%;
+    right: auto;
+    transform: none;
+    width: 190px;
+    color: oklch(0.86 0.04 78);
+    font-family: var(--ff-serif);
+    font-size: 15px;
+    line-height: 1.35;
+    text-align: left;
+    z-index: 5;
+    padding-left: 14px;
+    border-left: 1px solid oklch(0.72 0.09 70 / 0.46);
+  }
+  .hero-stats {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: var(--red-dark);
+    border-top: 1px solid oklch(0.30 0.14 22);
+    display: grid; grid-template-columns: repeat(3, 1fr);
+  }
+  .hero-stat {
+    padding: 28px 32px;
+    border-right: 1px solid oklch(0.30 0.14 22);
+  }
+  .hero-stat:last-child { border-right: none; }
+  .hero-stat-num {
+    font-family: var(--ff-serif); font-size: 36px; font-weight: 700;
+    color: var(--gold-light); line-height: 1;
+  }
+  .hero-stat-label {
+    font-size: 12px; color: oklch(0.72 0.06 20); margin-top: 6px;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── SIGNIFICANCE — что значит стать лауреатом ── */
+  .significance-section {
+    background:
+      radial-gradient(circle at 78% 50%, oklch(0.72 0.11 68 / 0.10), transparent 40%),
+      linear-gradient(160deg, var(--velvet) 0%, oklch(0.14 0.06 30) 55%, oklch(0.10 0.02 38) 100%);
+    color: var(--white);
+    position: relative; overflow: hidden;
+    padding: 112px 0;
+  }
+  .significance-section::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .sig-inner {
+    max-width: 1280px; margin: 0 auto; padding: 0 80px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center;
+  }
+  .sig-quote {
+    position: relative; padding-left: 36px;
+    border-left: 2px solid var(--gold);
+  }
+  .sig-quote::before {
+    content: '\201C';
+    position: absolute; top: -36px; left: 20px;
+    font-family: var(--ff-cormorant); font-size: 140px; font-weight: 300;
+    color: var(--gold); opacity: 0.25; line-height: 1;
+  }
+  .sig-quote-text {
+    font-family: var(--ff-cormorant); font-size: 34px; font-weight: 300; font-style: italic;
+    color: var(--white); line-height: 1.45; margin-bottom: 28px;
+  }
+  .sig-quote-text strong { font-weight: 600; font-style: normal; color: var(--gold-light); }
+  .sig-quote-attr {
+    font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: oklch(0.55 0.08 65); display: flex; align-items: center; gap: 12px;
+  }
+  .sig-quote-attr::before { content: '—'; }
+  .sig-pillars { display: flex; flex-direction: column; gap: 2px; }
+  .sig-pillar {
+    background: oklch(0.16 0.07 28 / 0.6);
+    border: 1px solid oklch(0.35 0.10 60 / 0.25);
+    padding: 28px 32px;
+    display: flex; align-items: flex-start; gap: 20px;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .sig-pillar:hover { background: oklch(0.20 0.09 26 / 0.7); border-color: oklch(0.55 0.10 65 / 0.4); }
+  .sig-pillar-num {
+    font-family: var(--ff-cormorant); font-size: 36px; font-weight: 600;
+    color: var(--gold); line-height: 1; flex-shrink: 0; width: 36px;
+  }
+  .sig-pillar-body {}
+  .sig-pillar-title {
+    font-family: var(--ff-serif); font-size: 16px; font-weight: 600;
+    color: var(--white); margin-bottom: 6px; line-height: 1.3;
+  }
+  .sig-pillar-text {
+    font-size: 14px; color: oklch(0.66 0.04 60); line-height: 1.65;
+  }
+
+  /* ── LEGACY ── */
+  .legacy-section {
+    position: relative;
+    background:
+      linear-gradient(180deg, var(--cream-light), var(--cream)),
+      var(--cream);
+    overflow: hidden;
+  }
+  .legacy-section::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      linear-gradient(90deg, transparent 0 8%, oklch(0.72 0.10 68 / 0.16) 8% 8.2%, transparent 8.2% 91.8%, oklch(0.72 0.10 68 / 0.16) 91.8% 92%, transparent 92%),
+      repeating-linear-gradient(90deg, transparent 0 70px, oklch(0.72 0.10 68 / 0.08) 70px 71px);
+    pointer-events: none;
+  }
+  .legacy-lead {
+    max-width: 820px;
+    font-family: var(--ff-cormorant);
+    font-size: 34px;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.4;
+    color: var(--ink);
+    margin-bottom: 52px;
+    padding-left: 24px;
+    border-left: 2px solid var(--gold);
+  }
+  .legacy-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+    background: oklch(0.82 0.025 78);
+    border: 1px solid oklch(0.82 0.025 78);
+    position: relative;
+  }
+  .legacy-card {
+    background: oklch(0.98 0.012 82);
+    min-height: 340px;
+    padding: 40px 34px;
+    position: relative;
+    overflow: hidden;
+  }
+  .legacy-card::before {
+    content: ''; position: absolute; left: 28px; right: 28px; top: 24px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .legacy-year {
+    font-family: var(--ff-cormorant);
+    font-size: 72px;
+    font-weight: 300;
+    color: var(--red);
+    line-height: 0.9;
+    margin-bottom: 20px;
+    letter-spacing: -0.03em;
+  }
+  .legacy-card h3 {
+    font-family: var(--ff-serif);
+    font-size: 22px;
+    line-height: 1.25;
+    margin-bottom: 16px;
+  }
+  .legacy-card p {
+    font-size: 15px;
+    color: var(--ink-mid);
+    line-height: 1.7;
+  }
+  .legacy-card.featured {
+    background:
+      radial-gradient(circle at 72% 18%, oklch(0.78 0.10 68 / 0.28), transparent 28%),
+      radial-gradient(circle at 20% 80%, oklch(0.50 0.15 22 / 0.3), transparent 40%),
+      var(--red);
+    color: var(--white);
+    position: relative;
+  }
+  .legacy-card.featured::before {
+    content: ''; position: absolute; inset: 14px;
+    border: 1px solid oklch(0.60 0.10 65 / 0.28);
+    pointer-events: none;
+  }
+  .legacy-card.featured .legacy-year { color: var(--gold-light); font-size: 88px; }
+  .legacy-card.featured h3 { color: var(--gold-light); font-size: 26px; }
+  .legacy-card.featured p { color: oklch(0.88 0.035 78); font-family: var(--ff-cormorant); font-size: 18px; font-style: italic; line-height: 1.75; }
+
+  /* ── LAUREATES ── */
+  .laureates-section {
+    background:
+      linear-gradient(180deg, oklch(0.13 0.01 38), oklch(0.18 0.05 34));
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+  }
+  .laureates-section::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 16% 24%, oklch(0.72 0.11 68 / 0.22), transparent 26%),
+      radial-gradient(circle at 82% 18%, oklch(0.40 0.16 22 / 0.32), transparent 30%);
+    pointer-events: none;
+  }
+  .laureates-section .container { position: relative; }
+  .laureates-section .section-title { color: var(--white); font-family: var(--ff-cormorant); font-size: 52px; font-weight: 300; }
+  .laureates-map {
+    display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 64px; align-items: center;
+  }
+  .world-panel {
+    min-height: 420px;
+    border: 1px solid oklch(0.50 0.05 68 / 0.45);
+    background:
+      linear-gradient(90deg, oklch(0.72 0.11 68 / 0.12) 1px, transparent 1px),
+      linear-gradient(oklch(0.72 0.11 68 / 0.12) 1px, transparent 1px),
+      radial-gradient(ellipse at 54% 48%, oklch(0.42 0.11 22 / 0.28), transparent 62%);
+    background-size: 52px 52px, 52px 52px, auto;
+    position: relative;
+    overflow: hidden;
+  }
+  .world-panel::before {
+    content: '';
+    position: absolute; inset: 12%;
+    background: oklch(0.74 0.10 68 / 0.28);
+    clip-path: polygon(12% 34%, 24% 28%, 37% 31%, 48% 24%, 60% 29%, 72% 24%, 86% 34%, 82% 48%, 70% 46%, 58% 55%, 45% 50%, 32% 58%, 20% 50%);
+  }
+  .world-pin {
+    position: absolute;
+    width: 11px; height: 11px;
+    background: var(--gold);
+    border-radius: 50%;
+    box-shadow: 0 0 0 7px oklch(0.72 0.11 68 / 0.18), 0 0 20px oklch(0.72 0.11 68 / 0.7);
+  }
+  .pin-1 { left: 21%; top: 38%; }
+  .pin-2 { left: 44%; top: 31%; }
+  .pin-3 { left: 57%; top: 45%; }
+  .pin-4 { left: 71%; top: 36%; }
+  .pin-5 { left: 35%; top: 62%; }
+  .laureates-copy p {
+    color: oklch(0.80 0.025 78);
+    margin-bottom: 18px;
+    font-size: 18px;
+    line-height: 1.85;
+    font-family: var(--ff-cormorant); font-style: italic;
+  }
+  .laureates-list {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px;
+    margin-top: 30px;
+  }
+  .laureates-list span {
+    border: 1px solid oklch(0.50 0.05 68 / 0.45);
+    padding: 12px 14px;
+    color: var(--gold-light);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  /* ── TICKER ── */
+  .ticker {
+    background: var(--gold); overflow: hidden;
+    height: 42px; display: flex; align-items: center;
+  }
+  .ticker-track {
+    display: flex; gap: 64px;
+    animation: ticker 35s linear infinite;
+    white-space: nowrap;
+  }
+  .ticker-track span {
+    font-size: 12px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--ink); flex-shrink: 0;
+  }
+  .ticker-dot {
+    width: 18px;
+    height: 18px;
+    background: url('logo.png') center / contain no-repeat;
+    filter: brightness(0);
+    opacity: 0.82;
+    align-self: center;
+  }
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ── SECTION BASE ── */
+  section { padding: 96px 0; }
+  .container { max-width: 1280px; margin: 0 auto; padding: 0 80px; }
+  .section-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--gold);
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 40px;
+  }
+  .section-label::before {
+    content: ''; display: block; width: 28px; height: 1px; background: var(--gold);
+  }
+  .section-title {
+    font-family: var(--ff-cormorant); font-size: 48px; font-weight: 400;
+    line-height: 1.1; color: var(--ink);
+    text-wrap: pretty; letter-spacing: -0.01em;
+  }
+  .section-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 52px;
+  }
+  .section-header .section-title { max-width: 520px; }
+  .link-all {
+    font-size: 13px; font-weight: 700; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--gold);
+    text-decoration: none; display: flex; align-items: center; gap: 8px;
+    transition: gap 0.18s;
+    flex-shrink: 0; padding-bottom: 4px;
+  }
+  .link-all:hover { gap: 14px; }
+  .link-all::after { content: '→'; }
+
+  /* ── NEWS ── */
+  .news-section { background: var(--white); }
+  .news-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 1px;
+    background: oklch(0.88 0.01 75);
+    border: 1px solid oklch(0.88 0.01 75);
+  }
+  .news-card {
+    background: var(--white);
+    text-decoration: none; color: inherit;
+    display: flex; flex-direction: column;
+    transition: background 0.18s;
+  }
+  .news-card:hover { background: var(--cream); }
+  .news-card-img {
+    aspect-ratio: 16/9; overflow: hidden;
+    background: repeating-linear-gradient(
+      -45deg,
+      var(--cream-dark) 0px, var(--cream-dark) 1px,
+      var(--cream) 1px, var(--cream) 14px
+    );
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 8px;
+  }
+  .news-card-img span {
+    font-family: monospace; font-size: 10px;
+    color: var(--ink-light); letter-spacing: 0.05em; text-align: center; padding: 0 16px;
+  }
+  .news-card-body { padding: 28px 32px 36px; flex: 1; display: flex; flex-direction: column; }
+  .news-card-date { font-size: 11px; color: var(--ink-light); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px; }
+  .news-card-title {
+    font-family: var(--ff-serif); font-weight: 600;
+    line-height: 1.35; color: var(--ink);
+    text-wrap: pretty;
+  }
+  .news-card:first-child .news-card-title { font-size: 22px; }
+  .news-card:not(:first-child) .news-card-title { font-size: 17px; }
+  .news-card-excerpt { margin-top: 12px; font-size: 14.5px; color: var(--ink-mid); line-height: 1.6; }
+  .news-card-tag {
+    display: inline-block; margin-top: auto; padding-top: 20px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--gold);
+  }
+
+  /* ── PRIZE ── */
+  .prize-section {
+    background:
+      radial-gradient(circle at 20% 50%, oklch(0.28 0.14 24 / 0.5), transparent 45%),
+      linear-gradient(135deg, oklch(0.16 0.09 26) 0%, oklch(0.10 0.025 36) 60%, var(--stage-black) 100%);
+    color: var(--white);
+    position: relative; overflow: hidden;
+  }
+  .prize-section::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent 0%, var(--gold) 30%, var(--gold-light) 50%, var(--gold) 70%, transparent 100%);
+  }
+  .prize-section::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--gold) 30%, transparent 100%);
+  }
+  .prize-inner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+  .prize-visual {
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    padding: 40px 0;
+  }
+  .prize-visual::before {
+    content: ''; position: absolute; inset: 0;
+    border: 1px solid oklch(0.40 0.10 60 / 0.35);
+  }
+  .prize-visual::after {
+    content: ''; position: absolute; inset: 16px;
+    border: 1px solid oklch(0.40 0.10 60 / 0.18);
+  }
+  .prize-visual img {
+    width: 62%; max-width: 320px;
+    position: relative; z-index: 2;
+    filter: drop-shadow(0 32px 48px oklch(0.04 0.01 38 / 0.8)) drop-shadow(0 0 40px oklch(0.72 0.11 68 / 0.25));
+  }
+  .prize-visual-caption {
+    position: absolute; bottom: 24px; left: 0; right: 0;
+    text-align: center; z-index: 3;
+    font-family: var(--ff-cormorant); font-style: italic;
+    font-size: 14px; color: var(--gold-light); letter-spacing: 0.08em; opacity: 0.75;
+  }
+  .prize-content .section-title { color: var(--white); margin-bottom: 24px; }
+  .prize-content p { color: oklch(0.80 0.03 78); font-size: 17px; line-height: 1.85; margin-bottom: 20px; font-family: var(--ff-cormorant); font-size: 19px; }
+  .prize-organizers { margin-top: 40px; }
+  .prize-org-label {
+    font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: oklch(0.50 0.03 65);
+    margin-bottom: 16px;
+  }
+  .prize-org-list { display: flex; flex-direction: column; gap: 10px; }
+  .prize-org-item {
+    display: flex; align-items: flex-start; gap: 14px;
+    font-size: 14px; color: oklch(0.65 0.01 75);
+    line-height: 1.4;
+  }
+  .prize-org-item::before {
+    content: ''; display: block; width: 6px; height: 6px;
+    background: var(--gold); border-radius: 50%; flex-shrink: 0; margin-top: 5px;
+  }
+  .prize-year-badge {
+    display: inline-flex; flex-direction: column; align-items: center;
+    border: 1.5px solid oklch(0.35 0.05 65);
+    padding: 16px 28px; margin-bottom: 40px;
+  }
+  .prize-year-badge strong {
+    font-family: var(--ff-serif); font-size: 32px; font-weight: 700;
+    color: var(--gold); line-height: 1;
+  }
+  .prize-year-badge span { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: oklch(0.50 0.03 65); margin-top: 4px; }
+
+  /* ── PROGRAMS ── */
+  .programs-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+    background: oklch(0.88 0.01 75);
+    border: 1px solid oklch(0.88 0.01 75);
+  }
+  .prog-card {
+    background: var(--white); padding: 40px 36px;
+    text-decoration: none; color: inherit;
+    display: flex; flex-direction: column; gap: 0;
+    transition: background 0.18s;
+    position: relative;
+    overflow: hidden;
+  }
+  .prog-card::after {
+    content: ''; position: absolute; bottom: 0; left: 0;
+    width: 0; height: 2px; background: var(--gold);
+    transition: width 0.3s ease;
+  }
+  .prog-card:hover { background: var(--cream); }
+  .prog-card:hover::after { width: 100%; }
+  .prog-card-icon {
+    width: 48px; height: 48px; margin-bottom: 28px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .prog-card-icon svg { width: 100%; height: 100%; }
+  .prog-card-title {
+    font-family: var(--ff-serif); font-size: 19px; font-weight: 600;
+    line-height: 1.3; color: var(--ink); margin-bottom: 14px;
+  }
+  .prog-card-desc {
+    font-size: 14px; color: var(--ink-mid); line-height: 1.65; flex: 1;
+  }
+  .prog-card-arrow {
+    margin-top: 28px; font-size: 20px; color: var(--gold);
+    transition: transform 0.18s;
+    display: inline-block;
+  }
+  .prog-card:hover .prog-card-arrow { transform: translateX(6px); }
+
+  /* ── MUSEUM ── */
+  .museum-section {
+    background: var(--cream-dark);
+    padding: 0;
+  }
+  .museum-inner {
+    display: grid; grid-template-columns: 1fr 1fr;
+    min-height: 520px;
+  }
+  .museum-image {
+    background: repeating-linear-gradient(
+      -45deg,
+      oklch(0.88 0.01 75) 0px, oklch(0.88 0.01 75) 1px,
+      var(--cream-dark) 1px, var(--cream-dark) 16px
+    );
+    display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 12px;
+  }
+  .museum-image span {
+    font-family: monospace; font-size: 10px; color: var(--ink-light);
+    letter-spacing: 0.05em; text-align: center; padding: 0 48px;
+  }
+  .museum-content {
+    padding: 80px 72px;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .museum-content .section-title { margin-bottom: 20px; }
+  .museum-content p { font-size: 16px; color: var(--ink-mid); line-height: 1.75; margin-bottom: 16px; }
+  .museum-sub { font-family: var(--ff-serif); font-style: italic; font-size: 20px; color: var(--ink); margin-bottom: 36px !important; }
+
+  /* ── JURY ── */
+  .jury-section { background: var(--white); }
+  .jury-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px;
+  }
+  .jury-card { display: flex; flex-direction: column; gap: 16px; }
+  .jury-avatar {
+    width: 100%; aspect-ratio: 3/4;
+    background: repeating-linear-gradient(
+      -45deg,
+      var(--cream-dark) 0px, var(--cream-dark) 1px,
+      var(--cream) 1px, var(--cream) 14px
+    );
+    display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px;
+  }
+  .jury-avatar span { font-family: monospace; font-size: 9px; color: var(--ink-light); letter-spacing: 0.05em; text-align: center; padding: 0 12px; }
+  .jury-name { font-family: var(--ff-serif); font-size: 17px; font-weight: 600; line-height: 1.3; }
+  .jury-role { font-size: 13px; color: var(--ink-light); line-height: 1.4; }
+
+  /* ── PARTNERS ── */
+  .partners-section { background: var(--cream); }
+  .partners-grid {
+    display: flex; flex-wrap: wrap; gap: 2px;
+    background: oklch(0.88 0.01 75);
+    border: 1px solid oklch(0.88 0.01 75);
+  }
+  .partner-item {
+    background: var(--white); flex: 1 1 180px;
+    height: 100px; display: flex; align-items: center; justify-content: center;
+    padding: 20px 32px;
+    transition: background 0.18s;
+  }
+  .partner-item:hover { background: var(--cream); }
+  .partner-name {
+    font-family: var(--ff-serif); font-size: 15px; font-weight: 600;
+    color: var(--ink-mid); text-align: center; letter-spacing: 0.02em;
+  }
+
+  /* ── ABOUT STRIP ── */
+  .about-strip {
+    background: var(--gold);
+    padding: 72px 0;
+  }
+  .about-strip-inner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+  .about-strip h2 {
+    font-family: var(--ff-cormorant); font-size: 44px; font-weight: 300; font-style: italic;
+    line-height: 1.2; color: var(--ink);
+  }
+  .about-strip p { font-size: 16px; color: var(--ink); line-height: 1.75; opacity: 0.8; }
+  .about-strip .btn-dark {
+    display: inline-block; background: var(--ink); color: var(--white);
+    font-size: 12px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; text-decoration: none;
+    padding: 14px 32px; border-radius: 2px; margin-top: 28px;
+    transition: opacity 0.18s;
+  }
+  .about-strip .btn-dark:hover { opacity: 0.8; }
+
+  /* ── FOOTER ── */
+  footer {
+    background:
+      radial-gradient(circle at 16% 0%, oklch(0.40 0.14 23 / 0.34), transparent 30%),
+      radial-gradient(circle at 82% 18%, oklch(0.72 0.10 68 / 0.12), transparent 26%),
+      linear-gradient(135deg, oklch(0.20 0.09 23), oklch(0.08 0.014 38) 72%);
+    color: oklch(0.55 0.01 65);
+    padding: 64px 0 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  footer::before,
+  footer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 92px;
+    background: repeating-linear-gradient(90deg, oklch(0.28 0.12 22 / 0.36) 0 12px, oklch(0.12 0.05 22 / 0.20) 12px 24px);
+    pointer-events: none;
+  }
+  footer::before { left: 0; }
+  footer::after { right: 0; transform: scaleX(-1); }
+  footer .container { position: relative; z-index: 1; }
+  .footer-inner {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px;
+    padding-bottom: 48px; border-bottom: 1px solid oklch(0.22 0.008 65);
+    margin-bottom: 32px;
+  }
+  .footer-brand strong {
+    font-family: var(--ff-serif); font-size: 17px; color: var(--white);
+    display: inline-flex; align-items: center; gap: 12px; margin-bottom: 12px;
+  }
+  .footer-brand strong::before {
+    content: '';
+    width: 34px;
+    height: 34px;
+    background: url('logo.png') center / contain no-repeat;
+    filter: brightness(0) invert(1);
+    flex: 0 0 auto;
+  }
+  .footer-brand p { font-size: 13.5px; line-height: 1.7; max-width: 280px; }
+  .footer-col h4 {
+    font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: oklch(0.40 0.02 65);
+    margin-bottom: 20px;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul a {
+    color: oklch(0.55 0.01 65); text-decoration: none; font-size: 13.5px;
+    transition: color 0.18s;
+  }
+  .footer-col ul a:hover { color: var(--gold); }
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-bottom p { font-size: 12px; }
+  .footer-bottom a { color: oklch(0.55 0.01 65); text-decoration: none; }
+  .footer-bottom a:hover { color: var(--gold); }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 1000;
+    background: oklch(0.08 0.02 38 / 0.82);
+    backdrop-filter: blur(6px);
+    overflow-y: auto;
+    padding: 40px 20px;
+  }
+  .modal-overlay.open { display: flex; align-items: flex-start; justify-content: center; }
+  .modal-box {
+    background: #faf6ef;
+    width: 100%; max-width: 1080px;
+    position: relative;
+    border-top: 3px solid #9b1c1c;
+    box-shadow: 0 32px 80px oklch(0.04 0.01 38 / 0.6);
+    animation: modalIn 0.3s ease;
+  }
+  @keyframes modalIn {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .modal-close {
+    position: sticky; top: 0; z-index: 10;
+    background: #1a1a1a; color: #faf6ef;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 32px;
+  }
+  .modal-close-title {
+    font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 400;
+    color: #d4a52e; letter-spacing: 0.02em;
+  }
+  .modal-close-btn {
+    background: none; border: 1px solid oklch(0.40 0.02 40);
+    color: #faf6ef; cursor: pointer; font-size: 13px; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 8px 18px;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .modal-close-btn:hover { border-color: #d4a52e; color: #d4a52e; }
+
+  /* Form styles inside modal */
+  .modal-body {
+    padding: 0;
+    font-family: 'PT Serif', Georgia, serif;
+    font-size: 16px; color: #1a1a1a; line-height: 1.6;
+  }
+  .modal-body *{ box-sizing: border-box; }
+  .modal-intro {
+    max-width: 860px; margin: 0 auto;
+    padding: 40px 48px 20px; text-align: center;
+  }
+  .modal-intro p {
+    font-family: 'Cormorant Garamond', 'Playfair Display', serif;
+    font-size: clamp(20px, 2.2vw, 26px); line-height: 1.5; color: #4a4a4a;
+  }
+  .modal-intro em { color: #9b1c1c; font-style: italic; }
+  .modal-intro .intro-small {
+    font-family: 'PT Sans', sans-serif; font-size: 13px; color: #4a4a4a; margin-top: 12px;
+  }
+  .m-form-section { max-width: 1080px; margin: 0 auto; padding: 16px 48px 64px; }
+  .m-form-tabs { display: flex; border-bottom: 2px solid #1a1a1a; }
+  .m-form-tab {
+    flex: 1; padding: 22px 28px 20px; background: transparent; border: 0; cursor: pointer;
+    font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 500; color: #4a4a4a;
+    border-bottom: 4px solid transparent; margin-bottom: -2px; text-align: left;
+    display: flex; gap: 12px; align-items: baseline; transition: color 0.15s;
+  }
+  .m-form-tab .roman { font-style: italic; font-size: 17px; color: #b8860b; }
+  .m-form-tab.active { color: #1a1a1a; border-bottom-color: #9b1c1c; }
+  .m-form-panel { display: none; background: rgba(250,246,239,0.96); padding: 44px 52px; border: 1px solid rgba(26,26,26,0.13); border-top: 0; box-shadow: 0 1px 3px rgba(122,20,20,.08), 0 14px 38px rgba(122,20,20,.08); }
+  .m-form-panel.active { display: block; animation: fadeIn .35s ease; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
+  .m-preamble {
+    font-family: 'Cormorant Garamond', serif; font-size: 18px; font-style: italic; color: #4a4a4a;
+    line-height: 1.55; margin: 0 auto 36px; padding-bottom: 24px;
+    border-bottom: 1px solid rgba(26,26,26,0.13); text-align: center; max-width: 700px;
+  }
+  .m-section-header {
+    display: flex; align-items: baseline; gap: 16px;
+    margin: 40px 0 20px; padding-bottom: 12px; border-bottom: 1px solid #1a1a1a;
+  }
+  .m-section-header .num { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 22px; color: #9b1c1c; }
+  .m-section-header .title-text { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 500; }
+  .m-section-header .label { font-family: 'PT Sans', sans-serif; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: #888; margin-left: auto; }
+  .m-field-group { margin-bottom: 20px; }
+  .m-field-group label { display: block; font-family: 'PT Sans', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #4a4a4a; margin-bottom: 8px; }
+  .m-field-group .req { color: #9b1c1c; }
+  .m-field-group input[type=text],
+  .m-field-group input[type=email],
+  .m-field-group input[type=tel],
+  .m-field-group input[type=date],
+  .m-field-group input[type=number],
+  .m-field-group select,
+  .m-field-group textarea {
+    width: 100%; padding: 12px 16px; background: #fff;
+    border: 1px solid rgba(26,26,26,0.22); color: #1a1a1a;
+    font-family: 'PT Serif', serif; font-size: 15px;
+    outline: none; transition: border-color 0.15s;
+    -webkit-appearance: none;
+  }
+  .m-field-group input:focus,
+  .m-field-group select:focus,
+  .m-field-group textarea:focus { border-color: #9b1c1c; }
+  .m-field-group textarea { min-height: 110px; resize: vertical; }
+  .m-field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .m-field-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .m-hint { font-family: 'PT Sans', sans-serif; font-size: 12px; color: #888; line-height: 1.55; margin-top: 6px; }
+  .m-soft-box {
+    background: rgba(155,28,28,0.06); border-left: 3px solid #9b1c1c;
+    padding: 20px 24px; margin: 20px 0;
+  }
+  .m-soft-box h3 { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 600; margin-bottom: 10px; }
+  .m-soft-box ul { padding-left: 18px; }
+  .m-soft-box li { font-size: 14px; color: #4a4a4a; line-height: 1.6; margin-bottom: 4px; }
+  .m-soft-box p { font-size: 14px; color: #4a4a4a; line-height: 1.6; }
+  .m-nom-block { margin-bottom: 28px; }
+  .m-nom-heading { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px dashed rgba(26,26,26,0.18); }
+  .m-nom-heading .roman { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 22px; color: #b8860b; }
+  .m-nom-heading .name { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 500; }
+  .m-nom-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .m-nom-item { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border: 1px solid rgba(26,26,26,0.14); cursor: pointer; transition: background 0.15s; font-family: 'PT Sans', sans-serif; font-size: 13px; }
+  .m-nom-item:hover { background: rgba(155,28,28,0.05); }
+  .m-nom-item.checked { background: rgba(155,28,28,0.08); border-color: rgba(155,28,28,0.35); }
+  .m-nom-item input { width: 14px; height: 14px; accent-color: #9b1c1c; flex-shrink: 0; }
+  .m-nom-note { display: none; background: #fff8f0; border: 1px solid rgba(184,134,11,0.3); padding: 14px 18px; margin-top: 12px; font-family: 'PT Sans', sans-serif; font-size: 13px; line-height: 1.6; color: #4a4a4a; }
+  .m-nom-note.show { display: block; }
+  .m-doc-checklist { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 16px; }
+  .m-check-item { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border: 1px solid rgba(26,26,26,0.14); font-family: 'PT Sans', sans-serif; font-size: 13px; cursor: pointer; }
+  .m-check-item input { accent-color: #9b1c1c; width: 14px; height: 14px; flex-shrink: 0; }
+  .m-file-zone {
+    border: 1.5px dashed rgba(26,26,26,0.25); padding: 24px 20px; text-align: center;
+    cursor: pointer; transition: border-color 0.15s, background 0.15s;
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+  }
+  .m-file-zone:hover { border-color: #9b1c1c; background: rgba(155,28,28,0.03); }
+  .m-file-zone .icon { font-size: 22px; color: #b8860b; }
+  .m-file-zone .main-text { font-family: 'PT Sans', sans-serif; font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .m-file-zone .sub-text { font-family: 'PT Sans', sans-serif; font-size: 11px; color: #888; letter-spacing: 0.08em; }
+  .m-file-zone input[type=file] { display: none; }
+  .m-file-list { display: flex; flex-direction: column; gap: 4px; margin-top: 8px; }
+  .m-file-tag { display: flex; align-items: center; justify-content: space-between; padding: 7px 12px; background: rgba(26,26,26,0.05); font-size: 12px; font-family: 'PT Sans', sans-serif; }
+  .m-file-tag button { background: none; border: none; cursor: pointer; color: #9b1c1c; font-size: 13px; }
+  .m-submit-area { margin-top: 40px; padding-top: 32px; border-top: 1px solid rgba(26,26,26,0.13); }
+  .m-consent { display: flex; align-items: flex-start; gap: 12px; cursor: pointer; font-family: 'PT Sans', sans-serif; font-size: 13px; color: #4a4a4a; line-height: 1.55; margin-bottom: 24px; }
+  .m-consent input { accent-color: #9b1c1c; width: 15px; height: 15px; flex-shrink: 0; margin-top: 2px; }
+  .m-submit-row { display: flex; align-items: center; gap: 20px; }
+  .m-submit-btn {
+    background: #9b1c1c; color: #faf6ef;
+    font-family: 'PT Sans', sans-serif; font-size: 13px; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    border: none; cursor: pointer; padding: 16px 44px;
+    transition: background 0.18s;
+  }
+  .m-submit-btn:hover { background: #7a1414; }
+  .m-submit-meta { font-family: 'PT Sans', sans-serif; font-size: 12px; color: #888; }
+  .m-success {
+    display: none; background: rgba(47,107,79,0.1); border: 1px solid rgba(47,107,79,0.35);
+    padding: 24px 28px; margin-bottom: 28px; text-align: center;
+  }
+  .m-success.show { display: block; }
+  .m-success .heading { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: #2f6b4f; margin-bottom: 6px; }
+  .m-success p { font-size: 14px; color: #4a4a4a; }
+
+  @media (max-width: 1120px) {
+    nav {
+      position: sticky !important;
+      top: 0 !important;
+      background: oklch(0.30 0.13 23 / 0.94);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 12px 28px oklch(0.05 0.01 38 / 0.22);
+    }
+    .nav-inner { padding: 0 28px; }
+    .nav-logo { flex: 1 1 auto; margin-right: 16px; }
+    .nav-links,
+    .language-switcher,
+    .nav-cta { display: none; }
+    .mobile-menu-toggle { display: inline-flex; }
+    .mobile-menu {
+      display: block;
+      position: fixed;
+      inset: 64px 0 auto auto;
+      width: min(390px, calc(100vw - 28px));
+      max-height: calc(100dvh - 80px);
+      overflow-y: auto;
+      transform: translateX(110%);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.24s ease, opacity 0.2s ease;
+      z-index: 95;
+      background:
+        radial-gradient(circle at 75% 10%, oklch(0.72 0.10 68 / 0.16), transparent 28%),
+        linear-gradient(145deg, oklch(0.22 0.11 23), oklch(0.11 0.03 38));
+      border-left: 1px solid oklch(0.72 0.08 78 / 0.32);
+      border-bottom: 1px solid oklch(0.72 0.08 78 / 0.22);
+      box-shadow: -28px 28px 52px oklch(0.03 0.01 38 / 0.45);
+      padding: 28px;
+    }
+    body.mobile-menu-open .mobile-menu {
+      transform: translateX(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+    body.mobile-menu-open::after {
+      content: '';
+      position: fixed;
+      inset: 64px 0 0;
+      background: oklch(0.04 0.01 38 / 0.48);
+      z-index: 90;
+    }
+    .mobile-menu-label {
+      color: var(--gold-light);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    .mobile-menu-links {
+      display: grid;
+      gap: 2px;
+      margin-bottom: 28px;
+    }
+    .mobile-menu-links a {
+      color: var(--white);
+      text-decoration: none;
+      font-family: var(--ff-serif);
+      font-size: 24px;
+      line-height: 1.15;
+      padding: 12px 0;
+      border-bottom: 1px solid oklch(0.75 0.07 78 / 0.16);
+    }
+    .mobile-menu-tools {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    .mobile-menu-tools a {
+      color: oklch(0.88 0.04 78);
+      border: 1px solid oklch(0.65 0.08 78 / 0.34);
+      text-decoration: none;
+      font-size: 12px;
+      line-height: 1;
+      letter-spacing: 0.08em;
+      padding: 9px 11px;
+    }
+    .mobile-menu-cta {
+      display: block;
+      background: var(--gold);
+      color: var(--ink);
+      text-align: center;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 15px 18px;
+    }
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { min-height: 640px; padding: 56px 48px 42px; }
+    .hero-right { min-height: 560px; }
+    .container { padding: 0 48px; }
+    .news-grid,
+    .programs-grid,
+    .legacy-grid { grid-template-columns: 1fr 1fr; }
+    .news-card:first-child { grid-column: span 2; }
+    .legacy-card.featured { grid-column: span 2; }
+    .prize-inner,
+    .museum-inner,
+    .about-strip-inner,
+    .laureates-map { grid-template-columns: 1fr; }
+    .jury-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 700px) {
+    body { font-size: 16px; }
+    section { padding: 70px 0; }
+    nav {
+      position: sticky !important;
+      top: 0 !important;
+      background: oklch(0.30 0.13 23 / 0.94);
+      backdrop-filter: blur(12px);
+    }
+    .nav-inner { height: 62px; min-height: 62px; padding: 0 16px; }
+    .nav-logo { gap: 10px; }
+    .nav-logo > img:not(.nav-wordmark) { height: 36px; }
+    .nav-brand-note { display: flex; width: 148px; padding-left: 10px; }
+    .nav-wordmark { width: 140px; height: 13px !important; }
+    .mobile-menu-toggle { width: 42px; height: 42px; }
+    .mobile-menu { inset-top: 62px; width: min(360px, calc(100vw - 18px)); padding: 24px; }
+    body.mobile-menu-open::after { inset-top: 62px; }
+    .hero {
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+    .hero-left { min-height: auto; padding: 46px 22px 34px; order: 1; }
+    .hero-years { font-size: 112px; }
+    .hero-tagline { font-size: 42px; line-height: 1.08; max-width: 100%; }
+    .hero-sub { font-size: 15px; }
+    .hero-proof { margin-top: 22px; }
+    .hero-proof-list span { font-size: 10.5px; padding: 8px 9px; }
+    .foundation-seal { padding: 0 0 0 16px; }
+    .foundation-seal-text strong { font-size: 18px; }
+    .foundation-seal-text span { font-size: 10.5px; }
+    .hero-actions { align-items: stretch; }
+    .btn-gold,
+    .btn-outline { width: 100%; text-align: center; padding-left: 18px; padding-right: 18px; }
+    .hero-right {
+      order: 2;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      overflow: visible;
+    }
+    .hero-image-placeholder {
+      position: relative;
+      min-height: 590px;
+      inset: auto;
+      flex: 1 0 auto;
+      padding: 42px 0 24px;
+    }
+    .stage-scene {
+      width: min(92%, 420px);
+      height: 540px;
+      aspect-ratio: auto;
+      overflow: hidden;
+    }
+    .stage-kicker { left: 6%; top: 8%; font-size: 9.5px; width: 170px; justify-content: flex-start; }
+    .stage-figure {
+      width: 100%;
+      height: 100%;
+      margin-bottom: 0;
+      object-fit: cover;
+      object-position: center center;
+    }
+    .stage-caption { display: none; }
+    .hero-stats { order: 3; grid-template-columns: 1fr 1fr 1fr; position: relative; }
+    .hero-stat { padding: 18px 22px; border-right: 0; border-bottom: 1px solid oklch(0.30 0.14 22); }
+    .hero-stat-num { font-size: 28px; }
+    .hero-stat-label { font-size: 10.5px; }
+    .ticker { height: 36px; }
+    .ticker-track { gap: 34px; animation-duration: 28s; }
+    .ticker-track span { font-size: 10px; }
+    .ticker-dot { width: 15px; height: 15px; }
+    .container { padding: 0 22px; }
+    .section-header { display: block; }
+    .section-title { font-size: 30px; }
+    .link-all { margin-top: 22px; }
+    .news-grid,
+    .programs-grid,
+    .legacy-grid,
+    .jury-grid,
+    .footer-inner { grid-template-columns: 1fr; }
+    .news-card:first-child,
+    .legacy-card.featured { grid-column: auto; }
+    .legacy-lead { font-size: 23px; }
+    .legacy-card { min-height: auto; padding: 34px 26px; }
+    .legacy-year { font-size: 46px; }
+    .laureates-list { grid-template-columns: 1fr; }
+    .world-panel { min-height: 300px; }
+    .museum-content { padding: 58px 22px !important; }
+    .footer-bottom { display: block; }
+    .footer-bottom p + p { margin-top: 12px; }
+    footer {
+      padding: 54px 0 34px;
+      background:
+        radial-gradient(circle at 18% 0%, oklch(0.42 0.14 23 / 0.42), transparent 32%),
+        radial-gradient(circle at 82% 14%, oklch(0.72 0.10 68 / 0.14), transparent 30%),
+        linear-gradient(145deg, oklch(0.24 0.10 23), oklch(0.09 0.018 38) 80%);
+    }
+    footer::before,
+    footer::after { width: 54px; opacity: 0.55; }
+    .footer-inner { gap: 34px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <img src="logo.png" alt="Фонд Филантроп">
+      <span class="nav-brand-note">
+        <img class="nav-wordmark" src="filantrop_wordmark_white.png" alt="фонд филантроп">
+      </span>
+    </a>
+    <div class="nav-links">
+      <a href="#">Новости</a>
+      <a href="#">Премия</a>
+      <a href="#">О фонде</a>
+      <a href="#legacy">История</a>
+      <a href="#">Программы</a>
+      <a href="#">Команда</a>
+      <a href="#">Партнёры</a>
+      <a href="#">Контакты</a>
+    </div>
+    <div class="language-switcher">
+      <button class="language-current" type="button" aria-haspopup="true" aria-expanded="false">RU</button>
+      <div class="language-menu" aria-label="Выбор языка">
+        <a href="#" lang="en">EN</a>
+        <a href="#" lang="ru">RU</a>
+        <a href="#" lang="he">HE</a>
+        <a href="#" lang="es">ES</a>
+        <a href="#" lang="fr">FR</a>
+        <a href="#" lang="de">DE</a>
+      </div>
+    </div>
+    <a href="#prize" class="nav-cta">Стать спонсором</a>
+    <button class="mobile-menu-toggle" type="button" aria-label="Открыть меню" aria-controls="mobile-menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-menu-label">Навигация</div>
+    <div class="mobile-menu-links">
+      <a href="#">Новости</a>
+      <a href="#">Премия</a>
+      <a href="#">О фонде</a>
+      <a href="#legacy">История</a>
+      <a href="#programs">Программы</a>
+      <a href="#">Команда</a>
+      <a href="#">Партнёры</a>
+      <a href="#">Контакты</a>
+    </div>
+    <div class="mobile-menu-label">Язык</div>
+    <div class="mobile-menu-tools">
+      <a href="#" lang="ru">RU</a>
+      <a href="#" lang="en">EN</a>
+      <a href="#" lang="he">HE</a>
+      <a href="#" lang="es">ES</a>
+      <a href="#" lang="fr">FR</a>
+      <a href="#" lang="de">DE</a>
+    </div>
+    <a href="#prize" class="mobile-menu-cta">Стать спонсором</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero" style="padding:0;">
+  <div class="hero-left">
+    <div class="hero-main">
+
+<div class="hero-years">35</div>
+      <h1 class="hero-tagline"><strong>Международная премия</strong><br>для <em>выдающихся</em><br>талантов мира</h1>
+      <p class="hero-sub">Фонд «Филантроп» с 1991 года открывает людям с ограниченными возможностями путь к признанию в культуре и искусстве. Премия объединяет артистов, художников, музыкантов, литераторов и театральных мастеров из разных стран.</p>
+      <div class="hero-proof">
+        <div class="hero-proof-label">Номинации премии</div>
+        <div class="hero-proof-list">
+          <span>Музыка</span>
+          <span>Театр</span>
+          <span>Литература</span>
+          <span>Танец</span>
+          <span>Изобразительное искусство</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-actions">
+      <a href="#prize" class="btn-gold">Подать заявку на Премию</a>
+      <a href="#about" class="btn-outline">Подробнее</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-image-placeholder">
+      <div class="stage-scene" aria-hidden="true">
+        <div class="stage-kicker">Международная Премия «Филантроп» — 2027</div>
+        <div class="stage-curtain"></div>
+        <div class="stage-arch"></div>
+        <img class="stage-figure" src="statuetka.png" alt="">
+        <div class="stage-caption">Торжественная церемония, где личная победа становится культурным событием</div>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">35</div>
+        <div class="hero-stat-label">лет работы фонда</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">1000+</div>
+        <div class="hero-stat-label">лауреатов Премии</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">7</div>
+        <div class="hero-stat-label">творческих направлений</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TICKER ── -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span>Международная Премия «Филантроп» 2027</span>
+    <span class="ticker-dot" aria-hidden="true"></span>
+    <span>Приём заявок открыт</span>
+    <span class="ticker-dot" aria-hidden="true"></span>
+    <span>Номинации: музыка · изобразительное искусство · литература · танцевальное искусство · театр</span>
+    <span class="ticker-dot" aria-hidden="true"></span>
+    <span>Лауреаты из России и других стран мира</span>
+    <span class="ticker-dot" aria-hidden="true"></span>
+    <span>Международная Премия «Филантроп» 2027</span>
+    <span class="ticker-dot" aria-hidden="true"></span>
+    <span>Приём заявок открыт</span>
+    <span class="ticker-dot" aria-hidden="true"></span>
+    <span>Номинации: музыка · изобразительное искусство · литература · танцевальное искусство · театр</span>
+    <span class="ticker-dot" aria-hidden="true"></span>
+    <span>Лауреаты из России и других стран мира</span>
+    <span class="ticker-dot" aria-hidden="true"></span>
+  </div>
+</div>
+
+<!-- ── NEWS ── -->
+<section class="news-section">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <div class="section-label">Новости фонда</div>
+        <h2 class="section-title">Последние события</h2>
+      </div>
+      <a href="news.html" class="link-all">Все новости</a>
+    </div>
+    <div class="news-grid">
+      <a href="https://www.filantrop.ru/news/?ELEMENT_ID=2303" target="_blank" class="news-card">
+        <div class="news-card-img" style="aspect-ratio:16/8; overflow:hidden;">
+          <img src="https://www.filantrop.ru/upload/iblock/5ab/eso46ti9fuxjobgydsxvf1iod6e2ozp0.JPG" alt="Выставка в МРО Тропарёво-Никулино" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div class="news-card-body">
+          <div class="news-card-date">20 апреля 2026</div>
+          <div class="news-card-title">В МРО «Тропарёво-Никулино» МГО ВОИ открылась выставка картин художников</div>
+          <p class="news-card-excerpt">Новая экспозиция объединила работы художников с инвалидностью — участников программ фонда «Филантроп».</p>
+          <span class="news-card-tag">Выставки</span>
+        </div>
+      </a>
+      <a href="https://www.filantrop.ru/news/?ELEMENT_ID=2302" target="_blank" class="news-card">
+        <div class="news-card-img" style="overflow:hidden;">
+          <img src="https://www.filantrop.ru/upload/iblock/7a5/6xj9ht9l9czgv8vgzl382boh2ba76wlp.JPG" alt="Диалог в красках РХТУ" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div class="news-card-body">
+          <div class="news-card-date">15 апреля 2026</div>
+          <div class="news-card-title">В РХТУ им. Д.И. Менделеева проходит выставка «Диалог в красках»</div>
+          <span class="news-card-tag">Выставки</span>
+        </div>
+      </a>
+      <a href="https://www.filantrop.ru/news/?ELEMENT_ID=2292" target="_blank" class="news-card">
+        <div class="news-card-img" style="overflow:hidden; background: repeating-linear-gradient(-45deg, var(--cream-dark) 0px, var(--cream-dark) 1px, var(--cream) 1px, var(--cream) 14px);">
+        </div>
+        <div class="news-card-body">
+          <div class="news-card-date">2 марта 2026</div>
+          <div class="news-card-title">В Москве огласили даты приёма заявок на XIV Международную премию «Филантроп»</div>
+          <span class="news-card-tag">Премия</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRIZE ── -->
+<section class="prize-section" id="prize">
+  <div class="container">
+    <div class="prize-inner">
+      <div class="prize-visual">
+        <img src="statuetka.png" alt="Статуэтка Премии Филантроп">
+        <div class="prize-visual-caption">Статуэтка Международной Премии «Филантроп»</div>
+      </div>
+      <div class="prize-content">
+        <div class="section-label" style="color: var(--gold);">Главная программа</div>
+        <div class="prize-year-badge">
+          <strong>2027</strong>
+          <span>Приём заявок открыт</span>
+        </div>
+        <h2 class="section-title">Международная Премия «Филантроп»</h2>
+        <p>Премия отмечает выдающиеся достижения людей с инвалидностью в области культуры и искусства. Учреждённая в 1996 году, она стала знаком признания, который выводит талант на большую публичную сцену.</p>
+        <p>Номинации охватывают музыку, живопись, графику, скульптуру, литературу, танцевальное искусство и театральное мастерство. Для лауреатов это не просто награда, а подтверждение профессионального масштаба и права быть услышанными во всём мире.</p>
+        <div class="prize-organizers">
+          <div class="prize-org-label">Организаторы и попечители</div>
+          <div class="prize-org-list">
+            <div class="prize-org-item">Правительство Российской Федерации</div>
+            <div class="prize-org-item">Торгово-промышленная палата РФ</div>
+            <div class="prize-org-item">Правительство Москвы</div>
+            <div class="prize-org-item">Российская академия художеств</div>
+            <div class="prize-org-item">Всероссийское общество инвалидов</div>
+          </div>
+        </div>
+        <div style="margin-top: 40px; display: flex; gap: 16px;">
+          <a href="#" class="btn-gold" style="font-size:13px; padding: 14px 28px;">Подать заявку</a>
+          <a href="#" class="btn-outline" style="font-size:13px; color: oklch(0.65 0.01 75); border-color: oklch(0.35 0.02 65);">Положение о Премии</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SIGNIFICANCE ── -->
+<section class="significance-section">
+  <div class="sig-inner">
+    <div class="sig-quote">
+      <div class="sig-quote-text">Стать лауреатом Премии «Филантроп» — значит занять своё место<br>в <strong>истории мировой культуры</strong></div>
+      <div class="sig-quote-attr">Фонд «Филантроп», основан в 1991 году</div>
+    </div>
+    <div class="sig-pillars">
+      <div class="sig-pillar">
+        <div class="sig-pillar-num">I</div>
+        <div class="sig-pillar-body">
+          <div class="sig-pillar-title">Признание государственного уровня</div>
+          <div class="sig-pillar-text">Премия учреждена при поддержке Правительства РФ — это знак национального признания таланта, преодолевшего любые обстоятельства.</div>
+        </div>
+      </div>
+      <div class="sig-pillar">
+        <div class="sig-pillar-num">II</div>
+        <div class="sig-pillar-body">
+          <div class="sig-pillar-title">Международная сцена</div>
+          <div class="sig-pillar-text">Лауреаты выходят на одну сцену с художниками, музыкантами и поэтами из разных стран и культурных школ мира.</div>
+        </div>
+      </div>
+      <div class="sig-pillar">
+        <div class="sig-pillar-num">III</div>
+        <div class="sig-pillar-body">
+          <div class="sig-pillar-title">Более 1000 лауреатов за 35 лет</div>
+          <div class="sig-pillar-text">За три с половиной десятилетия Премия открыла сотни имён, которые вошли в профессиональную историю культуры и искусства.</div>
+        </div>
+      </div>
+      <div class="sig-pillar">
+        <div class="sig-pillar-num">IV</div>
+        <div class="sig-pillar-body">
+          <div class="sig-pillar-title">Традиция великих театральных сцен</div>
+          <div class="sig-pillar-text">Церемония Премии наследует торжественность Большого и Малого театра — пространств, где личная победа становится культурным событием.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── LEGACY ── -->
+<section class="legacy-section" id="legacy">
+  <div class="container">
+    <div class="section-label">Историческая сцена</div>
+    <div class="section-label">Историческая сцена</div>
+    <p class="legacy-lead">Фонд «Филантроп» наследует традицию великих русских театральных институций — пространств, где искусство говорит на языке подлинного достоинства.</p>
+    <div class="legacy-grid">
+      <div class="legacy-card">
+        <div class="legacy-year">1776</div>
+        <h3>Большой театр</h3>
+        <p>История Большого театра начинается в 1776 году. Его сцена стала символом высшего мирового уровня оперы и балета. Именно здесь сложилось понятие о торжественности церемонии и национальном культурном достоинстве — традиция, которую наследует Премия «Филантроп».</p>
+      </div>
+      <div class="legacy-card">
+        <div class="legacy-year">1824</div>
+        <h3>Малый театр</h3>
+        <p>Малый театр обрёл постоянный дом в 1824 году. Он стал хранителем живого драматического слова и человеческой правды на сцене. «Дом Островского» напоминает: величие театра — в историях людей, которым дают право голоса.</p>
+      </div>
+      <div class="legacy-card featured">
+        <div class="legacy-year">1991</div>
+        <h3>Фонд «Филантроп»</h3>
+        <p>Фонд продолжает эту культурную линию: открывает новые имена, поддерживает творческую реабилитацию и превращает личные истории лауреатов со всего мира в событие мирового масштаба. 35 лет — и тысячи судеб, изменённых силой искусства и признания.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROGRAMS ── -->
+<section id="programs">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <div class="section-label">Деятельность фонда</div>
+        <h2 class="section-title">Программы и проекты</h2>
+      </div>
+      <a href="#" class="link-all">Все программы</a>
+    </div>
+    <div class="programs-grid">
+      <a href="#" class="prog-card">
+        <div class="prog-card-icon">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" color="var(--gold)">
+            <circle cx="24" cy="24" r="18"/>
+            <path d="M24 14 L24 24 L32 28"/>
+            <path d="M16 8 L24 4 L32 8"/>
+          </svg>
+        </div>
+        <div class="prog-card-title">Городской центр социальной реабилитации</div>
+        <div class="prog-card-desc">Комплексная реабилитация людей с инвалидностью через культуру, искусство и творческое самовыражение.</div>
+        <div class="prog-card-arrow">→</div>
+      </a>
+      <a href="#" class="prog-card">
+        <div class="prog-card-icon">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" color="var(--gold)">
+            <rect x="8" y="12" width="32" height="26" rx="1"/>
+            <path d="M16 12 L16 8 L32 8 L32 12"/>
+            <path d="M8 20 L40 20"/>
+          </svg>
+        </div>
+        <div class="prog-card-title">Фестивали искусств</div>
+        <div class="prog-card-desc">Ежегодные всероссийские и международные фестивали, открывающие таланты со всей страны.</div>
+        <div class="prog-card-arrow">→</div>
+      </a>
+      <a href="#" class="prog-card">
+        <div class="prog-card-icon">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" color="var(--gold)">
+            <path d="M24 8 L24 40"/>
+            <path d="M12 16 Q24 8 36 16"/>
+            <path d="M12 24 Q24 16 36 24"/>
+            <path d="M12 32 Q24 24 36 32"/>
+          </svg>
+        </div>
+        <div class="prog-card-title">Чемпионаты по танцам на колясках</div>
+        <div class="prog-card-desc">Поддержка адаптивного спорта и паратанца — от региональных соревнований до международных турниров.</div>
+        <div class="prog-card-arrow">→</div>
+      </a>
+      <a href="#" class="prog-card">
+        <div class="prog-card-icon">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" color="var(--gold)">
+            <rect x="6" y="10" width="36" height="28" rx="1"/>
+            <path d="M14 10 L14 38"/>
+            <path d="M6 24 L42 24"/>
+            <path d="M14 17 L42 17"/>
+          </svg>
+        </div>
+        <div class="prog-card-title">Музей «Равновесие»</div>
+        <div class="prog-card-desc">Постоянная экспозиция и временные выставки произведений художников и скульпторов с инвалидностью.</div>
+        <div class="prog-card-arrow">→</div>
+      </a>
+      <a href="#" class="prog-card">
+        <div class="prog-card-icon">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" color="var(--gold)">
+            <path d="M8 40 L8 14 L24 8 L40 14 L40 40"/>
+            <rect x="18" y="28" width="12" height="12"/>
+            <path d="M18 20 L30 20"/>
+          </svg>
+        </div>
+        <div class="prog-card-title">Театральный центр</div>
+        <div class="prog-card-desc">Театральные постановки с участием артистов с инвалидностью, мастер-классы и образовательные программы.</div>
+        <div class="prog-card-arrow">→</div>
+      </a>
+      <a href="#" class="prog-card">
+        <div class="prog-card-icon">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" color="var(--gold)">
+            <circle cx="24" cy="20" r="10"/>
+            <path d="M8 40 Q8 30 24 30 Q40 30 40 40"/>
+          </svg>
+        </div>
+        <div class="prog-card-title">Услуги реабилитации</div>
+        <div class="prog-card-desc">Индивидуальные программы социальной и психологической реабилитации, консультации специалистов.</div>
+        <div class="prog-card-arrow">→</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── LAUREATES ── -->
+<section class="laureates-section">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <div class="section-label">Международная премия</div>
+        <h2 class="section-title">Лауреаты, которые расширяют карту искусства</h2>
+      </div>
+    </div>
+    <div class="laureates-map">
+      <div class="world-panel" aria-hidden="true">
+        <span class="world-pin pin-1"></span>
+        <span class="world-pin pin-2"></span>
+        <span class="world-pin pin-3"></span>
+        <span class="world-pin pin-4"></span>
+        <span class="world-pin pin-5"></span>
+      </div>
+      <div class="laureates-copy">
+        <p>Премия «Филантроп» международная по смыслу и масштабу: она собирает авторов и исполнителей из разных культурных школ, стран и художественных традиций.</p>
+        <p>На одной сцене встречаются камерная музыка, драматический театр, танец, литература, живопись и скульптура. Это не локальный проект — это институция с тридцатипятилетней историей и репутацией, признанной на государственном уровне.</p>
+        <p>Среди лауреатов — музыканты-виртуозы, поэты, скульпторы, хореографы и актёры из России, стран СНГ и дальнего зарубежья.</p>
+        <div class="laureates-list">
+          <span>Музыка</span>
+          <span>Театр</span>
+          <span>Литература</span>
+          <span>Танец</span>
+          <span>Живопись</span>
+          <span>Скульптура</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MUSEUM ── -->
+<section class="museum-section">
+  <div class="container" style="padding:0; max-width: none;">
+    <div class="museum-inner">
+      <div class="museum-image">
+        <span>ФОТО МУЗЕЯ «РАВНОВЕСИЕ»<br>или экспонатов<br>~640 × 520 px</span>
+      </div>
+      <div class="museum-content" style="padding: 80px 10% 80px 8%;">
+        <div class="section-label">Музей фонда</div>
+        <h2 class="section-title">«Равновесие»</h2>
+        <p class="museum-sub">Пространство, где искусство говорит громче любых барьеров</p>
+        <p>Музей «Равновесие» — уникальная площадка, где представлены работы художников, скульпторов и мастеров декоративного искусства с инвалидностью. Каждое произведение — история победы духа над обстоятельствами.</p>
+        <p>Постоянная экспозиция включает более 500 работ. Ежемесячно проходят сменные выставки и творческие встречи.</p>
+        <a href="#" class="btn-gold" style="margin-top: 8px; display: inline-block;">Посетить музей</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── JURY ── -->
+<section class="jury-section">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <div class="section-label">Жюри и Совет попечителей</div>
+        <h2 class="section-title">Руководство и попечители</h2>
+      </div>
+    </div>
+    <div class="jury-grid">
+      <div class="jury-card">
+        <div class="jury-avatar">
+          <span>ФОТО<br>~220 × 290 px</span>
+        </div>
+        <div class="jury-name">Лариса Лужина</div>
+        <div class="jury-role">Председатель жюри Премии, народная артистка России</div>
+      </div>
+      <div class="jury-card">
+        <div class="jury-avatar">
+          <span>ФОТО<br>~220 × 290 px</span>
+        </div>
+        <div class="jury-name">Сергей Катырин</div>
+        <div class="jury-role">Председатель Совета попечителей, Президент ТПП РФ</div>
+      </div>
+      <div class="jury-card">
+        <div class="jury-avatar">
+          <span>ФОТО<br>~220 × 290 px</span>
+        </div>
+        <div class="jury-name">Михаил Терентьев</div>
+        <div class="jury-role">Председатель Организационного комитета Премии</div>
+      </div>
+      <div class="jury-card">
+        <div class="jury-avatar">
+          <span>ФОТО<br>~220 × 290 px</span>
+        </div>
+        <div class="jury-name">Зураб Церетели</div>
+        <div class="jury-role">Член жюри, Президент Российской академии художеств</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT STRIP ── -->
+<section class="about-strip" id="about">
+  <div class="container">
+    <div class="about-strip-inner">
+      <h2>35 лет фонд доказывает: искусство сильнее барьеров, а признание должно быть доступно каждому таланту</h2>
+      <div>
+        <p>Фонд «Филантроп» основан в 1991 году. За три с половиной десятилетия он создал систему поддержки людей с инвалидностью — от реабилитационных программ до международной премии, где звучат голоса талантливых лауреатов со всего мира.</p>
+        <a href="#" class="btn-dark">Читать об истории фонда</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PARTNERS ── -->
+<section class="partners-section">
+  <div class="container">
+    <div class="section-label" style="margin-bottom: 32px;">Партнёры и попечители</div>
+    <div class="partners-grid">
+      <div class="partner-item"><span class="partner-name">ТПП РФ</span></div>
+      <div class="partner-item"><span class="partner-name">Экспоцентр</span></div>
+      <div class="partner-item"><span class="partner-name">Гарант-Инвест</span></div>
+      <div class="partner-item"><span class="partner-name">Правительство Москвы</span></div>
+      <div class="partner-item"><span class="partner-name">Российская академия художеств</span></div>
+      <div class="partner-item"><span class="partner-name">ВОИ</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <strong>Фонд «Филантроп»</strong>
+        <p>Благотворительный фонд содействия социальной реабилитации лиц с инвалидностью. С 1991 года.</p>
+      </div>
+      <div class="footer-col">
+        <h4>О фонде</h4>
+        <ul>
+          <li><a href="#">История</a></li>
+          <li><a href="#">Команда</a></li>
+          <li><a href="#">Документы</a></li>
+          <li><a href="#">Отчёты</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Программы</h4>
+        <ul>
+          <li><a href="#">Международная Премия</a></li>
+          <li><a href="#">Центр реабилитации</a></li>
+          <li><a href="#">Музей «Равновесие»</a></li>
+          <li><a href="#">Фестивали</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Контакты</h4>
+        <ul>
+          <li><a href="tel:+74952441101">+7 (495) 244-11-01</a></li>
+          <li><a href="/cdn-cgi/l/email-protection#b9dfd6d7ddf9dfd0d5d8d7cdcbd6c997cbcc"><span class="__cf_email__" data-cfemail="f690999892b6909f9a979882849986d88483">[email&#160;protected]</span></a></li>
+          <li><a href="#">Москва, ул. Садовая-Сухаревская, 2/34</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 1991–2026 Фонд «Филантроп». Все права защищены.</p>
+      <p><a href="#">Политика конфиденциальности</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- ── MODAL FORM ── -->
+<div class="modal-overlay" id="applicationModal">
+  <div class="modal-box">
+    <div class="modal-close">
+      <span class="modal-close-title">Международная Премия «Филантроп» — Заявка 2027</span>
+      <button class="modal-close-btn" onclick="closeModal()">✕ Закрыть</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-intro">
+        <p>Заполните форму и приложите полный комплект материалов. Заявка регистрируется только при наличии всех обязательных документов.</p>
+        <p class="intro-small">На сайте форма помогает собрать данные, но юридически важные документы — заявка, анкета, согласие и рекомендация — должны быть загружены отдельными файлами.</p>
+      </div>
+      <div class="m-form-section">
+        <div class="m-form-tabs">
+          <button class="m-form-tab active" onclick="mSwitchTab('individual',this)"><span class="roman">I.</span>Индивидуальная заявка</button>
+          <button class="m-form-tab" onclick="mSwitchTab('collective',this)"><span class="roman">II.</span>Коллективная заявка</button>
+        </div>
+
+        <!-- INDIVIDUAL -->
+        <div class="m-form-panel active" id="m-panel-individual">
+          <p class="m-preamble">Прошу рассмотреть мою кандидатуру на соискание Международной премии «Филантроп» за выдающиеся достижения в области культуры и искусства.</p>
+          <div class="m-success" id="m-success-individual"><div class="heading">Заявка подготовлена к отправке</div><p>Проверьте, что все обязательные документы приложены.</p></div>
+          <form onsubmit="mHandleSubmit(event,'individual')">
+            <div class="m-section-header"><span class="num">i.</span><span class="title-text">Кто выдвигает кандидата</span><span class="label">Recommendation</span></div>
+            <div class="m-field-row">
+              <div class="m-field-group"><label>Тип выдвижения <span class="req">*</span></label><select required name="submitter_type"><option value="">Выберите</option><option>Государственная организация</option><option>Общественная организация</option><option>Некоммерческая организация</option><option>Организация инвалидов</option><option>Оргкомитет конкурса / фестиваля</option><option>Иное основание</option></select></div>
+              <div class="m-field-group"><label>Название организации <span class="req">*</span></label><input required type="text" name="recommend_org" placeholder="Полное название организации"></div>
+            </div>
+            <div class="m-field-row">
+              <div class="m-field-group"><label>Контактное лицо</label><input type="text" name="recommend_person" placeholder="ФИО, должность"></div>
+              <div class="m-field-group"><label>Контакт организации</label><input type="text" name="recommend_contact" placeholder="Телефон или e-mail"></div>
+            </div>
+            <div class="m-soft-box"><h3>Важно</h3><ul><li>Рекомендация прикладывается отдельным файлом на бланке организации.</li><li>Документ должен быть заверен подписью руководителя и печатью.</li></ul></div>
+
+            <div class="m-section-header"><span class="num">ii.</span><span class="title-text">Сведения о номинанте</span><span class="label">Personal data</span></div>
+            <div class="m-field-group"><label>Фамилия, имя, отчество <span class="req">*</span></label><input type="text" name="fio" required placeholder="Иванов Иван Иванович"></div>
+            <div class="m-field-row-3">
+              <div class="m-field-group"><label>Дата рождения <span class="req">*</span></label><input type="date" name="dob" required></div>
+              <div class="m-field-group"><label>Гражданство <span class="req">*</span></label><input type="text" name="country" required placeholder="Российская Федерация"></div>
+              <div class="m-field-group"><label>Возрастная категория</label><select name="age_group"><option>Взрослый участник</option><option>До 16 лет — «Растущие надежды»</option></select></div>
+            </div>
+            <div class="m-field-row">
+              <div class="m-field-group"><label>Телефон <span class="req">*</span></label><input type="tel" name="phone" required placeholder="+7 (___) ___-__-__"></div>
+              <div class="m-field-group"><label>E-mail <span class="req">*</span></label><input type="email" name="email" required placeholder="example@mail.ru"></div>
+            </div>
+            <div class="m-field-group"><label>Адрес / страна, город <span class="req">*</span></label><input type="text" name="address" required placeholder="Страна, город, адрес для связи"></div>
+            <div class="m-field-row">
+              <div class="m-field-group"><label>Документ об инвалидности <span class="req">*</span></label><input type="text" name="disability_doc" required placeholder="Справка ВТЭК / МСЭ, серия/номер"></div>
+              <div class="m-field-group"><label>Особые условия коммуникации</label><input type="text" name="accessibility" placeholder="Например: сурдоперевод, связь через представителя"></div>
+            </div>
+
+            <div class="m-section-header"><span class="num">iii.</span><span class="title-text">Номинация</span><span class="label">Category</span></div>
+            <div class="m-nom-block">
+              <div class="m-nom-heading"><span class="roman">1.</span><span class="name">Исполнительские виды искусства</span></div>
+              <div class="m-nom-grid">
+                <label class="m-nom-item"><input data-mtype="performing" type="checkbox" name="nom" value="Вокал академический"><span>Вокал академический</span></label>
+                <label class="m-nom-item"><input data-mtype="performing" type="checkbox" name="nom" value="Вокал народный"><span>Вокал народный</span></label>
+                <label class="m-nom-item"><input data-mtype="performing" type="checkbox" name="nom" value="Вокал эстрадный"><span>Вокал эстрадный</span></label>
+                <label class="m-nom-item"><input data-mtype="performing" type="checkbox" name="nom" value="Хореография"><span>Хореография</span></label>
+                <label class="m-nom-item"><input data-mtype="performing" type="checkbox" name="nom" value="Театральное искусство"><span>Театральное искусство</span></label>
+                <label class="m-nom-item"><input data-mtype="performing" type="checkbox" name="nom" value="Инструментальное исполнение"><span>Инструментальное исполнение</span></label>
+                <label class="m-nom-item"><input data-mtype="performing" type="checkbox" name="nom" value="Авторская песня"><span>Авторская песня</span></label>
+              </div>
+            </div>
+            <div class="m-nom-block">
+              <div class="m-nom-heading"><span class="roman">2.</span><span class="name">Изобразительные виды искусства</span></div>
+              <div class="m-nom-grid">
+                <label class="m-nom-item"><input data-mtype="visual" type="checkbox" name="nom" value="Живопись и графика"><span>Живопись и графика</span></label>
+                <label class="m-nom-item"><input data-mtype="visual" type="checkbox" name="nom" value="Декоративно-прикладное искусство"><span>Декоративно-прикладное</span></label>
+                <label class="m-nom-item"><input data-mtype="visual" type="checkbox" name="nom" value="Скульптура"><span>Скульптура</span></label>
+              </div>
+            </div>
+            <div class="m-nom-block">
+              <div class="m-nom-heading"><span class="roman">3.</span><span class="name">Литературное творчество</span></div>
+              <div class="m-nom-grid">
+                <label class="m-nom-item"><input data-mtype="literature" type="checkbox" name="nom" value="Малая проза"><span>Малая проза</span></label>
+                <label class="m-nom-item"><input data-mtype="literature" type="checkbox" name="nom" value="Поэзия"><span>Поэзия</span></label>
+              </div>
+            </div>
+            <div class="m-nom-note" data-mnote="performing"><b>Для исполнительских номинаций:</b> приложите видеозапись не менее 3 номеров. В записи номинант должен представить себя и название номера.</div>
+            <div class="m-nom-note" data-mnote="visual"><b>Для изобразительного искусства:</b> не менее 5 цветных фото работ с подписью: ФИО, название, размер, техника, год.</div>
+            <div class="m-nom-note" data-mnote="literature"><b>Для литературы:</b> малая проза — до 40 000 знаков; поэзия — от 10 до 30 произведений.</div>
+
+            <div class="m-section-header"><span class="num">iv.</span><span class="title-text">Творческий путь</span><span class="label">Biography</span></div>
+            <div class="m-field-group"><label>Автобиография <span class="req">*</span></label><textarea required name="bio" placeholder="Расскажите о себе, творческом пути, образовании, конкурсах, фестивалях..."></textarea></div>
+            <div class="m-field-group"><label>Роль творчества в преодолении инвалидности <span class="req">*</span></label><textarea required name="overcoming" placeholder="Как искусство помогает в реабилитации и социальной адаптации?"></textarea></div>
+            <div class="m-field-group"><label>Награды и достижения</label><textarea name="awards" placeholder="Основные награды, звания, участие в конкурсах и фестивалях."></textarea></div>
+
+            <div class="m-section-header"><span class="num">v.</span><span class="title-text">Обязательные документы</span><span class="label">Checklist</span></div>
+            <div class="m-soft-box"><h3>Проверьте комплект</h3><p>Отметьте каждый пункт перед отправкой.</p>
+              <div class="m-doc-checklist">
+                <label class="m-check-item"><input required type="checkbox"><span>Заявка</span></label>
+                <label class="m-check-item"><input required type="checkbox"><span>Анкета с личной подписью</span></label>
+                <label class="m-check-item"><input required type="checkbox"><span>Портретная фотография 10×15</span></label>
+                <label class="m-check-item"><input required type="checkbox"><span>Автобиография</span></label>
+                <label class="m-check-item"><input required type="checkbox"><span>Рекомендация организации</span></label>
+                <label class="m-check-item"><input required type="checkbox"><span>Авторские материалы по номинации</span></label>
+                <label class="m-check-item"><input required type="checkbox"><span>Справка ВТЭК / МСЭ</span></label>
+                <label class="m-check-item"><input required type="checkbox"><span>Согласие на обработку данных</span></label>
+              </div>
+            </div>
+
+            <div class="m-section-header"><span class="num">vi.</span><span class="title-text">Прикрепить файлы</span><span class="label">Upload</span></div>
+            <div class="m-field-row">
+              <div class="m-field-group"><label>Заявка и анкета <span class="req">*</span></label><div class="m-file-zone" onclick="this.querySelector('input').click()"><div class="icon">⌘</div><div class="main-text">Загрузить документы</div><div class="sub-text">PDF · DOC · DOCX</div><input required type="file" accept=".pdf,.doc,.docx" multiple onchange="mShowFiles(this,'mf-1')"></div><div class="m-file-list" id="mf-1"></div></div>
+              <div class="m-field-group"><label>Фото 10×15 <span class="req">*</span></label><div class="m-file-zone" onclick="this.querySelector('input').click()"><div class="icon">◊</div><div class="main-text">Портретная фотография</div><div class="sub-text">JPG · PNG</div><input required type="file" accept=".jpg,.jpeg,.png" onchange="mShowFiles(this,'mf-2')"></div><div class="m-file-list" id="mf-2"></div></div>
+            </div>
+            <div class="m-field-row">
+              <div class="m-field-group"><label>Рекомендация <span class="req">*</span></label><div class="m-file-zone" onclick="this.querySelector('input').click()"><div class="icon">§</div><div class="main-text">Файл рекомендации</div><div class="sub-text">PDF · DOC · DOCX</div><input required type="file" accept=".pdf,.doc,.docx" onchange="mShowFiles(this,'mf-3')"></div><div class="m-file-list" id="mf-3"></div></div>
+              <div class="m-field-group"><label>Справка ВТЭК / МСЭ <span class="req">*</span></label><div class="m-file-zone" onclick="this.querySelector('input').click()"><div class="icon">✕</div><div class="main-text">Скан документа</div><div class="sub-text">PDF · JPG · PNG</div><input required type="file" accept=".pdf,.jpg,.jpeg,.png" onchange="mShowFiles(this,'mf-4')"></div><div class="m-file-list" id="mf-4"></div></div>
+            </div>
+            <div class="m-field-group"><label>Авторские материалы <span class="req">*</span></label><div class="m-file-zone" onclick="this.querySelector('input').click()"><div class="icon">∗</div><div class="main-text">Работы, портфолио, тексты</div><div class="sub-text">PDF · DOC · JPG · PNG · MP4</div><input required type="file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.mp4" multiple onchange="mShowFiles(this,'mf-5')"></div><div class="m-file-list" id="mf-5"></div></div>
+            <div class="m-field-group"><label>Ссылка на видео / облачную папку</label><input type="text" name="links" placeholder="YouTube, Rutube, Яндекс.Диск, Google Drive..."><div class="m-hint">Для больших видеофайлов вставьте ссылку с открытым доступом.</div></div>
+            <div class="m-field-group"><label>Согласие на обработку данных <span class="req">*</span></label><div class="m-file-zone" onclick="this.querySelector('input').click()"><div class="icon">✓</div><div class="main-text">Загрузить подписанное согласие</div><div class="sub-text">PDF · DOC · DOCX · JPG</div><input required type="file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" onchange="mShowFiles(this,'mf-6')"></div><div class="m-file-list" id="mf-6"></div></div>
+
+            <div class="m-section-header"><span class="num">vii.</span><span class="title-text">Оставайтесь в курсе событий</span><span class="label">Social</span></div>
+            <div class="m-soft-box" style="background:rgba(184,134,11,0.07);border-left-color:#b8860b;">
+              <h3 style="color:#7a1414;">Подпишитесь на наши социальные сети</h3>
+              <p style="margin-bottom:16px;">Следите за объявлениями о Премии, итогами церемоний и новостями фонда — первыми узнавайте о важных событиях.</p>
+              <div style="display:flex;gap:12px;flex-wrap:wrap;">
+                <a href="https://vk.com/club71460075" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;background:#0077FF;color:#fff;font-family:'PT Sans',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.04em;text-decoration:none;padding:11px 20px;transition:opacity 0.15s;" onmouseover="this.style.opacity='.82'" onmouseout="this.style.opacity='1'">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm6.206 8.36c.09-.282 0-.49-.4-.49h-1.322c-.337 0-.492.178-.582.374 0 0-.68 1.656-1.642 2.732-.311.311-.452.41-.622.41-.085 0-.208-.099-.208-.381V8.36c0-.337-.097-.49-.376-.49H11.35c-.21 0-.336.156-.336.304 0 .319.477.392.526 1.29v1.95c0 .427-.077.505-.247.505-.452 0-1.552-1.664-2.205-3.568-.128-.37-.257-.52-.596-.52H7.17c-.378 0-.454.178-.454.374 0 .35.452 2.083 2.107 4.376 1.103 1.583 2.656 2.44 4.069 2.44.848 0 .953-.19.953-.518v-1.195c0-.378.08-.453.346-.453.196 0 .533.098 1.319.857.898.898 1.046 1.302 1.551 1.302h1.322c.378 0 .567-.19.458-.564-.12-.372-.552-.911-1.127-1.55-.311-.367-.778-.762-.919-.958-.196-.252-.14-.364 0-.588z"/></svg>
+                  ВКонтакте
+                </a>
+                <a href="https://t.me/fund_filantrop" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;background:#229ED9;color:#fff;font-family:'PT Sans',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.04em;text-decoration:none;padding:11px 20px;transition:opacity 0.15s;" onmouseover="this.style.opacity='.82'" onmouseout="this.style.opacity='1'">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-1.97 9.289c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.31 14.617l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.506.97z"/></svg>
+                  Telegram
+                </a>
+                <a href="https://ok.ru/group/52125787291862" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;background:#EE8208;color:#fff;font-family:'PT Sans',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.04em;text-decoration:none;padding:11px 20px;transition:opacity 0.15s;" onmouseover="this.style.opacity='.82'" onmouseout="this.style.opacity='1'">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 5.04a3.12 3.12 0 110 6.24A3.12 3.12 0 0112 5.04zm0 1.92a1.2 1.2 0 100 2.4 1.2 1.2 0 000-2.4zm5.04 5.76a.96.96 0 01-.672 1.176 8.64 8.64 0 01-2.208.48l2.16 2.16a.96.96 0 11-1.357 1.357L12 14.736l-2.963 2.957a.96.96 0 11-1.357-1.357l2.16-2.16a8.64 8.64 0 01-2.208-.48.96.96 0 01.504-1.848 6.72 6.72 0 007.728 0 .96.96 0 011.176.672z"/></svg>
+                  Одноклассники
+                </a>
+              </div>
+            </div>
+
+            <div class="m-section-header"><span class="num">viii.</span><span class="title-text">Подтверждение и подпись</span><span class="label">Signature</span></div>
+            <div class="m-field-row">
+              <div class="m-field-group"><label>Дата подачи <span class="req">*</span></label><input required type="date" name="date"></div>
+              <div class="m-field-group"><label>ФИО заявителя (электронная подпись) <span class="req">*</span></label><input required type="text" name="signature" placeholder="Фамилия Имя Отчество"></div>
+            </div>
+            <div class="m-submit-area">
+              <label class="m-consent"><input type="checkbox" required><span>Подтверждаю достоверность сведений, наличие полного комплекта документов и согласие на обработку персональных данных.</span></label>
+              <div class="m-submit-row"><button type="submit" class="m-submit-btn">Отправить заявку →</button><span class="m-submit-meta">* обязательные поля</span></div>
+            </div>
+          </form>
+        </div>
+
+        <!-- COLLECTIVE -->
+        <div class="m-form-panel" id="m-panel-collective">
+          <p class="m-preamble">Просим рассмотреть кандидатуру нашего творческого коллектива на соискание Международной премии «Филантроп».</p>
+          <div class="m-success" id="m-success-collective"><div class="heading">Заявка коллектива подготовлена к отправке</div><p>Проверьте список участников и документы каждого участника.</p></div>
+          <form onsubmit="mHandleSubmit(event,'collective')">
+            <div class="m-section-header"><span class="num">i.</span><span class="title-text">Сведения о коллективе</span><span class="label">Group data</span></div>
+            <div class="m-field-group"><label>Полное название коллектива <span class="req">*</span></label><input required type="text" name="cname" placeholder="Творческий коллектив «Название»"></div>
+            <div class="m-field-row">
+              <div class="m-field-group"><label>ФИО руководителя <span class="req">*</span></label><input required type="text" name="leader"></div>
+              <div class="m-field-group"><label>Количество участников <span class="req">*</span></label><input required type="number" min="1" name="count" placeholder="12"></div>
+            </div>
+            <div class="m-field-row">
+              <div class="m-field-group"><label>Телефон <span class="req">*</span></label><input required type="tel" name="cphone" placeholder="+7 (___) ___-__-__"></div>
+              <div class="m-field-group"><label>E-mail <span class="req">*</span></label><input required type="email" name="cemail" placeholder="example@mail.ru"></div>
+            </div>
+            <div class="m-field-row">
+              <div class="m-field-group"><label>Город / регион / страна <span class="req">*</span></label><input required type="text" name="city" placeholder="Москва, Россия"></div>
+              <div class="m-field-group"><label>Организация / учреждение</label><input type="text" name="org" placeholder="Если коллектив действует при организации"></div>
+            </div>
+
+            <div class="m-section-header"><span class="num">ii.</span><span class="title-text">Кто выдвигает коллектив</span><span class="label">Recommendation</span></div>
+            <div class="m-field-row">
+              <div class="m-field-group"><label>Название рекомендующей организации <span class="req">*</span></label><input required type="text" name="crecommend_org"></div>
+              <div class="m-field-group"><label>Контактное лицо</label><input type="text" name="crecommend_person"></div>
+            </div>
+
+            <div class="m-section-header"><span class="num">iii.</span><span class="title-text">Номинация</span><span class="label">Category</span></div>
+            <div class="m-soft-box"><h3>Для коллектива</h3><ul><li>Анкета заполняется на руководителя коллектива.</li><li>Отдельно прикладывается список участников с ФИО и ролями.</li><li>Для каждого участника с инвалидностью прикладываются подтверждающие документы.</li></ul></div>
+            <div class="m-nom-grid" style="margin-top:16px;">
+              <label class="m-nom-item"><input type="checkbox" name="cnom" value="Вокал академический"><span>Вокал академический</span></label>
+              <label class="m-nom-item"><input type="checkbox" name="cnom" value="Вокал народный"><span>Вокал народный</span></label>
+              <label class="m-nom-item"><input type="checkbox" name="cnom" value="Хореография"><span>Хореография</span></label>
+              <label class="m-nom-item"><input type="checkbox" name="cnom" value="Театральное искусство"><span>Театральное искусство</span></label>
+              <label class="m-nom-item"><input type="checkbox" name="cnom" value="Инструментальное исполнение"><span>Инструментальное исполнение</span></label>
+              <label class="m-nom-item"><input type="checkbox" name="cnom" value="Авторская песня"><span>Авторская песня</span></label>
+            </div>
+
+            <div class="m-section-header"><span class="num">iv.</span><span class="title-text">История и достижения</span><span class="label">History</span></div>
+            <div class="m-field-group"><label>Творческий путь коллектива <span class="req">*</span></label><textarea required name="cbio" placeholder="История, достижения, фестивали, конкурсы, гастроли..."></textarea></div>
+            <div class="m-field-group"><label>Роль творчества в реабилитации участников <span class="req">*</span></label><textarea required name="covercoming" placeholder="Как участие в коллективе помогает участникам через искусство?"></textarea></div>
+
+            <div class="m-section-header"><span class="num">v.</span><span class="title-text">Файлы и документы</span><span class="label">Upload</span></div>
+            <div class="m-doc-checklist">
+              <label class="m-check-item"><input required type="checkbox"><span>Коллективная заявка</span></label>
+              <label class="m-check-item"><input required type="checkbox"><span>Анкета руководителя с подписью</span></label>
+              <label class="m-check-item"><input required type="checkbox"><span>Фото коллектива 15×21</span></label>
+              <label class="m-check-item"><input required type="checkbox"><span>Список участников с ФИО</span></label>
+              <label class="m-check-item"><input required type="checkbox"><span>Рекомендация организации</span></label>
+              <label class="m-check-item"><input required type="checkbox"><span>Авторские материалы</span></label>
+              <label class="m-check-item"><input required type="checkbox"><span>Справки ВТЭК / МСЭ участников</span></label>
+              <label class="m-check-item"><input required type="checkbox"><span>Согласие на обработку данных</span></label>
+            </div>
+            <div class="m-field-row" style="margin-top:24px;">
+              <div class="m-field-group"><label>Заявка и анкета руководителя <span class="req">*</span></label><div class="m-file-zone" onclick="this.querySelector('input').click()"><div class="icon">⌘</div><div class="main-text">Загрузить документы</div><div class="sub-text">PDF · DOC · DOCX</div><input required type="file" accept=".pdf,.doc,.docx" multiple onchange="mShowFiles(this,'mc-1')"></div><div class="m-file-list" id="mc-1"></div></div>
+              <div class="m-field-group"><label>Фото коллектива 15×21 <span class="req">*</span></label><div class="m-file-zone" onclick="this.querySelector('input').click()"><div class="icon">◊</div><div class="main-text">Цветная фотография коллектива</div><div class="sub-text">JPG · PNG</div><input required type="file" accept=".jpg,.jpeg,.png" onchange="mShowFiles(this,'mc-2')"></div><div class="m-file-list" id="mc-2"></div></div>
+            </div>
+            <div class="m-field-row">
+              <div class="m-field-group"><label>Список участников <span class="req">*</span></label><div class="m-file-zone" onclick="this.querySelector('input').click()"><div class="icon">≡</div><div class="main-text">ФИО и роли</div><div class="sub-text">PDF · DOC · DOCX · XLSX</div><input required type="file" accept=".pdf,.doc,.docx,.xlsx" onchange="mShowFiles(this,'mc-3')"></div><div class="m-file-list" id="mc-3"></div></div>
+              <div class="m-field-group"><label>Справки ВТЭК / МСЭ <span class="req">*</span></label><div class="m-file-zone" onclick="this.querySelector('input').click()"><div class="icon">✕</div><div class="main-text">Можно несколько файлов</div><div class="sub-text">PDF · JPG · PNG</div><input required type="file" accept=".pdf,.jpg,.jpeg,.png" multiple onchange="mShowFiles(this,'mc-4')"></div><div class="m-file-list" id="mc-4"></div></div>
+            </div>
+            <div class="m-field-group"><label>Авторские материалы <span class="req">*</span></label><div class="m-file-zone" onclick="this.querySelector('input').click()"><div class="icon">∗</div><div class="main-text">Выступления, портфолио</div><div class="sub-text">PDF · DOC · JPG · PNG · MP4</div><input required type="file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.mp4" multiple onchange="mShowFiles(this,'mc-5')"></div><div class="m-file-list" id="mc-5"></div></div>
+            <div class="m-field-group"><label>Ссылка на видео / облачную папку</label><input type="text" name="cvideo" placeholder="YouTube, Rutube, Яндекс.Диск, Google Drive..."></div>
+            <div class="m-field-group"><label>Согласия на обработку данных <span class="req">*</span></label><div class="m-file-zone" onclick="this.querySelector('input').click()"><div class="icon">✓</div><div class="main-text">Подписанные согласия участников</div><div class="sub-text">PDF · DOC · DOCX · JPG</div><input required type="file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" multiple onchange="mShowFiles(this,'mc-6')"></div><div class="m-file-list" id="mc-6"></div></div>
+
+            <div class="m-section-header"><span class="num">vi.</span><span class="title-text">Оставайтесь в курсе событий</span><span class="label">Social</span></div>
+            <div class="m-soft-box" style="background:rgba(184,134,11,0.07);border-left-color:#b8860b;">
+              <h3 style="color:#7a1414;">Подпишитесь на наши социальные сети</h3>
+              <p style="margin-bottom:16px;">Следите за объявлениями о Премии, итогами церемоний и новостями фонда.</p>
+              <div style="display:flex;gap:12px;flex-wrap:wrap;">
+                <a href="https://vk.com/club71460075" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;background:#0077FF;color:#fff;font-family:'PT Sans',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.04em;text-decoration:none;padding:11px 20px;" >ВКонтакте</a>
+                <a href="https://t.me/fund_filantrop" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;background:#229ED9;color:#fff;font-family:'PT Sans',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.04em;text-decoration:none;padding:11px 20px;">Telegram</a>
+                <a href="https://ok.ru/group/52125787291862" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;background:#EE8208;color:#fff;font-family:'PT Sans',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.04em;text-decoration:none;padding:11px 20px;">Одноклассники</a>
+              </div>
+            </div>
+
+            <div class="m-section-header"><span class="num">vii.</span><span class="title-text">Подтверждение и подпись</span><span class="label">Signature</span></div>
+            <div class="m-field-row">
+              <div class="m-field-group"><label>Дата подачи <span class="req">*</span></label><input required type="date" name="cdate"></div>
+              <div class="m-field-group"><label>ФИО руководителя (электронная подпись) <span class="req">*</span></label><input required type="text" name="csignature"></div>
+            </div>
+            <div class="m-submit-area">
+              <label class="m-consent"><input type="checkbox" required><span>Подтверждаю достоверность сведений, наличие полного комплекта документов и согласие на обработку персональных данных.</span></label>
+              <div class="m-submit-row"><button type="submit" class="m-submit-btn">Отправить заявку →</button><span class="m-submit-meta">* обязательные поля</span></div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ── MODAL ──
+  function openModal() {
+    document.getElementById('applicationModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    document.getElementById('applicationModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  // Close on overlay click
+  document.getElementById('applicationModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+  // Close on Escape
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+  });
+  // Hook all CTA buttons
+  document.querySelectorAll('a[href="#prize"], .nav-cta, .mobile-menu-cta').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      openModal();
+    });
+  });
+
+  // ── MODAL FORM LOGIC ──
+  function mSwitchTab(tab, btn) {
+    document.querySelectorAll('.m-form-tab').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.m-form-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('m-panel-' + tab).classList.add('active');
+  }
+  function mShowFiles(input, listId) {
+    const list = document.getElementById(listId);
+    if (!list) return;
+    list.innerHTML = '';
+    Array.from(input.files).forEach(file => {
+      const tag = document.createElement('div');
+      tag.className = 'm-file-tag';
+      const size = (file.size / 1024 / 1024).toFixed(1);
+      tag.innerHTML = '<span>' + file.name + '</span><span style="opacity:.5">' + size + ' МБ</span><button type="button" onclick="this.parentElement.remove()">✕</button>';
+      list.appendChild(tag);
+    });
+  }
+  function mHandleSubmit(e, type) {
+    e.preventDefault();
+    const success = document.getElementById('m-success-' + type);
+    success.classList.add('show');
+    success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+  function mUpdateNotes() {
+    const types = new Set();
+    document.querySelectorAll('input[data-mtype]:checked').forEach(i => types.add(i.dataset.mtype));
+    document.querySelectorAll('.m-nom-note').forEach(n => n.classList.toggle('show', types.has(n.dataset.mnote)));
+  }
+  document.querySelectorAll('.m-nom-item input[type="checkbox"]').forEach(cb => {
+    cb.addEventListener('change', function(e) {
+      e.target.closest('.m-nom-item').classList.toggle('checked', e.target.checked);
+      mUpdateNotes();
+    });
+  });
+  document.querySelectorAll('.m-file-zone').forEach(zone => {
+    zone.addEventListener('dragover', e => { e.preventDefault(); zone.style.borderStyle = 'solid'; });
+    zone.addEventListener('dragleave', () => zone.style.borderStyle = 'dashed');
+    zone.addEventListener('drop', e => {
+      e.preventDefault(); zone.style.borderStyle = 'dashed';
+      const input = zone.querySelector('input[type=file]');
+      if (!input) return;
+      try { input.files = e.dataTransfer.files; } catch(err) {}
+      const list = zone.nextElementSibling;
+      if (list) mShowFiles(input, list.id);
+    });
+  });
+
+  const menuButton = document.querySelector('.mobile-menu-toggle');
+  const mobileMenu = document.querySelector('#mobile-menu');
+
+  if (menuButton && mobileMenu) {
+    const closeMobileMenu = () => {
+      document.body.classList.remove('mobile-menu-open');
+      menuButton.setAttribute('aria-expanded', 'false');
+      menuButton.setAttribute('aria-label', 'Открыть меню');
+    };
+
+    menuButton.addEventListener('click', () => {
+      const isOpen = document.body.classList.toggle('mobile-menu-open');
+      menuButton.setAttribute('aria-expanded', String(isOpen));
+      menuButton.setAttribute('aria-label', isOpen ? 'Закрыть меню' : 'Открыть меню');
+    });
+
+    mobileMenu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', closeMobileMenu);
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeMobileMenu();
+    });
+  }
+</script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+</html>
+

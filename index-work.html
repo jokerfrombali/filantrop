@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Фонд «Филантроп» — 35 лет</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=PT+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    /* Brand palette from Филантроп identity */
+    --cream: oklch(0.91 0.045 82);        /* пергаментный бежевый фон */
+    --cream-light: oklch(0.95 0.03 82);   /* светлее */
+    --cream-dark: oklch(0.85 0.055 78);   /* тёмнее */
+    --red: oklch(0.40 0.175 22);          /* фирменный бордово-красный */
+    --red-dark: oklch(0.32 0.16 22);      /* тёмный красный */
+    --red-mid: oklch(0.50 0.16 22);       /* средний красный */
+    --ink: oklch(0.16 0.01 40);
+    --ink-mid: oklch(0.35 0.01 40);
+    --ink-light: oklch(0.55 0.01 40);
+    --gold: oklch(0.72 0.12 68);          /* золото статуэтки */
+    --gold-deep: oklch(0.58 0.13 60);
+    --gold-light: oklch(0.88 0.08 78);
+    --white: oklch(0.998 0.002 80);
+
+    --ff-serif: 'Playfair Display', Georgia, serif;
+    --ff-sans: 'PT Sans', Arial, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--ff-sans);
+    background: var(--cream);
+    color: var(--ink);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--red);
+    border-bottom: none;
+  }
+  .nav-inner {
+    max-width: 1280px; margin: 0 auto;
+    display: flex; align-items: center; gap: 0;
+    padding: 0 48px; height: 68px;
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 14px;
+    text-decoration: none; color: var(--white);
+    flex-shrink: 0; margin-right: auto;
+  }
+  .nav-logo-mark {
+    width: 40px; height: 40px;
+    background: var(--gold);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-logo-mark svg { width: 22px; height: 22px; }
+  .nav-logo-text { line-height: 1.15; }
+  .nav-logo-text strong { font-family: var(--ff-serif); font-size: 15px; font-weight: 600; letter-spacing: 0.02em; display: block; color: var(--white); }
+  .nav-logo-text span { font-size: 10.5px; color: oklch(0.80 0.04 82); letter-spacing: 0.08em; text-transform: uppercase; }
+  .nav-links { display: flex; gap: 0; }
+  .nav-links a {
+    font-size: 13.5px; color: oklch(0.88 0.03 20); text-decoration: none;
+    padding: 0 16px; height: 68px; display: flex; align-items: center;
+    border-bottom: 2px solid transparent;
+    transition: color 0.18s, border-color 0.18s;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+  .nav-links a:hover { color: var(--white); border-bottom-color: var(--gold); }
+  .nav-cta {
+    margin-left: 24px;
+    background: var(--gold); color: var(--ink);
+    font-size: 13px; font-weight: 700; letter-spacing: 0.04em;
+    text-transform: uppercase; text-decoration: none;
+    padding: 10px 22px; border-radius: 2px;
+    transition: background 0.18s;
+    flex-shrink: 0;
+  }
+  .nav-cta:hover { background: var(--gold-deep); color: var(--white); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 88vh;
+    background: var(--red);
+    display: grid; grid-template-columns: 1fr 1fr;
+    position: relative; overflow: hidden;
+  }
+  .hero-left {
+    padding: 80px 64px 80px 80px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    position: relative; z-index: 2;
+  }
+  .hero-eyebrow {
+    display: flex; align-items: center; gap: 12px;
+    color: var(--gold-light); font-size: 12px; letter-spacing: 0.14em;
+    text-transform: uppercase; font-weight: 700;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block; width: 32px; height: 1px;
+    background: var(--gold);
+  }
+  .hero-main { padding: 40px 0; }
+  .hero-years {
+    font-family: var(--ff-serif); font-size: 160px; font-weight: 700;
+    line-height: 0.9; color: transparent;
+    -webkit-text-stroke: 1.5px oklch(0.55 0.12 22);
+    letter-spacing: -0.04em;
+    user-select: none;
+  }
+  .hero-tagline {
+    font-family: var(--ff-serif); font-size: 44px; font-weight: 400;
+    line-height: 1.25; color: var(--white);
+    margin-top: 16px;
+    text-wrap: pretty;
+  }
+  .hero-tagline em { font-style: italic; color: var(--gold-light); }
+  .hero-sub {
+    margin-top: 24px;
+    color: oklch(0.82 0.04 20); font-size: 16px;
+    max-width: 460px; line-height: 1.7;
+  }
+  .hero-actions {
+    display: flex; gap: 16px; align-items: center; flex-wrap: wrap;
+  }
+  .btn-gold {
+    background: var(--gold); color: var(--ink);
+    font-weight: 700; font-size: 13px; letter-spacing: 0.06em;
+    text-transform: uppercase; text-decoration: none;
+    padding: 15px 32px; border-radius: 2px;
+    transition: background 0.18s;
+  }
+  .btn-gold:hover { background: oklch(0.78 0.13 68); }
+  .btn-outline {
+    border: 1.5px solid oklch(0.45 0.02 65); color: oklch(0.78 0.01 75);
+    font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase;
+    text-decoration: none; padding: 14px 28px; border-radius: 2px;
+    transition: border-color 0.18s, color 0.18s;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-right {
+    position: relative; overflow: hidden;
+  }
+  .hero-image-placeholder {
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      -45deg,
+      oklch(0.35 0.14 22) 0px,
+      oklch(0.35 0.14 22) 1px,
+      oklch(0.32 0.13 22) 1px,
+      oklch(0.32 0.13 22) 18px
+    );
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 16px;
+  }
+  .hero-image-placeholder span {
+    font-family: monospace; font-size: 11px; color: oklch(0.60 0.08 22);
+    letter-spacing: 0.06em; text-align: center;
+    padding: 0 32px;
+  }
+  .hero-stats {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: var(--red-dark);
+    border-top: 1px solid oklch(0.30 0.14 22);
+    display: grid; grid-template-columns: repeat(3, 1fr);
+  }
+  .hero-stat {
+    padding: 28px 32px;
+    border-right: 1px solid oklch(0.30 0.14 22);
+  }
+  .hero-stat:last-child { border-right: none; }
+  .hero-stat-num {
+    font-family: var(--ff-serif); font-size: 36px; font-weight: 700;
+    color: var(--gold-light); line-height: 1;
+  }
+  .hero-stat-label {
+    font-size: 12px; color: oklch(0.72 0.06 20); margin-top: 6px;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── TICKER ── */
+  .ticker {
+    background: var(--gold); overflow: hidden;
+    height: 42px; display: flex; align-items: center;
+  }
+  .ticker-track {
+    display: flex; gap: 64px;
+    animation: ticker 35s linear infinite;
+    white-space: nowrap;
+  }
+  .ticker-track span {
+    font-size: 12px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--ink); flex-shrink: 0;
+  }
+  .ticker-dot { color: var(--gold-deep); }
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ── SECTION BASE ── */
+  section { padding: 96px 0; }
+  .container { max-width: 1280px; margin: 0 auto; padding: 0 80px; }
+  .section-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--gold);
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 40px;
+  }
+  .section-label::before {
+    content: ''; display: block; width: 28px; height: 1px; background: var(--gold);
+  }
+  .section-title {
+    font-family: var(--ff-serif); font-size: 40px; font-weight: 400;
+    line-height: 1.2; color: var(--ink);
+    text-wrap: pretty;
+  }
+  .section-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 52px;
+  }
+  .section-header .section-title { max-width: 520px; }
+  .link-all {
+    font-size: 13px; font-weight: 700; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--gold);
+    text-decoration: none; display: flex; align-items: center; gap: 8px;
+    transition: gap 0.18s;
+    flex-shrink: 0; padding-bottom: 4px;
+  }
+  .link-all:hover { gap: 14px; }
+  .link-all::after { content: '→'; }
+
+  /* ── NEWS ── */
+  .news-section { background: var(--white); }
+  .news-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 1px;
+    background: oklch(0.88 0.01 75);
+    border: 1px solid oklch(0.88 0.01 75);
+  }
+  .news-card {
+    background: var(--white);
+    text-decoration: none; color: inherit;
+    display: flex; flex-direction: column;
+    transition: background 0.18s;
+  }
+  .news-card:hover { background: var(--cream); }
+  .news-card-img {
+    aspect-ratio: 16/9; overflow: hidden;
+    background: repeating-linear-gradient(
+      -45deg,
+      var(--cream-dark) 0px, var(--cream-dark) 1px,
+      var(--cream) 1px, var(--cream) 14px
+    );
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 8px;
+  }
+  .news-card-img span {
+    font-family: monospace; font-size: 10px;
+    color: var(--ink-light); letter-spacing: 0.05em; text-align: center; padding: 0 16px;
+  }
+  .news-card-body { padding: 28px 32px 36px; flex: 1; display: flex; flex-direction: column; }
+  .news-card-date { font-size: 11px; color: var(--ink-light); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px; }
+  .news-card-title {
+    font-family: var(--ff-serif); font-weight: 600;
+    line-height: 1.35; color: var(--ink);
+    text-wrap: pretty;
+  }
+  .news-card:first-child .news-card-title { font-size: 22px; }
+  .news-card:not(:first-child) .news-card-title { font-size: 17px; }
+  .news-card-excerpt { margin-top: 12px; font-size: 14.5px; color: var(--ink-mid); line-height: 1.6; }
+  .news-card-tag {
+    display: inline-block; margin-top: auto; padding-top: 20px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--gold);
+  }
+
+  /* ── PRIZE ── */
+  .prize-section {
+    background: var(--ink); color: var(--white);
+  }
+  .prize-inner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+  .prize-visual {
+    aspect-ratio: 1;
+    background: repeating-linear-gradient(
+      -45deg,
+      oklch(0.22 0.008 65) 0px, oklch(0.22 0.008 65) 1px,
+      oklch(0.20 0.006 65) 1px, oklch(0.20 0.006 65) 16px
+    );
+    display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 16px;
+    position: relative;
+  }
+  .prize-visual::before {
+    content: ''; position: absolute; inset: 24px;
+    border: 1px solid oklch(0.32 0.05 65);
+  }
+  .prize-visual span {
+    font-family: monospace; font-size: 10px; color: oklch(0.42 0.01 65);
+    letter-spacing: 0.05em; text-align: center; padding: 0 32px; position: relative; z-index: 1;
+  }
+  .prize-content .section-title { color: var(--white); margin-bottom: 24px; }
+  .prize-content p { color: oklch(0.72 0.01 75); font-size: 16px; line-height: 1.75; margin-bottom: 20px; }
+  .prize-organizers { margin-top: 40px; }
+  .prize-org-label {
+    font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: oklch(0.50 0.03 65);
+    margin-bottom: 16px;
+  }
+  .prize-org-list { display: flex; flex-direction: column; gap: 10px; }
+  .prize-org-item {
+    display: flex; align-items: flex-start; gap: 14px;
+    font-size: 14px; color: oklch(0.65 0.01 75);
+    line-height: 1.4;
+  }
+  .prize-org-item::before {
+    content: ''; display: block; width: 6px; height: 6px;
+    background: var(--gold); border-radius: 50%; flex-shrink: 0; margin-top: 5px;
+  }
+  .prize-year-badge {
+    display: inline-flex; flex-direction: column; align-items: center;
+    border: 1.5px solid oklch(0.35 0.05 65);
+    padding: 16px 28px; margin-bottom: 40px;
+  }
+  .prize-year-badge strong {
+    font-family: var(--ff-serif); font-size: 32px; font-weight: 700;
+    color: var(--gold); line-height: 1;
+  }
+  .prize-year-badge span { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: oklch(0.50 0.03 65); margin-top: 4px; }
+
+  /* ── PROGRAMS ── */
+  .programs-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+    background: oklch(0.88 0.01 75);
+    border: 1px solid oklch(0.88 0.01 75);
+  }
+  .prog-card {
+    background: var(--white); padding: 40px 36px;
+    text-decoration: none; color: inherit;
+    display: flex; flex-direction: column; gap: 0;
+    transition: background 0.18s;
+    position: relative;
+    overflow: hidden;
+  }
+  .prog-card::after {
+    content: ''; position: absolute; bottom: 0; left: 0;
+    width: 0; height: 2px; background: var(--gold);
+    transition: width 0.3s ease;
+  }
+  .prog-card:hover { background: var(--cream); }
+  .prog-card:hover::after { width: 100%; }
+  .prog-card-icon {
+    width: 48px; height: 48px; margin-bottom: 28px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .prog-card-icon svg { width: 100%; height: 100%; }
+  .prog-card-title {
+    font-family: var(--ff-serif); font-size: 19px; font-weight: 600;
+    line-height: 1.3; color: var(--ink); margin-bottom: 14px;
+  }
+  .prog-card-desc {
+    font-size: 14px; color: var(--ink-mid); line-height: 1.65; flex: 1;
+  }
+  .prog-card-arrow {
+    margin-top: 28px; font-size: 20px; color: var(--gold);
+    transition: transform 0.18s;
+    display: inline-block;
+  }
+  .prog-card:hover .prog-card-arrow { transform: translateX(6px); }
+
+  /* ── MUSEUM ── */
+  .museum-section {
+    background: var(--cream-dark);
+    padding: 0;
+  }
+  .museum-inner {
+    display: grid; grid-template-columns: 1fr 1fr;
+    min-height: 520px;
+  }
+  .museum-image {
+    background: repeating-linear-gradient(
+      -45deg,
+      oklch(0.88 0.01 75) 0px, oklch(0.88 0.01 75) 1px,
+      var(--cream-dark) 1px, var(--cream-dark) 16px
+    );
+    display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 12px;
+  }
+  .museum-image span {
+    font-family: monospace; font-size: 10px; color: var(--ink-light);
+    letter-spacing: 0.05em; text-align: center; padding: 0 48px;
+  }
+  .museum-content {
+    padding: 80px 72px;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .museum-content .section-title { margin-bottom: 20px; }
+  .museum-content p { font-size: 16px; color: var(--ink-mid); line-height: 1.75; margin-bottom: 16px; }
+  .museum-sub { font-family: var(--ff-serif); font-style: italic; font-size: 20px; color: var(--ink); margin-bottom: 36px !important; }
+
+  /* ── JURY ── */
+  .jury-section { background: var(--white); }
+  .jury-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px;
+  }
+  .jury-card { display: flex; flex-direction: column; gap: 16px; }
+  .jury-avatar {
+    width: 100%; aspect-ratio: 3/4;
+    background: repeating-linear-gradient(
+      -45deg,
+      var(--cream-dark) 0px, var(--cream-dark) 1px,
+      var(--cream) 1px, var(--cream) 14px
+    );
+    display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px;
+  }
+  .jury-avatar span { font-family: monospace; font-size: 9px; color: var(--ink-light); letter-spacing: 0.05em; text-align: center; padding: 0 12px; }
+  .jury-name { font-family: var(--ff-serif); font-size: 17px; font-weight: 600; line-height: 1.3; }
+  .jury-role { font-size: 13px; color: var(--ink-light); line-height: 1.4; }
+
+  /* ── PARTNERS ── */
+  .partners-section { background: var(--cream); }
+  .partners-grid {
+    display: flex; flex-wrap: wrap; gap: 2px;
+    background: oklch(0.88 0.01 75);
+    border: 1px solid oklch(0.88 0.01 75);
+  }
+  .partner-item {
+    background: var(--white); flex: 1 1 180px;
+    height: 100px; display: flex; align-items: center; justify-content: center;
+    padding: 20px 32px;
+    transition: background 0.18s;
+  }
+  .partner-item:hover { background: var(--cream); }
+  .partner-name {
+    font-family: var(--ff-serif); font-size: 15px; font-weight: 600;
+    color: var(--ink-mid); text-align: center; letter-spacing: 0.02em;
+  }
+
+  /* ── ABOUT STRIP ── */
+  .about-strip {
+    background: var(--gold);
+    padding: 72px 0;
+  }
+  .about-strip-inner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+  .about-strip h2 {
+    font-family: var(--ff-serif); font-size: 36px; font-weight: 400;
+    line-height: 1.25; color: var(--ink);
+  }
+  .about-strip p { font-size: 16px; color: var(--ink); line-height: 1.75; opacity: 0.8; }
+  .about-strip .btn-dark {
+    display: inline-block; background: var(--ink); color: var(--white);
+    font-size: 12px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; text-decoration: none;
+    padding: 14px 32px; border-radius: 2px; margin-top: 28px;
+    transition: opacity 0.18s;
+  }
+  .about-strip .btn-dark:hover { opacity: 0.8; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: oklch(0.13 0.008 60);
+    color: oklch(0.55 0.01 65);
+    padding: 64px 0 40px;
+  }
+  .footer-inner {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px;
+    padding-bottom: 48px; border-bottom: 1px solid oklch(0.22 0.008 65);
+    margin-bottom: 32px;
+  }
+  .footer-brand strong {
+    font-family: var(--ff-serif); font-size: 17px; color: var(--white);
+    display: block; margin-bottom: 12px;
+  }
+  .footer-brand p { font-size: 13.5px; line-height: 1.7; max-width: 280px; }
+  .footer-col h4 {
+    font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: oklch(0.40 0.02 65);
+    margin-bottom: 20px;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul a {
+    color: oklch(0.55 0.01 65); text-decoration: none; font-size: 13.5px;
+    transition: color 0.18s;
+  }
+  .footer-col ul a:hover { color: var(--gold); }
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-bottom p { font-size: 12px; }
+  .footer-bottom a { color: oklch(0.55 0.01 65); text-decoration: none; }
+  .footer-bottom a:hover { color: var(--gold); }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <img src="logo.png" alt="Фонд Филантроп" style="height:48px; filter:brightness(0) invert(1);">
+    </a>
+    <div class="nav-links">
+      <a href="#">Новости</a>
+      <a href="#">Премия</a>
+      <a href="#">О фонде</a>
+      <a href="#">Программы</a>
+      <a href="#">Команда</a>
+      <a href="#">Партнёры</a>
+      <a href="#">Контакты</a>
+    </div>
+    <a href="#prize" class="nav-cta">Подать заявку</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero" style="padding:0;">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Международная Премия Филантроп — 2027</div>
+    <div class="hero-main">
+      <div class="hero-years">35</div>
+      <h1 class="hero-tagline">Искусство без<br>границ — <em>выдающиеся</em><br>люди с инвалидностью</h1>
+      <p class="hero-sub">Фонд «Филантроп» поддерживает людей с инвалидностью в сфере культуры и искусства с 1991 года. Мы помогаем им занять достойное место в обществе.</p>
+    </div>
+    <div class="hero-actions">
+      <a href="#prize" class="btn-gold">Подать заявку на Премию</a>
+      <a href="#about" class="btn-outline">О фонде</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-image-placeholder">
+      <span>ГЛАВНОЕ ФОТО ГЕРОЯ<br>Лауреат Премии / торжественная церемония<br>~1400 × 900 px</span>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">35</div>
+        <div class="hero-stat-label">лет работы фонда</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">1000+</div>
+        <div class="hero-stat-label">лауреатов Премии</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">80+</div>
+        <div class="hero-stat-label">регионов России</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TICKER ── -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span>Международная Премия «Филантроп» 2027</span>
+    <span class="ticker-dot">◆</span>
+    <span>Приём заявок открыт</span>
+    <span class="ticker-dot">◆</span>
+    <span>Номинации: музыка · изобразительное искусство · литература · танцевальное искусство · театр</span>
+    <span class="ticker-dot">◆</span>
+    <span>Международная Премия «Филантроп» 2027</span>
+    <span class="ticker-dot">◆</span>
+    <span>Приём заявок открыт</span>
+    <span class="ticker-dot">◆</span>
+    <span>Номинации: музыка · изобразительное искусство · литература · танцевальное искусство · театр</span>
+    <span class="ticker-dot">◆</span>
+  </div>
+</div>
+
+<!-- ── NEWS ── -->
+<section class="news-section">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <div class="section-label">Новости фонда</div>
+        <h2 class="section-title">Последние события</h2>
+      </div>
+      <a href="#" class="link-all">Все новости</a>
+    </div>
+    <div class="news-grid">
+      <a href="#" class="news-card">
+        <div class="news-card-img" style="aspect-ratio:16/8;">
+          <span>ФОТО СОБЫТИЯ<br>концерт / выставка / церемония<br>~760 × 380 px</span>
+        </div>
+        <div class="news-card-body">
+          <div class="news-card-date">24 апреля 2026</div>
+          <div class="news-card-title">Концерт для пациентов и сотрудников Главного военного клинического госпиталя имени Н.Н. Бурденко</div>
+          <p class="news-card-excerpt">Артисты фонда «Филантроп» выступили перед ранеными военнослужащими в рамках благотворительной программы поддержки участников СВО.</p>
+          <span class="news-card-tag">Мероприятия</span>
+        </div>
+      </a>
+      <a href="#" class="news-card">
+        <div class="news-card-img">
+          <span>ФОТО<br>~360 × 200 px</span>
+        </div>
+        <div class="news-card-body">
+          <div class="news-card-date">18 апреля 2026</div>
+          <div class="news-card-title">Выставка работ лауреатов Премии открылась в Москве</div>
+          <span class="news-card-tag">Выставки</span>
+        </div>
+      </a>
+      <a href="#" class="news-card">
+        <div class="news-card-img">
+          <span>ФОТО<br>~360 × 200 px</span>
+        </div>
+        <div class="news-card-body">
+          <div class="news-card-date">10 апреля 2026</div>
+          <div class="news-card-title">Объявлен приём заявок на Международную Премию «Филантроп» 2027</div>
+          <span class="news-card-tag">Премия</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRIZE ── -->
+<section class="prize-section" id="prize">
+  <div class="container">
+    <div class="prize-inner">
+      <div class="prize-visual">
+        <span>ФОТО ЦЕРЕМОНИИ<br>или статуэтки Премии<br>~560 × 560 px</span>
+      </div>
+      <div class="prize-content">
+        <div class="section-label" style="color: var(--gold);">Главная программа</div>
+        <div class="prize-year-badge">
+          <strong>2027</strong>
+          <span>Приём заявок открыт</span>
+        </div>
+        <h2 class="section-title">Международная Премия «Филантроп»</h2>
+        <p>Ежегодная государственная премия за выдающиеся достижения людей с инвалидностью в области культуры и искусства. Учреждена в 1996 году.</p>
+        <p>Номинации охватывают музыку, живопись, графику, скульптуру, литературу, танцевальное искусство и театральное мастерство.</p>
+        <div class="prize-organizers">
+          <div class="prize-org-label">Организаторы и попечители</div>
+          <div class="prize-org-list">
+            <div class="prize-org-item">Правительство Российской Федерации</div>
+            <div class="prize-org-item">Торгово-промышленная палата РФ</div>
+            <div class="prize-org-item">Правительство Москвы</div>
+            <div class="prize-org-item">Российская академия художеств</div>
+            <div class="prize-org-item">Всероссийское общество инвалидов</div>
+          </div>
+        </div>
+        <div style="margin-top: 40px; display: flex; gap: 16px;">
+          <a href="#" class="btn-gold" style="font-size:13px; padding: 14px 28px;">Подать заявку</a>
+          <a href="#" class="btn-outline" style="font-size:13px; color: oklch(0.65 0.01 75); border-color: oklch(0.35 0.02 65);">Положение о Премии</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROGRAMS ── -->
+<section id="programs">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <div class="section-label">Деятельность фонда</div>
+        <h2 class="section-title">Программы и проекты</h2>
+      </div>
+      <a href="#" class="link-all">Все программы</a>
+    </div>
+    <div class="programs-grid">
+      <a href="#" class="prog-card">
+        <div class="prog-card-icon">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" color="var(--gold)">
+            <circle cx="24" cy="24" r="18"/>
+            <path d="M24 14 L24 24 L32 28"/>
+            <path d="M16 8 L24 4 L32 8"/>
+          </svg>
+        </div>
+        <div class="prog-card-title">Городской центр социальной реабилитации</div>
+        <div class="prog-card-desc">Комплексная реабилитация людей с инвалидностью через культуру, искусство и творческое самовыражение.</div>
+        <div class="prog-card-arrow">→</div>
+      </a>
+      <a href="#" class="prog-card">
+        <div class="prog-card-icon">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" color="var(--gold)">
+            <rect x="8" y="12" width="32" height="26" rx="1"/>
+            <path d="M16 12 L16 8 L32 8 L32 12"/>
+            <path d="M8 20 L40 20"/>
+          </svg>
+        </div>
+        <div class="prog-card-title">Фестивали искусств</div>
+        <div class="prog-card-desc">Ежегодные всероссийские и международные фестивали, открывающие таланты со всей страны.</div>
+        <div class="prog-card-arrow">→</div>
+      </a>
+      <a href="#" class="prog-card">
+        <div class="prog-card-icon">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" color="var(--gold)">
+            <path d="M24 8 L24 40"/>
+            <path d="M12 16 Q24 8 36 16"/>
+            <path d="M12 24 Q24 16 36 24"/>
+            <path d="M12 32 Q24 24 36 32"/>
+          </svg>
+        </div>
+        <div class="prog-card-title">Чемпионаты по танцам на колясках</div>
+        <div class="prog-card-desc">Поддержка адаптивного спорта и паратанца — от региональных соревнований до международных турниров.</div>
+        <div class="prog-card-arrow">→</div>
+      </a>
+      <a href="#" class="prog-card">
+        <div class="prog-card-icon">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" color="var(--gold)">
+            <rect x="6" y="10" width="36" height="28" rx="1"/>
+            <path d="M14 10 L14 38"/>
+            <path d="M6 24 L42 24"/>
+            <path d="M14 17 L42 17"/>
+          </svg>
+        </div>
+        <div class="prog-card-title">Музей «Равновесие»</div>
+        <div class="prog-card-desc">Постоянная экспозиция и временные выставки произведений художников и скульпторов с инвалидностью.</div>
+        <div class="prog-card-arrow">→</div>
+      </a>
+      <a href="#" class="prog-card">
+        <div class="prog-card-icon">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" color="var(--gold)">
+            <path d="M8 40 L8 14 L24 8 L40 14 L40 40"/>
+            <rect x="18" y="28" width="12" height="12"/>
+            <path d="M18 20 L30 20"/>
+          </svg>
+        </div>
+        <div class="prog-card-title">Театральный центр</div>
+        <div class="prog-card-desc">Театральные постановки с участием артистов с инвалидностью, мастер-классы и образовательные программы.</div>
+        <div class="prog-card-arrow">→</div>
+      </a>
+      <a href="#" class="prog-card">
+        <div class="prog-card-icon">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" color="var(--gold)">
+            <circle cx="24" cy="20" r="10"/>
+            <path d="M8 40 Q8 30 24 30 Q40 30 40 40"/>
+          </svg>
+        </div>
+        <div class="prog-card-title">Услуги реабилитации</div>
+        <div class="prog-card-desc">Индивидуальные программы социальной и психологической реабилитации, консультации специалистов.</div>
+        <div class="prog-card-arrow">→</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── MUSEUM ── -->
+<section class="museum-section">
+  <div class="container" style="padding:0; max-width: none;">
+    <div class="museum-inner">
+      <div class="museum-image">
+        <span>ФОТО МУЗЕЯ «РАВНОВЕСИЕ»<br>или экспонатов<br>~640 × 520 px</span>
+      </div>
+      <div class="museum-content" style="padding: 80px 10% 80px 8%;">
+        <div class="section-label">Музей фонда</div>
+        <h2 class="section-title">«Равновесие»</h2>
+        <p class="museum-sub">Пространство, где искусство говорит громче любых барьеров</p>
+        <p>Музей «Равновесие» — уникальная площадка, где представлены работы художников, скульпторов и мастеров декоративного искусства с инвалидностью. Каждое произведение — история победы духа над обстоятельствами.</p>
+        <p>Постоянная экспозиция включает более 500 работ. Ежемесячно проходят сменные выставки и творческие встречи.</p>
+        <a href="#" class="btn-gold" style="margin-top: 8px; display: inline-block;">Посетить музей</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── JURY ── -->
+<section class="jury-section">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <div class="section-label">Жюри и Совет попечителей</div>
+        <h2 class="section-title">Руководство и попечители</h2>
+      </div>
+    </div>
+    <div class="jury-grid">
+      <div class="jury-card">
+        <div class="jury-avatar">
+          <span>ФОТО<br>~220 × 290 px</span>
+        </div>
+        <div class="jury-name">Лариса Лужина</div>
+        <div class="jury-role">Председатель жюри Премии, народная артистка России</div>
+      </div>
+      <div class="jury-card">
+        <div class="jury-avatar">
+          <span>ФОТО<br>~220 × 290 px</span>
+        </div>
+        <div class="jury-name">Сергей Катырин</div>
+        <div class="jury-role">Председатель Совета попечителей, Президент ТПП РФ</div>
+      </div>
+      <div class="jury-card">
+        <div class="jury-avatar">
+          <span>ФОТО<br>~220 × 290 px</span>
+        </div>
+        <div class="jury-name">Михаил Терентьев</div>
+        <div class="jury-role">Председатель Организационного комитета Премии</div>
+      </div>
+      <div class="jury-card">
+        <div class="jury-avatar">
+          <span>ФОТО<br>~220 × 290 px</span>
+        </div>
+        <div class="jury-name">Зураб Церетели</div>
+        <div class="jury-role">Член жюри, Президент Российской академии художеств</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT STRIP ── -->
+<section class="about-strip" id="about">
+  <div class="container">
+    <div class="about-strip-inner">
+      <h2>35 лет мы доказываем, что инвалидность — не барьер для великого искусства</h2>
+      <div>
+        <p>Фонд «Филантроп» основан в 1991 году. За три с половиной десятилетия мы создали уникальную систему поддержки людей с инвалидностью — от реабилитационных программ до международного признания их таланта.</p>
+        <a href="#" class="btn-dark">Читать об истории фонда</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PARTNERS ── -->
+<section class="partners-section">
+  <div class="container">
+    <div class="section-label" style="margin-bottom: 32px;">Партнёры и попечители</div>
+    <div class="partners-grid">
+      <div class="partner-item"><span class="partner-name">ТПП РФ</span></div>
+      <div class="partner-item"><span class="partner-name">Экспоцентр</span></div>
+      <div class="partner-item"><span class="partner-name">Гарант-Инвест</span></div>
+      <div class="partner-item"><span class="partner-name">Правительство Москвы</span></div>
+      <div class="partner-item"><span class="partner-name">Российская академия художеств</span></div>
+      <div class="partner-item"><span class="partner-name">ВОИ</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <strong>Фонд «Филантроп»</strong>
+        <p>Благотворительный фонд содействия социальной реабилитации лиц с инвалидностью. С 1991 года.</p>
+      </div>
+      <div class="footer-col">
+        <h4>О фонде</h4>
+        <ul>
+          <li><a href="#">История</a></li>
+          <li><a href="#">Команда</a></li>
+          <li><a href="#">Документы</a></li>
+          <li><a href="#">Отчёты</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Программы</h4>
+        <ul>
+          <li><a href="#">Международная Премия</a></li>
+          <li><a href="#">Центр реабилитации</a></li>
+          <li><a href="#">Музей «Равновесие»</a></li>
+          <li><a href="#">Фестивали</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Контакты</h4>
+        <ul>
+          <li><a href="tel:+74952441101">+7 (495) 244-11-01</a></li>
+          <li><a href="mailto:fond@filantrop.ru">fond@filantrop.ru</a></li>
+          <li><a href="#">Москва, ул. Садовая-Сухаревская, 2/34</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 1991–2026 Фонд «Филантроп». Все права защищены.</p>
+      <p><a href="#">Политика конфиденциальности</a></p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

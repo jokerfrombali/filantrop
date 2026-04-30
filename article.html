@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Новость — Фонд «Филантроп»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=PT+Sans:ital,wght@0,400;0,700;1,400&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream:      oklch(0.93 0.038 82);
+  --cream-lt:   oklch(0.965 0.020 82);
+  --cream-dk:   oklch(0.86 0.052 78);
+  --parchment:  oklch(0.90 0.048 78);
+  --red:        oklch(0.40 0.175 22);
+  --red-dk:     oklch(0.26 0.140 22);
+  --red-mid:    oklch(0.34 0.155 22);
+  --ink:        oklch(0.13 0.006 40);
+  --ink-mid:    oklch(0.32 0.008 40);
+  --ink-lt:     oklch(0.54 0.010 40);
+  --gold:       oklch(0.72 0.120 68);
+  --gold-dk:    oklch(0.56 0.130 60);
+  --gold-lt:    oklch(0.90 0.070 76);
+  --white:      oklch(0.998 0.002 80);
+
+  --serif:     'Playfair Display', Georgia, serif;
+  --cormorant: 'Cormorant Garamond', Georgia, serif;
+  --roman:     'PT Serif', Georgia, serif;
+  --sans:      'PT Sans', Arial, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); background: var(--cream-lt); color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+/* NAV */
+nav { background: var(--red); position: sticky; top: 0; z-index: 200; border-bottom: 2px solid var(--gold); }
+.nav-inner { max-width: 1360px; margin: 0 auto; padding: 0 64px; height: 64px; display: flex; align-items: center; }
+.nav-logo { margin-right: auto; text-decoration: none; }
+.nav-logo img { height: 40px; filter: brightness(0) invert(1); }
+.nav-links { display: flex; }
+.nav-links a { font-size: 12.5px; color: oklch(0.80 0.05 20); text-decoration: none; padding: 0 15px; height: 64px; display: flex; align-items: center; border-bottom: 2px solid transparent; letter-spacing: 0.03em; transition: color 0.15s, border-color 0.15s; white-space: nowrap; }
+.nav-links a:hover { color: var(--white); border-bottom-color: var(--gold); }
+.nav-cta { margin-left: 24px; background: var(--gold); color: var(--ink); font-size: 11.5px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; text-decoration: none; padding: 10px 24px; transition: background 0.15s; flex-shrink: 0; }
+.nav-cta:hover { background: var(--gold-dk); color: var(--white); }
+
+/* BREADCRUMB */
+.breadcrumb { background: var(--parchment); border-bottom: 1px solid var(--cream-dk); }
+.breadcrumb-inner { max-width: 1360px; margin: 0 auto; padding: 0 64px; height: 44px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.breadcrumb a { font-size: 12px; color: var(--ink-lt); text-decoration: none; letter-spacing: 0.04em; transition: color 0.15s; }
+.breadcrumb a:hover { color: var(--red); }
+.breadcrumb-sep { color: var(--cream-dk); font-size: 14px; }
+.breadcrumb-current { font-size: 12px; color: var(--ink-mid); letter-spacing: 0.03em; max-width: 500px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* ARTICLE LAYOUT */
+.article-wrap { max-width: 1360px; margin: 0 auto; padding: 0 64px; }
+.article-grid { display: grid; grid-template-columns: 1fr 340px; gap: 72px; padding: 64px 0 96px; align-items: start; }
+
+/* Main content */
+.article-main {}
+.article-tag { font-size: 10.5px; font-weight: 700; letter-spacing: 0.20em; text-transform: uppercase; color: var(--red); display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+.article-tag::before { content: ''; display: block; width: 28px; height: 1.5px; background: var(--red); }
+.article-date { font-family: var(--sans); font-size: 12px; color: var(--ink-lt); letter-spacing: 0.10em; text-transform: uppercase; margin-bottom: 20px; }
+.article-title { font-family: var(--serif); font-size: clamp(28px, 3.5vw, 48px); font-weight: 700; line-height: 1.18; color: var(--ink); margin-bottom: 32px; text-wrap: pretty; }
+
+/* Hero image */
+.article-hero { width: 100%; aspect-ratio: 16/9; overflow: hidden; margin-bottom: 40px; }
+.article-hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.article-hero-none {
+  width: 100%; aspect-ratio: 16/7;
+  background: var(--red-dk);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 40px; position: relative; overflow: hidden;
+}
+.article-hero-none::before {
+  content: ''; position: absolute; inset: 0;
+  background: repeating-linear-gradient(-45deg, oklch(0.28 0.14 22) 0px, oklch(0.28 0.14 22) 1px, transparent 1px, transparent 20px);
+}
+.article-hero-none-date { position: relative; z-index: 1; text-align: center; }
+.article-hero-none-day { font-family: var(--cormorant); font-size: 120px; font-weight: 300; color: var(--gold); line-height: 1; letter-spacing: -0.04em; }
+.article-hero-none-month { font-size: 13px; letter-spacing: 0.24em; text-transform: uppercase; color: oklch(0.58 0.10 22); margin-top: 4px; }
+
+/* Article body text */
+.article-body { font-family: var(--roman); font-size: 18px; line-height: 1.85; color: var(--ink); }
+.article-body p { margin-bottom: 24px; }
+.article-body p:first-child::first-letter { font-family: var(--serif); font-size: 64px; font-weight: 700; float: left; line-height: 0.85; margin: 8px 12px 0 0; color: var(--red); }
+.article-lead { font-family: var(--cormorant); font-size: 22px; font-style: italic; font-weight: 400; color: var(--ink-mid); line-height: 1.6; margin-bottom: 32px; padding-left: 24px; border-left: 2px solid var(--gold); }
+
+/* Share block */
+.article-share { margin-top: 52px; padding-top: 32px; border-top: 1px solid var(--cream-dk); }
+.article-share-label { font-family: var(--sans); font-size: 10.5px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-lt); margin-bottom: 16px; }
+.share-buttons { display: flex; gap: 10px; flex-wrap: wrap; }
+.share-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--sans); font-size: 13px; font-weight: 700; letter-spacing: 0.04em;
+  text-decoration: none; padding: 12px 20px; border: 1px solid var(--cream-dk);
+  color: var(--ink-mid); background: var(--white); cursor: pointer;
+  transition: all 0.15s;
+}
+.share-btn:hover { border-color: currentColor; }
+.share-btn-vk { color: #0077FF; }
+.share-btn-vk:hover { background: #0077FF; color: #fff; border-color: #0077FF; }
+.share-btn-tg { color: #229ED9; }
+.share-btn-tg:hover { background: #229ED9; color: #fff; border-color: #229ED9; }
+.share-btn-ok { color: #EE8208; }
+.share-btn-ok:hover { background: #EE8208; color: #fff; border-color: #EE8208; }
+.share-btn-copy { color: var(--ink-mid); }
+.share-btn-copy:hover { border-color: var(--ink); color: var(--ink); }
+.share-btn-copy.copied { border-color: #2f6b4f; color: #2f6b4f; }
+.share-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+/* SIDEBAR */
+.article-sidebar {}
+.sidebar-back {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--sans); font-size: 12px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
+  color: var(--red); text-decoration: none; margin-bottom: 40px;
+  padding: 14px 20px; border: 1px solid var(--cream-dk);
+  transition: all 0.15s;
+}
+.sidebar-back:hover { border-color: var(--red); background: var(--white); }
+.sidebar-back::before { content: '←'; font-size: 16px; }
+
+.sidebar-section-label { font-family: var(--sans); font-size: 10px; font-weight: 700; letter-spacing: 0.20em; text-transform: uppercase; color: var(--ink-lt); margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--cream-dk); }
+.sidebar-news { display: flex; flex-direction: column; gap: 2px; }
+.sn-card { display: flex; flex-direction: column; background: var(--white); text-decoration: none; color: inherit; border: 1px solid var(--cream-dk); border-top: none; padding: 20px 22px; transition: background 0.15s; }
+.sn-card:first-child { border-top: 1px solid var(--cream-dk); }
+.sn-card:hover { background: var(--cream-lt); }
+.sn-date { font-family: var(--sans); font-size: 10px; color: var(--ink-lt); letter-spacing: 0.10em; text-transform: uppercase; margin-bottom: 8px; }
+.sn-title { font-family: var(--serif); font-size: 14.5px; font-weight: 600; line-height: 1.35; color: var(--ink); }
+.sn-tag { font-family: var(--sans); font-size: 10px; font-weight: 700; letter-spacing: 0.10em; text-transform: uppercase; color: var(--red); margin-top: 10px; }
+
+/* Source link */
+.article-source { margin-top: 40px; padding: 20px 24px; background: var(--cream); border-left: 3px solid var(--gold); }
+.article-source p { font-size: 13px; color: var(--ink-mid); line-height: 1.6; }
+.article-source a { color: var(--red); text-decoration: none; }
+.article-source a:hover { text-decoration: underline; }
+
+/* Not found */
+.not-found { padding: 120px 64px; text-align: center; }
+.not-found h2 { font-family: var(--serif); font-size: 36px; color: var(--ink); margin-bottom: 16px; }
+.not-found p { color: var(--ink-mid); margin-bottom: 32px; }
+
+/* FOOTER */
+footer { background: var(--red-dk); color: oklch(0.65 0.08 20); padding: 52px 0 36px; border-top: 2px solid var(--gold); }
+.footer-inner { max-width: 1360px; margin: 0 auto; padding: 0 64px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; padding-bottom: 44px; border-bottom: 1px solid oklch(0.30 0.12 22); margin-bottom: 28px; }
+.footer-brand img { height: 40px; filter: brightness(0) invert(1); margin-bottom: 16px; display: block; }
+.footer-brand p { font-size: 13.5px; line-height: 1.7; max-width: 260px; }
+.footer-col h4 { font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: oklch(0.50 0.08 22); margin-bottom: 18px; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col a { color: oklch(0.72 0.06 20); text-decoration: none; font-size: 13.5px; transition: color 0.15s; }
+.footer-col a:hover { color: var(--gold-lt); }
+.footer-bottom { max-width: 1360px; margin: 0 auto; padding: 0 64px; display: flex; justify-content: space-between; font-size: 12px; }
+.footer-bottom a { color: oklch(0.55 0.06 20); text-decoration: none; }
+
+@media (max-width: 1024px) {
+  .article-grid { grid-template-columns: 1fr; }
+  .article-sidebar { display: none; }
+}
+@media (max-width: 640px) {
+  .article-wrap { padding: 0 20px; }
+  .nav-inner { padding: 0 20px; }
+  .breadcrumb-inner { padding: 0 20px; }
+  .article-grid { padding: 40px 0 64px; gap: 40px; }
+  .article-body { font-size: 17px; }
+  .footer-inner { grid-template-columns: 1fr; padding: 0 20px 44px; }
+  .footer-bottom { padding: 0 20px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><img src="logo.png" alt="Фонд Филантроп"></a>
+    <div class="nav-links">
+      <a href="news.html">Новости</a>
+      <a href="index.html#prize">Премия</a>
+      <a href="index.html#about">О фонде</a>
+      <a href="index.html#programs">Программы</a>
+      <a href="index.html#legacy">История</a>
+      <a href="#">Контакты</a>
+    </div>
+    <a href="index.html#prize" class="nav-cta">Подать заявку</a>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="index.html">Главная</a>
+    <span class="breadcrumb-sep">/</span>
+    <a href="news.html">Новости</a>
+    <span class="breadcrumb-sep">/</span>
+    <span class="breadcrumb-current" id="bc-title">Загрузка...</span>
+  </div>
+</div>
+
+<div class="article-wrap">
+  <div class="article-grid" id="article-grid">
+    <div class="article-main" id="article-main">
+      <div style="padding:80px 0; text-align:center;">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:24px; color:var(--ink-lt);">Загрузка...</div>
+      </div>
+    </div>
+    <aside class="article-sidebar" id="article-sidebar"></aside>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="logo.png" alt="Фонд Филантроп">
+      <p>Благотворительный фонд содействия социальной реабилитации лиц с инвалидностью. С 1991 года.</p>
+    </div>
+    <div class="footer-col">
+      <h4>О фонде</h4>
+      <ul><li><a href="index.html#about">История</a></li><li><a href="#">Команда</a></li><li><a href="#">Документы</a></li></ul>
+    </div>
+    <div class="footer-col">
+      <h4>Программы</h4>
+      <ul><li><a href="index.html#prize">Международная Премия</a></li><li><a href="#">Центр реабилитации</a></li><li><a href="#">Музей «Равновесие»</a></li></ul>
+    </div>
+    <div class="footer-col">
+      <h4>Контакты</h4>
+      <ul>
+        <li><a href="tel:+74952441101">+7 (495) 244-11-01</a></li>
+        <li><a href="mailto:fond@filantrop.ru">fond@filantrop.ru</a></li>
+        <li><a href="https://vk.com/club71460075" target="_blank">ВКонтакте</a></li>
+        <li><a href="https://t.me/fund_filantrop" target="_blank">Telegram</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 1991–2026 Фонд «Филантроп»</span>
+    <a href="#">Политика конфиденциальности</a>
+  </div>
+</footer>
+
+<script>
+// ══ NEWS DATABASE ══
+const NEWS = [
+  {
+    id: '2303',
+    date: '20 апреля 2026',
+    tag: 'Выставки',
+    title: 'В МРО «Тропарёво-Никулино» МГО ВОИ открылась выставка картин художников',
+    image: 'https://www.filantrop.ru/upload/iblock/5ab/eso46ti9fuxjobgydsxvf1iod6e2ozp0.JPG',
+    lead: 'В Московской региональной организации ВОИ «Тропарёво-Никулино» торжественно открылась новая выставка живописи и графики, объединившая работы художников с инвалидностью.',
+    body: `<p>Торжественное открытие выставки собрало десятки гостей — жителей района, представителей общественных организаций, друзей и родственников художников. Каждая работа на выставке — это не просто картина, это история человека, который через цвет и форму рассказывает о своём видении мира.</p>
+<p>Авторы экспозиции — участники творческих программ фонда «Филантроп», люди, для которых искусство стало главным инструментом самовыражения и реабилитации. Живопись, графика, акварель — разные техники, но единое послание: талант не знает ограничений.</p>
+<p>Выставка продлится до конца месяца. Вход свободный. Фонд «Филантроп» приглашает всех желающих посетить экспозицию и познакомиться с удивительными авторами лично.</p>`
+  },
+  {
+    id: '2302',
+    date: '15 апреля 2026',
+    tag: 'Выставки',
+    title: 'В РХТУ им. Д.И. Менделеева проходит выставка «Диалог в красках»',
+    image: 'https://www.filantrop.ru/upload/iblock/7a5/6xj9ht9l9czgv8vgzl382boh2ba76wlp.JPG',
+    lead: 'Передвижная выставка «Диалог в красках» открылась в одном из ведущих технических университетов Москвы. Студенты и преподаватели РХТУ встретились с искусством художников с инвалидностью.',
+    body: `<p>Выставка «Диалог в красках» продолжает своё путешествие по московским университетам. На этот раз площадкой стал РХТУ им. Д.И. Менделеева — один из ведущих технических вузов страны. Встреча науки и искусства оказалась неожиданно органичной.</p>
+<p>Студенты-химики, физики и технологи с интересом рассматривали работы художников с инвалидностью, вступая в тот самый «диалог в красках», который заложен в названии проекта. Многие впервые задумались о том, как творчество помогает людям преодолевать физические ограничения.</p>
+<p>Проект реализуется при поддержке фонда «Филантроп» в рамках просветительской программы по формированию доступной культурной среды в российских университетах.</p>`
+  },
+  {
+    id: '2301',
+    date: '12 апреля 2026',
+    tag: 'Поздравления',
+    title: 'Со светлым праздником Пасхи!',
+    image: 'https://www.filantrop.ru/upload/iblock/4d9/4n3qr46693solqbkhnyavd5wnhnoczw5.jpeg',
+    lead: 'Фонд «Филантроп» поздравляет всех своих лауреатов, партнёров, друзей и подопечных со светлым праздником Пасхи.',
+    body: `<p>Дорогие друзья! Фонд «Филантроп» от всей души поздравляет вас со светлым праздником Пасхи Христовой.</p>
+<p>Пусть этот день принесёт в каждый дом радость, мир и надежду. Пасха — праздник обновления и победы света над тьмой, и для нас, людей, связанных с творчеством и искусством, этот символ особенно близок. Ведь каждое произведение, созданное нашими лауреатами — это тоже победа духа над обстоятельствами.</p>
+<p>Желаем вам крепкого здоровья, вдохновения и новых творческих свершений. Христос Воскресе!</p>`
+  },
+  {
+    id: '2300',
+    date: '10 апреля 2026',
+    tag: 'Концерты',
+    title: '9 апреля — в Главном клиническом военном госпитале состоялся очередной благотворительный концерт',
+    image: null,
+    dayNum: '9',
+    monthName: 'Апреля',
+    lead: '9 апреля артисты фонда «Филантроп» дали благотворительный концерт для раненых военнослужащих в Главном военном клиническом госпитале им. Н.Н. Бурденко.',
+    body: `<p>Традиционный благотворительный концерт фонда «Филантроп» для пациентов Главного военного клинического госпиталя им. Н.Н. Бурденко состоялся 9 апреля. Перед ранеными военнослужащими выступили артисты с инвалидностью — лауреаты Международной Премии «Филантроп».</p>
+<p>Концертная программа включала вокальные номера, инструментальную музыку и поэтические чтения. В зале собралось более 200 зрителей — пациенты и сотрудники госпиталя. Встреча людей, преодолевших разные испытания, прошла в атмосфере особой теплоты и взаимного уважения.</p>
+<p>Фонд «Филантроп» регулярно организует благотворительные концерты для участников специальной военной операции. Искусство объединяет и исцеляет — в этом убеждены и артисты, и их зрители.</p>`
+  },
+  {
+    id: '2299',
+    date: '2 апреля 2026',
+    tag: 'Выставки',
+    title: 'В МПГУ открылась выставка «Диалог в красках»: искусство как диалог мужества и таланта',
+    image: null,
+    dayNum: '2',
+    monthName: 'Апреля',
+    lead: 'Московский педагогический государственный университет стал очередной площадкой передвижной выставки художников с инвалидностью.',
+    body: `<p>В Московском педагогическом государственном университете открылась выставка «Диалог в красках» — масштабный проект фонда «Филантроп», представляющий работы художников с инвалидностью из разных регионов России.</p>
+<p>Для будущих педагогов встреча с этим искусством имеет особое значение: именно учителя формируют в детях понимание того, что возможности человека не определяются его физическими ограничениями. Картины на выставке говорят об этом лучше любых слов.</p>
+<p>Проект объединяет живопись, графику и декоративно-прикладное искусство. Авторы работ — участники программ фонда и лауреаты Международной Премии «Филантроп» разных лет.</p>`
+  },
+  {
+    id: '2295',
+    date: '25 марта 2026',
+    tag: 'Мероприятия',
+    title: 'День работников культуры завершили на высокой ноте!',
+    image: null,
+    dayNum: '25',
+    monthName: 'Марта',
+    lead: 'В честь Дня работников культуры фонд «Филантроп» организовал торжественный вечер с участием лауреатов Международной Премии.',
+    body: `<p>25 марта, в День работников культуры, фонд «Филантроп» провёл торжественный вечер, ставший настоящим праздником искусства и признания. На сцену вышли лауреаты Международной Премии «Филантроп» — музыканты, певцы и поэты из разных уголков страны.</p>
+<p>Вечер был наполнен живой музыкой, стихами и песнями. В зале царила атмосфера подлинного торжества культуры — того, что объединяет людей вне зависимости от их возможностей и обстоятельств.</p>
+<p>«Сегодняшний вечер ещё раз доказал: культура — это не привилегия, это право каждого», — сказал в своём выступлении представитель фонда. Гости получили возможность пообщаться с артистами в неформальной обстановке после концерта.</p>`
+  },
+  {
+    id: '2294',
+    date: '8 марта 2026',
+    tag: 'Поздравления',
+    title: 'Дорогие женщины! От всей души поздравляем вас с прекрасным весенним праздником — 8 Марта!',
+    image: 'https://www.filantrop.ru/upload/iblock/cb8/fusvc6193fzs4ju4bevt4l652ziem238.jpg',
+    lead: 'Фонд «Филантроп» сердечно поздравляет всех женщин — лауреатов, партнёров, коллег и подопечных с Международным женским днём.',
+    body: `<p>Дорогие женщины! В этот чудесный весенний день фонд «Филантроп» от всего сердца поздравляет вас с Международным женским днём.</p>
+<p>Среди наших лауреатов и участниц программ — невероятные женщины: художники и скульпторы, поэты и музыканты, танцоры и актрисы. Каждая из них — пример мужества, красоты духа и неиссякаемого творческого огня. Их работы вдохновляют тысячи людей.</p>
+<p>Желаем вам любви и заботы, весенней радости и новых свершений в творчестве. Пусть каждый день приносит вдохновение, а ваш талант находит всё большее признание!</p>`
+  },
+  {
+    id: '2293',
+    date: '4 марта 2026',
+    tag: 'События',
+    title: 'Лариса Анатольевна Лужина отмечает день рождения!',
+    image: null,
+    dayNum: '4',
+    monthName: 'Марта',
+    lead: 'Сегодня день рождения отмечает Лариса Анатольевна Лужина — народная артистка РСФСР и бессменный Председатель Жюри Международной Премии «Филантроп».',
+    body: `<p>Сегодня фонд «Филантроп» поздравляет с днём рождения Ларису Анатольевну Лужину — замечательную актрису, народную артистку РСФСР и неизменного Председателя Жюри Международной Премии «Филантроп».</p>
+<p>Лариса Анатольевна — один из символов Премии. Её участие в жюри — это не формальность, а подлинная вовлечённость в судьбы лауреатов. Она внимательно изучает каждую заявку, лично встречается с участниками церемонии и всегда находит слова, которые важны именно этому человеку.</p>
+<p>Фонд «Филантроп» желает Ларисе Анатольевне крепкого здоровья, неиссякаемой энергии и ещё многих лет творческой жизни. Ваш вклад в развитие Премии и поддержку людей с инвалидностью бесценен!</p>`
+  },
+  {
+    id: '2292',
+    date: '2 марта 2026',
+    tag: 'Премия',
+    title: 'В Москве огласили даты приёма заявок на XIV Международную Премию «Филантроп»',
+    image: null,
+    dayNum: '2',
+    monthName: 'Марта',
+    lead: 'Фонд «Филантроп» официально объявил о старте приёма заявок на соискание XIV Международной Премии для лауреатов из всех регионов России и зарубежных стран.',
+    body: `<p>Фонд «Филантроп» официально объявил о начале приёма заявок на соискание XIV Международной Премии «Филантроп». Церемония награждения состоится в конце 2027 года в Москве.</p>
+<p>Премия охватывает пять основных направлений: музыкальное искусство, изобразительное и декоративно-прикладное искусство, литература и поэзия, танцевальное искусство, театральное мастерство. Участвовать могут граждане России и иностранные граждане с инвалидностью, достигшие выдающихся результатов в одной из номинаций.</p>
+<p>Заявки принимаются от организаций — в том числе государственных учреждений культуры, общественных объединений, учебных заведений и НКО. Документы направляются в оргкомитет в соответствии с Положением о Премии.</p>
+<p>Подробную информацию о требованиях к документам, сроках и условиях участия можно получить на сайте фонда или обратившись по контактам оргкомитета.</p>`
+  },
+  {
+    id: '2291',
+    date: '26 февраля 2026',
+    tag: 'Премия',
+    title: 'Заседание Совета Попечителей, Жюри и Оргкомитета в Конгресс-центре ТПП РФ',
+    image: null,
+    dayNum: '26',
+    monthName: 'Февраля',
+    lead: 'В Конгресс-центре Торгово-Промышленной Палаты России состоялось ежегодное заседание руководящих органов Международной Премии «Филантроп».',
+    body: `<p>В Конгресс-центре Торгово-Промышленной Палаты Российской Федерации прошло очередное заседание Совета Попечителей, Жюри и Организационного комитета Международной Премии «Филантроп». На встрече были утверждены состав жюри на 2027 год, регламент проведения XIV церемонии и ключевые даты приёма заявок.</p>
+<p>В заседании приняли участие представители государственных органов, руководители крупнейших культурных институций, деятели искусства и члены попечительского совета. Участники обсудили итоги XIII Премии и наметили пути развития конкурса.</p>
+<p>Особое внимание было уделено расширению международного участия: фонд рассчитывает привлечь участников из новых стран и регионов, ещё не представленных в Премии.</p>`
+  },
+  {
+    id: '2290',
+    date: '16 февраля 2026',
+    tag: 'Концерты',
+    title: 'Благотворительный концерт для участников СВО в подмосковном центре медицинской реабилитации',
+    image: null,
+    dayNum: '16',
+    monthName: 'Февраля',
+    lead: 'Накануне Дня защитника Отечества артисты фонда «Филантроп» выступили перед военнослужащими, проходящими лечение и реабилитацию в Подмосковье.',
+    body: `<p>Накануне Дня защитника Отечества артисты фонда «Филантроп» отправились в Подмосковный центр медицинской реабилитации, где дали тёплый благотворительный концерт для участников специальной военной операции.</p>
+<p>На сцену вышли вокалисты и инструменталисты — люди, сами знающие, что такое преодоление. Встреча военнослужащих, которые восстанавливаются после ранений, с артистами, которые творят вопреки инвалидности, — это встреча двух видов мужества.</p>
+<p>Концерт прошёл в тёплой, искренней атмосфере. По завершении программы артисты пообщались с ранеными, подписывали программки и фотографировались на память. Фонд «Филантроп» намерен продолжать эту практику — искусство исцеляет не только душу.</p>`
+  },
+  {
+    id: '2289',
+    date: '3 февраля 2026',
+    tag: 'Премия',
+    title: 'Дипломантам Нижегородской области торжественно вручены дипломы и знаки Премии «Филантроп»',
+    image: null,
+    dayNum: '3',
+    monthName: 'Февраля',
+    lead: 'В торжественной обстановке дипломы и нагрудные знаки Международной Премии получили победители из Нижегородской области.',
+    body: `<p>В Нижегородской области состоялась торжественная церемония вручения дипломов и нагрудных знаков Международной Премии «Филантроп». Награды получили лауреаты и дипломанты XIII Премии, живущие в регионе.</p>
+<p>Вручение прошло при участии представителей региональных органов власти, организаций ВОИ и культурных учреждений. Каждый лауреат получил официальный диплом, нагрудный знак и памятный подарок от фонда.</p>
+<p>Региональные церемонии — важная часть работы фонда: не все лауреаты имеют возможность приехать на московскую церемонию, поэтому «Маршрут добра» фонда привозит Премию прямо к людям. Нижегородская область стала одной из первых остановок в этом году.</p>`
+  },
+  {
+    id: '2288',
+    date: '26 января 2026',
+    tag: 'Премия',
+    title: 'В фонд поступают вопросы о старте приёма заявок на XIV Международную Премию «Филантроп»',
+    image: 'https://www.filantrop.ru/upload/iblock/793/elt4w0afb58ydnevg87bwrs92nna84rk.jpg',
+    lead: 'Всё больше участников из разных регионов России и зарубежья обращаются в фонд с вопросами о сроках и требованиях к XIV Премии.',
+    body: `<p>В последние недели фонд «Филантроп» получает десятки писем и звонков с вопросами о XIV Международной Премии «Филантроп». Это свидетельствует о высоком интересе к конкурсу — в том числе от участников, которые хотят подать заявку впервые.</p>
+<p>Фонд подготовит официальное объявление о старте приёма заявок в ближайшее время. А пока — несколько ключевых моментов для тех, кто планирует участие: Премия открыта для граждан России и иностранных граждан с инвалидностью; заявки принимаются от организаций, а не от физических лиц напрямую; пакет документов включает заявку, анкету, рекомендацию, автобиографию и авторские материалы по номинации.</p>
+<p>Следите за новостями фонда в социальных сетях и на сайте — официальное объявление не за горами!</p>`
+  },
+  {
+    id: '2287',
+    date: '19 января 2026',
+    tag: 'Поздравления',
+    title: 'Поздравляем всех с Крещением Господним! Желаем счастья, мира и добра!',
+    image: null,
+    dayNum: '19',
+    monthName: 'Января',
+    lead: 'В светлый праздник Крещения Господня фонд «Филантроп» желает всем чистоты помыслов, душевного покоя и вдохновения.',
+    body: `<p>Дорогие друзья! Фонд «Филантроп» поздравляет всех с праздником Крещения Господня.</p>
+<p>Крещение — один из великих праздников православного календаря, символ очищения и обновления. В этот день мы желаем всем нашим лауреатам, партнёрам, сотрудникам и всем людям, связанным с нашей большой семьёй, — крепкого здоровья, мира в душе и вдохновения для новых творческих свершений.</p>
+<p>Пусть новый год принесёт новые победы, открытия и встречи с людьми, которые разделяют вашу любовь к искусству!</p>`
+  },
+  {
+    id: '2286',
+    date: '31 декабря 2025',
+    tag: 'Лауреаты',
+    title: '«В год Красной Лошади» — Анна Демидова, Лауреат Международной Премии «Филантроп»',
+    image: null,
+    dayNum: '31',
+    monthName: 'Декабря',
+    lead: 'Лауреат Премии «Филантроп» Анна Демидова встречает Новый год с новой серией живописных работ и рассказывает о своём творческом пути.',
+    body: `<p>В последний день уходящего года лауреат Международной Премии «Филантроп» Анна Демидова представила новую серию живописных работ «В год Красной Лошади». Яркие, насыщенные полотна отражают её взгляд на уходящий год — год испытаний и новых открытий.</p>
+<p>Анна рисует с детства. Несмотря на инвалидность, она создала сотни работ, многие из которых находятся в частных коллекциях по всей России и за рубежом. Для неё живопись — это не хобби, а образ жизни и способ разговора с миром.</p>
+<p>«Каждая картина — это диалог. С природой, с людьми, с самой собой. Я рада, что Премия "Филантроп" помогла этому диалогу выйти на большую аудиторию», — говорит Анна. Фонд поздравляет Анну и всех лауреатов с наступающим Новым годом!</p>`
+  },
+  {
+    id: '2285',
+    date: '11 декабря 2025',
+    tag: 'События',
+    title: 'Маршрут добра и признания в действии!',
+    image: null,
+    dayNum: '11',
+    monthName: 'Декабря',
+    lead: 'Региональные представители фонда посетили города-участники программы, лично вручая награды лауреатам на местах.',
+    body: `<p>«Маршрут добра» — так в фонде «Филантроп» называют ежегодную программу региональных вручений. После московской церемонии представители фонда отправляются по городам России, чтобы лично поздравить лауреатов, которые не смогли приехать на центральную церемонию.</p>
+<p>В этом году маршрут охватил несколько десятков городов. В каждом — тёплая встреча, вручение диплома и знака Премии, живое общение и фотографии на память. Для многих лауреатов это событие становится важнейшим в жизни.</p>
+<p>«Мы считаем принципиально важным, чтобы каждый лауреат получил своё признание лично, в своём городе, среди своих близких. Премия должна приходить к людям», — отметил координатор программы.</p>`
+  },
+  {
+    id: '2284',
+    date: '10 декабря 2025',
+    tag: 'Мероприятия',
+    title: 'Любой фестиваль или конкурс начинается с конкретного человека!',
+    image: null,
+    dayNum: '10',
+    monthName: 'Декабря',
+    lead: 'Фонд «Филантроп» рассказывает истории людей, которые стояли у истоков региональных фестивалей для участников с инвалидностью.',
+    body: `<p>За каждым фестивалем, конкурсом или выставкой стоит конкретный человек — тот, кто однажды решил, что это нужно, и начал действовать. Фонд «Филантроп» запустил серию историй о таких людях.</p>
+<p>Это организаторы региональных смотров, педагоги творческих студий, волонтёры, которые годами создают пространство для самовыражения людей с инвалидностью. Без них не было бы ни лауреатов Премии, ни самой культуры инклюзивного творчества в нашей стране.</p>
+<p>Фонд выражает глубокую признательность всем, кто строит эту систему поддержки — кирпич за кирпичом, год за годом. Именно вы делаете Премию «Филантроп» возможной.</p>`
+  },
+  {
+    id: '2283',
+    date: '9 декабря 2025',
+    tag: 'События',
+    title: 'Сегодняшний вечер зарядил нас вдохновением!',
+    image: null,
+    dayNum: '9',
+    monthName: 'Декабря',
+    lead: 'Накануне торжественной церемонии состоялся предпремиальный вечер с участием жюри, почётных гостей и номинантов XIII Премии.',
+    body: `<p>Накануне торжественной церемонии XIII Международной Премии «Филантроп» в Москве прошёл предпремиальный вечер. Члены жюри, попечители, почётные гости и номинанты встретились в неформальной обстановке — познакомились, поговорили, поделились впечатлениями.</p>
+<p>Атмосфера вечера была особенной: предвкушение большого праздника смешивалось с волнением номинантов и тёплой радостью давних знакомых. Многие лауреаты знают друг друга годами — Премия создаёт не просто награждение, но сообщество.</p>
+<p>«Каждый раз, когда мы собираемся вот так — перед церемонией или после — я понимаю, что мы делаем что-то важное. Не просто вручаем статуэтки, а создаём пространство, где люди чувствуют себя признанными и нужными», — поделился один из членов жюри.</p>`
+  },
+  {
+    id: '2282',
+    date: '6 декабря 2025',
+    tag: 'Лауреаты',
+    title: 'Сила духа выше обстоятельств: чествуем лауреатов Премии «Филантроп»!',
+    image: null,
+    dayNum: '6',
+    monthName: 'Декабря',
+    lead: 'На торжественной церемонии XIII Международной Премии статуэтки и дипломы получили лауреаты из разных уголков России.',
+    body: `<p>6 декабря 2025 года в Москве прошла XIII торжественная церемония вручения Международной Премии «Филантроп». Зал был полон — лауреаты, их родные и друзья, члены жюри, попечители и гости из разных городов России.</p>
+<p>Каждая история лауреата — это история силы духа. Вокалисты, которые поют, несмотря на то, что врачи не верили в возможность их карьеры. Художники, которые держат кисть руками, которые не должны были этого уметь. Поэты, чьи стихи рождаются из боли и превращаются в красоту.</p>
+<p>«Вы доказываете каждым своим выступлением, каждой картиной, каждой строчкой стихов: инвалидность — это не приговор, это контекст. А талант — это сила, которая не знает ограничений», — сказал председатель оргкомитета в своём обращении к лауреатам.</p>`
+  },
+  {
+    id: '2281',
+    date: '5 декабря 2025',
+    tag: 'Церемония',
+    title: 'После торжественной церемонии награждения и Гала-концерта для лауреатов началась не менее яркая программа',
+    image: 'https://www.filantrop.ru/upload/iblock/a69/c2i5ivtuzpv204q04kzzhi6aymoqh6su.jpg',
+    lead: 'XIII церемония вручения Международной Премии «Филантроп» прошла с подлинным театральным размахом. После официальной части началась яркая неформальная программа.',
+    body: `<p>XIII Международная Премия «Филантроп» прошла с подлинным театральным размахом. Торжественная церемония, Гала-концерт с участием лауреатов, живая музыка и тёплые слова — всё это сложилось в вечер, который останется в памяти надолго.</p>
+<p>После официальной части для лауреатов и гостей началась не менее яркая неформальная программа. Встречи, разговоры, обмен контактами и планами — на подобных вечерах рождается творческое сообщество, которое продолжает жить и после церемонии.</p>
+<p>Фонд «Филантроп» благодарит всех участников, гостей, партнёров и волонтёров, без которых этот праздник был бы невозможен. До встречи на XIV Премии в 2027 году!</p>`
+  }
+];
+
+// ══ RENDER ══
+function getParam(name) {
+  return new URLSearchParams(window.location.search).get(name);
+}
+
+function shareArticle(platform, title, url) {
+  const encodedUrl = encodeURIComponent(url);
+  const encodedTitle = encodeURIComponent(title);
+  let shareUrl = '';
+  if (platform === 'vk') shareUrl = `https://vk.com/share.php?url=${encodedUrl}&title=${encodedTitle}`;
+  else if (platform === 'tg') shareUrl = `https://t.me/share/url?url=${encodedUrl}&text=${encodedTitle}`;
+  else if (platform === 'ok') shareUrl = `https://connect.ok.ru/offer?url=${encodedUrl}&title=${encodedTitle}`;
+  if (shareUrl) window.open(shareUrl, '_blank', 'width=600,height=400');
+}
+
+function copyLink(btn) {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    btn.classList.add('copied');
+    btn.querySelector('.copy-text').textContent = 'Скопировано!';
+    setTimeout(() => {
+      btn.classList.remove('copied');
+      btn.querySelector('.copy-text').textContent = 'Копировать ссылку';
+    }, 2200);
+  });
+}
+
+function renderArticle(news) {
+  document.title = news.title + ' — Фонд «Филантроп»';
+  document.getElementById('bc-title').textContent = news.title;
+
+  const url = window.location.href;
+  const extUrl = `https://www.filantrop.ru/news/?ELEMENT_ID=${news.id}`;
+
+  const heroHtml = news.image
+    ? `<div class="article-hero"><img src="${news.image}" alt="${news.title}" loading="eager"></div>`
+    : `<div class="article-hero-none">
+        <div class="article-hero-none-date">
+          <div class="article-hero-none-day">${news.dayNum}</div>
+          <div class="article-hero-none-month">${news.monthName}</div>
+        </div>
+      </div>`;
+
+  document.getElementById('article-main').innerHTML = `
+    <div class="article-tag">${news.tag}</div>
+    <div class="article-date">${news.date}</div>
+    <h1 class="article-title">${news.title}</h1>
+    ${heroHtml}
+    <div class="article-lead">${news.lead}</div>
+    <div class="article-body">${news.body}</div>
+    <div class="article-source">
+      <p>Полная версия материала доступна на официальном сайте фонда: <a href="${extUrl}" target="_blank" rel="noopener">filantrop.ru</a></p>
+    </div>
+    <div class="article-share">
+      <div class="article-share-label">Поделиться новостью</div>
+      <div class="share-buttons">
+        <a class="share-btn share-btn-vk" href="#" onclick="event.preventDefault(); shareArticle('vk', \`${news.title.replace(/`/g,"'")}\`, '${url}')">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm6.206 8.36c.09-.282 0-.49-.4-.49h-1.322c-.337 0-.492.178-.582.374 0 0-.68 1.656-1.642 2.732-.311.311-.452.41-.622.41-.085 0-.208-.099-.208-.381V8.36c0-.337-.097-.49-.376-.49H11.35c-.21 0-.336.156-.336.304 0 .319.477.392.526 1.29v1.95c0 .427-.077.505-.247.505-.452 0-1.552-1.664-2.205-3.568-.128-.37-.257-.52-.596-.52H7.17c-.378 0-.454.178-.454.374 0 .35.452 2.083 2.107 4.376 1.103 1.583 2.656 2.44 4.069 2.44.848 0 .953-.19.953-.518v-1.195c0-.378.08-.453.346-.453.196 0 .533.098 1.319.857.898.898 1.046 1.302 1.551 1.302h1.322c.378 0 .567-.19.458-.564-.12-.372-.552-.911-1.127-1.55-.311-.367-.778-.762-.919-.958-.196-.252-.14-.364 0-.588z"/></svg>
+          ВКонтакте
+        </a>
+        <a class="share-btn share-btn-tg" href="#" onclick="event.preventDefault(); shareArticle('tg', \`${news.title.replace(/`/g,"'")}\`, '${url}')">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-1.97 9.289c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.31 14.617l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.506.97z"/></svg>
+          Telegram
+        </a>
+        <a class="share-btn share-btn-ok" href="#" onclick="event.preventDefault(); shareArticle('ok', \`${news.title.replace(/`/g,"'")}\`, '${url}')">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 5.04a3.12 3.12 0 110 6.24A3.12 3.12 0 0112 5.04zm0 1.92a1.2 1.2 0 100 2.4 1.2 1.2 0 000-2.4zm5.04 5.76a.96.96 0 01-.672 1.176 8.64 8.64 0 01-2.208.48l2.16 2.16a.96.96 0 11-1.357 1.357L12 14.736l-2.963 2.957a.96.96 0 11-1.357-1.357l2.16-2.16a8.64 8.64 0 01-2.208-.48.96.96 0 01.504-1.848 6.72 6.72 0 007.728 0 .96.96 0 011.176.672z"/></svg>
+          Одноклассники
+        </a>
+        <button class="share-btn share-btn-copy" onclick="copyLink(this)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          <span class="copy-text">Копировать ссылку</span>
+        </button>
+      </div>
+    </div>
+  `;
+
+  // Sidebar
+  const others = NEWS.filter(n => n.id !== news.id).slice(0, 6);
+  const sideHtml = `
+    <a href="news.html" class="sidebar-back">Назад к новостям</a>
+    <div class="sidebar-section-label">Другие новости</div>
+    <div class="sidebar-news">
+      ${others.map(n => `
+        <a href="article.html?id=${n.id}" class="sn-card">
+          <div class="sn-date">${n.date}</div>
+          <div class="sn-title">${n.title}</div>
+          <div class="sn-tag">${n.tag}</div>
+        </a>
+      `).join('')}
+    </div>
+  `;
+  document.getElementById('article-sidebar').innerHTML = sideHtml;
+}
+
+function init() {
+  const id = getParam('id');
+  const news = NEWS.find(n => n.id === id);
+  if (!news) {
+    document.getElementById('article-main').innerHTML = `
+      <div class="not-found">
+        <h2>Новость не найдена</h2>
+        <p>Возможно, она была удалена или перемещена.</p>
+        <a href="news.html" style="display:inline-flex;align-items:center;gap:8px;color:var(--red);font-weight:700;text-decoration:none;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;">← Все новости</a>
+      </div>`;
+    document.getElementById('bc-title').textContent = 'Не найдено';
+    return;
+  }
+  renderArticle(news);
+}
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>

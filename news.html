@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Новости — Фонд «Филантроп»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=PT+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream:      oklch(0.93 0.038 82);
+  --cream-lt:   oklch(0.965 0.020 82);
+  --cream-dk:   oklch(0.86 0.052 78);
+  --parchment:  oklch(0.90 0.048 78);
+  --red:        oklch(0.40 0.175 22);
+  --red-dk:     oklch(0.26 0.140 22);
+  --red-mid:    oklch(0.34 0.155 22);
+  --ink:        oklch(0.13 0.006 40);
+  --ink-mid:    oklch(0.32 0.008 40);
+  --ink-lt:     oklch(0.54 0.010 40);
+  --gold:       oklch(0.72 0.120 68);
+  --gold-dk:    oklch(0.56 0.130 60);
+  --gold-lt:    oklch(0.90 0.070 76);
+  --white:      oklch(0.998 0.002 80);
+
+  --serif:     'Playfair Display', Georgia, serif;
+  --cormorant: 'Cormorant Garamond', Georgia, serif;
+  --sans:      'PT Sans', Arial, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--cream-lt);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ══ NAV ══ */
+nav {
+  background: var(--red);
+  position: sticky; top: 0; z-index: 200;
+  border-bottom: 2px solid var(--gold);
+}
+.nav-inner {
+  max-width: 1360px; margin: 0 auto; padding: 0 64px;
+  height: 64px; display: flex; align-items: center;
+}
+.nav-logo { margin-right: auto; text-decoration: none; display: flex; align-items: center; gap: 0; flex: 0 0 320px; min-width: 0; }
+.nav-logo > img:not(.nav-wordmark) { height: 42px; width: auto; object-fit: contain; filter: brightness(0) invert(1); }
+.nav-brand-note { display: flex; flex-direction: column; justify-content: center; border-left: 1px solid oklch(0.84 0.06 78 / 0.42); padding-left: 12px; overflow: visible; }
+.nav-wordmark { display: block; width: 206px; height: 17px !important; object-fit: contain; object-position: left center; filter: none !important; opacity: 0.96; }
+.nav-links { display: flex; margin-left: auto; }
+.nav-links { display: flex; }
+.nav-links a {
+  font-size: 12.5px; color: oklch(0.80 0.05 20); text-decoration: none;
+  padding: 0 15px; height: 64px; display: flex; align-items: center;
+  border-bottom: 2px solid transparent; letter-spacing: 0.03em;
+  transition: color 0.15s, border-color 0.15s; white-space: nowrap;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--white); border-bottom-color: var(--gold); }
+.nav-cta {
+  margin-left: 14px; background: var(--gold); color: var(--ink);
+  font-size: 13px; font-weight: 700; letter-spacing: 0.04em;
+  text-transform: uppercase; text-decoration: none;
+  padding: 10px 22px; border-radius: 2px; transition: background 0.18s; flex-shrink: 0;
+}
+.nav-cta:hover { background: var(--gold-dk); color: var(--white); }
+.language-switcher { position: relative; margin-left: 16px; height: 64px; display: flex; align-items: center; flex-shrink: 0; }
+.language-current { border: 1px solid oklch(0.76 0.08 78 / 0.46); background: transparent; color: var(--gold-lt); font: 700 12px/1 var(--sans); letter-spacing: 0.08em; padding: 9px 11px; cursor: pointer; text-transform: uppercase; }
+.language-menu { position: absolute; right: 0; top: calc(100% - 8px); min-width: 96px; padding: 8px; background: oklch(0.16 0.07 24); border: 1px solid oklch(0.70 0.08 78 / 0.34); box-shadow: 0 18px 30px oklch(0.04 0.01 38 / 0.38); display: none; z-index: 150; }
+.language-switcher:hover .language-menu, .language-switcher:focus-within .language-menu { display: grid; gap: 2px; }
+.language-menu a { color: oklch(0.88 0.04 78); text-decoration: none; font-size: 12px; line-height: 1; padding: 9px 10px; letter-spacing: 0.06em; text-transform: uppercase; }
+.language-menu a:hover { background: oklch(0.28 0.12 24); color: var(--gold-lt); }
+.mobile-menu-toggle { display: none; width: 44px; height: 44px; border: 1px solid oklch(0.78 0.08 78 / 0.42); background: transparent; color: var(--gold-lt); align-items: center; justify-content: center; flex-direction: column; gap: 5px; cursor: pointer; flex: 0 0 auto; }
+.mobile-menu-toggle span { display: block; width: 19px; height: 1.5px; background: currentColor; transition: transform 0.2s ease, opacity 0.2s ease; }
+body.mobile-menu-open .mobile-menu-toggle span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+body.mobile-menu-open .mobile-menu-toggle span:nth-child(2) { opacity: 0; }
+body.mobile-menu-open .mobile-menu-toggle span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+.mobile-menu { display: none; }
+@media (max-width: 1120px) {
+  nav { background: oklch(0.30 0.13 23 / 0.94) !important; backdrop-filter: blur(12px); }
+  .nav-inner { padding: 0 28px !important; }
+  .nav-logo { flex: 1 1 auto !important; margin-right: 16px !important; }
+  .nav-links, .language-switcher, .nav-cta { display: none !important; }
+  .mobile-menu-toggle { display: inline-flex !important; }
+  .mobile-menu { display: block; position: fixed; inset: 64px 0 auto auto; width: min(390px, calc(100vw - 28px)); max-height: calc(100dvh - 80px); overflow-y: auto; transform: translateX(110%); opacity: 0; pointer-events: none; transition: transform 0.24s ease, opacity 0.2s ease; z-index: 95; background: linear-gradient(145deg, oklch(0.22 0.11 23), oklch(0.11 0.03 38)); border-left: 1px solid oklch(0.72 0.08 78 / 0.32); box-shadow: -28px 28px 52px oklch(0.03 0.01 38 / 0.45); padding: 28px; }
+  body.mobile-menu-open .mobile-menu { transform: translateX(0); opacity: 1; pointer-events: auto; }
+  .mobile-menu-label { color: var(--gold-lt); font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 18px; }
+  .mobile-menu-links { display: grid; gap: 2px; margin-bottom: 28px; }
+  .mobile-menu-links a { color: var(--white); text-decoration: none; font-family: var(--serif); font-size: 24px; line-height: 1.15; padding: 12px 0; border-bottom: 1px solid oklch(0.75 0.07 78 / 0.16); }
+  .mobile-menu-tools { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+  .mobile-menu-tools a { color: oklch(0.88 0.04 78); border: 1px solid oklch(0.65 0.08 78 / 0.34); text-decoration: none; font-size: 12px; padding: 9px 11px; letter-spacing: 0.06em; text-transform: uppercase; }
+  .mobile-menu-cta { display: block; background: var(--gold); color: var(--ink); text-align: center; text-decoration: none; font-weight: 700; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; padding: 15px 18px; }
+}
+
+/* ══ BREADCRUMB / BACK ══ */
+.breadcrumb {
+  background: var(--parchment);
+  border-bottom: 1px solid var(--cream-dk);
+}
+.breadcrumb-inner {
+  max-width: 1360px; margin: 0 auto; padding: 0 64px;
+  height: 44px; display: flex; align-items: center; gap: 8px;
+}
+.breadcrumb a {
+  font-size: 12px; color: var(--ink-lt); text-decoration: none;
+  display: flex; align-items: center; gap: 6px;
+  letter-spacing: 0.04em; transition: color 0.15s;
+}
+.breadcrumb a:hover { color: var(--red); }
+.breadcrumb-sep { color: var(--cream-dk); font-size: 14px; }
+.breadcrumb-current { font-size: 12px; color: var(--ink-mid); letter-spacing: 0.04em; }
+.back-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--red); text-decoration: none; padding: 6px 0;
+  border-bottom: 1px solid transparent; transition: gap 0.15s, border-color 0.15s;
+}
+.back-btn:hover { gap: 12px; border-bottom-color: var(--red); }
+.back-btn::before { content: '←'; }
+
+/* ══ PAGE HEADER ══ */
+.page-header {
+  background: var(--red-dk);
+  padding: 64px 0 56px;
+  position: relative; overflow: hidden;
+}
+.page-header::before {
+  content: 'НОВОСТИ';
+  position: absolute; right: -10px; top: 50%; transform: translateY(-52%);
+  font-family: var(--serif); font-size: clamp(120px, 18vw, 220px); font-weight: 700;
+  color: transparent; -webkit-text-stroke: 1px oklch(0.30 0.12 22);
+  pointer-events: none; user-select: none; letter-spacing: -0.04em; line-height: 1;
+}
+.page-header::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold) 30%, var(--gold) 70%, transparent);
+}
+.page-header-inner {
+  max-width: 1360px; margin: 0 auto; padding: 0 64px;
+  position: relative; z-index: 2;
+  display: flex; align-items: flex-end; justify-content: space-between;
+}
+.page-header-left {}
+.page-header-eye {
+  font-size: 10.5px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--gold); display: flex; align-items: center; gap: 14px; margin-bottom: 14px;
+}
+.page-header-eye::before { content: ''; display: block; width: 28px; height: 1px; background: var(--gold); }
+.page-header h1 {
+  font-family: var(--cormorant); font-size: clamp(52px, 8vw, 96px); font-weight: 300;
+  color: var(--white); line-height: 0.92; letter-spacing: -0.02em;
+}
+.page-header-meta {
+  text-align: right; padding-bottom: 8px;
+}
+.page-header-count {
+  font-family: var(--cormorant); font-size: 52px; font-weight: 300;
+  color: var(--gold); line-height: 1; letter-spacing: -0.02em;
+}
+.page-header-count-lbl {
+  font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: oklch(0.55 0.08 22); margin-top: 4px;
+}
+
+/* ══ WRAP ══ */
+.wrap { max-width: 1360px; margin: 0 auto; padding: 0 64px; }
+
+/* ══ NEWS SECTION ══ */
+.news-section { padding: 72px 0 96px; }
+
+/* Month divider */
+.month-label {
+  display: flex; align-items: center; gap: 20px;
+  margin: 56px 0 24px;
+  font-family: var(--sans); font-size: 10.5px; font-weight: 700;
+  letter-spacing: 0.20em; text-transform: uppercase; color: var(--red);
+}
+.month-label:first-child { margin-top: 0; }
+.month-label::before { content: ''; display: block; width: 24px; height: 1.5px; background: var(--red); }
+.month-label::after { content: ''; flex: 1; height: 1px; background: var(--cream-dk); }
+
+/* ══ FEATURED — big card ══ */
+.featured-card {
+  display: grid; grid-template-columns: 1fr 1fr;
+  background: var(--white); text-decoration: none; color: inherit;
+  border: 1px solid var(--cream-dk);
+  transition: box-shadow 0.2s;
+  margin-bottom: 2px;
+}
+.featured-card:hover { box-shadow: 0 8px 40px oklch(0.13 0.006 40 / 0.10); }
+.fc-img {
+  aspect-ratio: 4/3; overflow: hidden; flex-shrink: 0;
+  position: relative;
+}
+.fc-img img {
+  width: 100%; height: 100%; object-fit: cover; object-position: center;
+  display: block; transition: transform 0.4s ease;
+}
+.featured-card:hover .fc-img img { transform: scale(1.04); }
+.fc-img-none {
+  aspect-ratio: 4/3;
+  background: var(--red-mid);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.fc-img-none::before {
+  content: ''; position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    -45deg,
+    oklch(0.32 0.14 22) 0px, oklch(0.32 0.14 22) 1px,
+    oklch(0.30 0.13 22) 1px, oklch(0.30 0.13 22) 20px
+  );
+}
+.fc-img-none-date {
+  position: relative; z-index: 1; text-align: center;
+  font-family: var(--cormorant); font-size: 80px; font-weight: 300;
+  color: var(--gold); line-height: 1; letter-spacing: -0.04em;
+}
+.fc-img-none-month {
+  position: relative; z-index: 1;
+  font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: oklch(0.65 0.08 22); margin-top: 4px;
+}
+.fc-body {
+  padding: 44px 52px; display: flex; flex-direction: column; justify-content: space-between;
+}
+.fc-tag {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--red); display: flex; align-items: center; gap: 10px; margin-bottom: 20px;
+}
+.fc-tag::before { content: ''; display: block; width: 20px; height: 1.5px; background: var(--red); }
+.fc-date { font-size: 11px; color: var(--ink-lt); letter-spacing: 0.10em; text-transform: uppercase; margin-bottom: 16px; }
+.fc-title {
+  font-family: var(--serif); font-size: 28px; font-weight: 600;
+  line-height: 1.3; color: var(--ink); margin-bottom: 20px; text-wrap: pretty;
+}
+.fc-excerpt {
+  font-size: 15.5px; color: var(--ink-mid); line-height: 1.80;
+  font-family: var(--cormorant); font-style: italic; font-size: 18px;
+  flex: 1; margin-bottom: 28px;
+}
+.fc-read {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 11.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--red); align-self: flex-start;
+  transition: gap 0.15s;
+}
+.fc-read::after { content: '→'; }
+.featured-card:hover .fc-read { gap: 14px; }
+
+/* ══ CARDS GRID ══ */
+.news-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 2px; background: var(--cream-dk);
+  border: 1px solid var(--cream-dk); border-top: none;
+}
+.nc {
+  background: var(--white); text-decoration: none; color: inherit;
+  display: flex; flex-direction: column; transition: background 0.18s;
+}
+.nc:hover { background: var(--cream-lt); }
+.nc-img {
+  width: 100%; aspect-ratio: 16/9; overflow: hidden; flex-shrink: 0;
+}
+.nc-img img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 0.3s ease;
+}
+.nc:hover .nc-img img { transform: scale(1.04); }
+.nc-img-none {
+  width: 100%; aspect-ratio: 16/9; flex-shrink: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  background: var(--red);
+  position: relative; overflow: hidden;
+}
+.nc-img-none::before {
+  content: ''; position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    -45deg,
+    oklch(0.38 0.16 22) 0px, oklch(0.38 0.16 22) 1px,
+    transparent 1px, transparent 18px
+  );
+}
+.nc-img-none-inner {
+  position: relative; z-index: 1; text-align: center;
+}
+.nc-img-none-day {
+  font-family: var(--cormorant); font-size: 52px; font-weight: 300;
+  color: var(--gold); line-height: 1; letter-spacing: -0.03em;
+}
+.nc-img-none-mo {
+  font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: oklch(0.65 0.09 22); margin-top: 2px;
+}
+.nc-body {
+  padding: 24px 28px 32px; flex: 1; display: flex; flex-direction: column;
+}
+.nc-tag {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--red); display: flex; align-items: center; gap: 8px; margin-bottom: 14px;
+}
+.nc-tag::before { content: ''; display: block; width: 14px; height: 1.5px; background: var(--red); }
+.nc-date { font-size: 10.5px; color: var(--ink-lt); letter-spacing: 0.10em; text-transform: uppercase; margin-bottom: 12px; }
+.nc-title {
+  font-family: var(--serif); font-size: 17px; font-weight: 600;
+  line-height: 1.38; color: var(--ink); flex: 1; text-wrap: pretty;
+  margin-bottom: 14px;
+}
+.nc-excerpt {
+  font-size: 14px; color: var(--ink-mid); line-height: 1.68;
+  font-family: var(--cormorant); font-style: italic; font-size: 16px;
+  margin-bottom: 18px;
+}
+.nc-more {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--red); display: flex; align-items: center; gap: 6px;
+  transition: gap 0.15s; align-self: flex-start;
+}
+.nc-more::after { content: '→'; }
+.nc:hover .nc-more { gap: 10px; }
+
+/* ══ INLINE GRID for smaller cards ══ */
+.news-grid-4 {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 2px; background: var(--cream-dk);
+  border: 1px solid var(--cream-dk); border-top: none;
+}
+
+/* ══ PAGINATION ══ */
+.pagination-wrap {
+  padding: 64px 0 24px;
+  display: flex; flex-direction: column; align-items: center; gap: 20px;
+}
+.pagination {
+  display: flex; align-items: center; gap: 6px;
+}
+.pag-btn {
+  width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--cream-dk); font-size: 14px; text-decoration: none; color: var(--ink-mid);
+  transition: all 0.15s; font-family: var(--sans);
+}
+.pag-btn:hover { border-color: var(--red); color: var(--red); }
+.pag-btn.active { background: var(--red); color: var(--white); border-color: var(--red); }
+.pag-sep { color: var(--ink-lt); padding: 0 6px; font-size: 14px; }
+.all-news-link {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.10em; text-transform: uppercase;
+  color: var(--ink-mid); text-decoration: none;
+  border: 1px solid var(--cream-dk); padding: 12px 24px;
+  transition: all 0.15s;
+}
+.all-news-link:hover { border-color: var(--red); color: var(--red); }
+.all-news-link::after { content: '→'; }
+
+/* ══ FOOTER ══ */
+footer {
+  background: var(--red-dk);
+  color: oklch(0.65 0.08 20); padding: 52px 0 36px;
+  border-top: 2px solid var(--gold);
+}
+.footer-inner {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px;
+  padding-bottom: 44px; border-bottom: 1px solid oklch(0.30 0.12 22); margin-bottom: 28px;
+}
+.footer-brand img { height: 40px; filter: brightness(0) invert(1); margin-bottom: 16px; display: block; }
+.footer-brand p { font-size: 13.5px; line-height: 1.7; max-width: 260px; }
+.footer-col h4 { font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: oklch(0.50 0.08 22); margin-bottom: 18px; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col a { color: oklch(0.72 0.06 20); text-decoration: none; font-size: 13.5px; transition: color 0.15s; }
+.footer-col a:hover { color: var(--gold-lt); }
+.footer-bottom { display: flex; justify-content: space-between; font-size: 12px; }
+.footer-bottom a { color: oklch(0.55 0.06 20); text-decoration: none; }
+
+@media (max-width: 1024px) {
+  .featured-card { grid-template-columns: 1fr; }
+  .fc-img, .fc-img-none { aspect-ratio: 16/9; }
+  .news-grid, .news-grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .wrap { padding: 0 20px; }
+  .nav-inner { padding: 0 20px; }
+  .breadcrumb-inner { padding: 0 20px; }
+  .page-header-inner { padding: 0 20px; flex-direction: column; align-items: flex-start; gap: 12px; }
+  .page-header-meta { text-align: left; }
+  .news-grid, .news-grid-4 { grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="logo.png" alt="Фонд Филантроп">
+      <span class="nav-brand-note">
+        <img class="nav-wordmark" src="filantrop_wordmark_white.png" alt="фонд филантроп">
+      </span>
+    </a>
+    <div class="nav-links">
+      <a href="news.html" class="active">Новости</a>
+      <a href="index.html#prize">Премия</a>
+      <a href="index.html#about">О фонде</a>
+      <a href="index.html#legacy">История</a>
+      <a href="index.html#programs">Программы</a>
+      <a href="#">Команда</a>
+      <a href="#">Партнёры</a>
+      <a href="#">Контакты</a>
+    </div>
+    <div class="language-switcher">
+      <button class="language-current" type="button">RU</button>
+      <div class="language-menu">
+        <a href="#" lang="en">EN</a>
+        <a href="#" lang="ru">RU</a>
+        <a href="#" lang="he">HE</a>
+        <a href="#" lang="es">ES</a>
+        <a href="#" lang="fr">FR</a>
+        <a href="#" lang="de">DE</a>
+      </div>
+    </div>
+    <a href="index.html" class="nav-cta">Стать спонсором</a>
+    <button class="mobile-menu-toggle" type="button" aria-label="Открыть меню" aria-controls="mobile-menu-news" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobile-menu-news">
+    <div class="mobile-menu-label">Навигация</div>
+    <div class="mobile-menu-links">
+      <a href="news.html">Новости</a>
+      <a href="index.html#prize">Премия</a>
+      <a href="index.html#about">О фонде</a>
+      <a href="index.html#legacy">История</a>
+      <a href="index.html#programs">Программы</a>
+      <a href="#">Команда</a>
+      <a href="#">Партнёры</a>
+      <a href="#">Контакты</a>
+    </div>
+    <div class="mobile-menu-label">Язык</div>
+    <div class="mobile-menu-tools">
+      <a href="#" lang="ru">RU</a>
+      <a href="#" lang="en">EN</a>
+      <a href="#" lang="he">HE</a>
+      <a href="#" lang="es">ES</a>
+      <a href="#" lang="fr">FR</a>
+      <a href="#" lang="de">DE</a>
+    </div>
+    <a href="index.html" class="mobile-menu-cta">Подать заявку</a>
+  </div>
+</nav>
+
+<!-- BREADCRUMB / BACK -->
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="index.html">← На главную</a>
+    <span class="breadcrumb-sep">/</span>
+    <span class="breadcrumb-current">Новости</span>
+  </div>
+</div>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-header-left">
+      <div class="page-header-eye">Фонд «Филантроп» · С 1991 года</div>
+      <h1>Новости</h1>
+    </div>
+    <div class="page-header-meta">
+      <div class="page-header-count">712</div>
+      <div class="page-header-count-lbl">событий в архиве</div>
+    </div>
+  </div>
+</div>
+
+<!-- NEWS -->
+<section class="news-section">
+  <div class="wrap">
+
+    <!-- АПРЕЛЬ 2026 -->
+    <div class="month-label">Апрель 2026</div>
+
+    <!-- Большая карточка #1 -->
+    <a href="https://www.filantrop.ru/news/?ELEMENT_ID=2303" target="_blank" rel="noopener" class="featured-card">
+      <div class="fc-img">
+        <img src="https://www.filantrop.ru/upload/iblock/5ab/eso46ti9fuxjobgydsxvf1iod6e2ozp0.JPG"
+             alt="Выставка картин художников в МРО Тропарёво-Никулино" loading="eager">
+      </div>
+      <div class="fc-body">
+        <div>
+          <div class="fc-tag">Выставки</div>
+          <div class="fc-date">20 апреля 2026</div>
+          <div class="fc-title">В МРО «Тропарёво-Никулино» МГО ВОИ открылась выставка картин художников</div>
+          <div class="fc-excerpt">В Московской региональной организации ВОИ «Тропарёво-Никулино» открылась новая выставка живописи и графики. Работы представили художники с инвалидностью — участники творческих программ фонда «Филантроп». Каждая картина — это история преодоления и торжества творческого духа.</div>
+        </div>
+        <span class="fc-read">Читать далее</span>
+      </div>
+    </a>
+
+    <!-- Сетка 3 колонки -->
+    <div class="news-grid">
+      <a href="https://www.filantrop.ru/news/?ELEMENT_ID=2302" target="_blank" rel="noopener" class="nc">
+        <div class="nc-img">
+          <img src="https://www.filantrop.ru/upload/iblock/7a5/6xj9ht9l9czgv8vgzl382boh2ba76wlp.JPG"
+               alt="Выставка Диалог в красках в РХТУ" loading="lazy">
+        </div>
+        <div class="nc-body">
+          <div class="nc-tag">Выставки</div>
+          <div class="nc-date">15 апреля 2026</div>
+          <div class="nc-title">В РХТУ им. Д.И. Менделеева проходит выставка «Диалог в красках»</div>
+          <div class="nc-excerpt">Студенты и преподаватели университета познакомились с работами художников с инвалидностью. Выставка стала частью просветительской программы фонда в московских вузах.</div>
+          <span class="nc-more">Подробнее</span>
+        </div>
+      </a>
+      <a href="https://www.filantrop.ru/news/?ELEMENT_ID=2301" target="_blank" rel="noopener" class="nc">
+        <div class="nc-img">
+          <img src="https://www.filantrop.ru/upload/iblock/4d9/4n3qr46693solqbkhnyavd5wnhnoczw5.jpeg"
+               alt="Со светлым праздником Пасхи" loading="lazy">
+        </div>
+        <div class="nc-body">
+          <div class="nc-tag">Поздравления</div>
+          <div class="nc-date">12 апреля 2026</div>
+          <div class="nc-title">Со светлым праздником Пасхи!</div>
+          <div class="nc-excerpt">Фонд «Филантроп» поздравляет всех своих лауреатов, партнёров, друзей и подопечных со светлым праздником Пасхи. Пусть этот день принесёт радость, мир и новые творческие свершения.</div>
+          <span class="nc-more">Подробнее</span>
+        </div>
+      </a>
+      <a href="https://www.filantrop.ru/news/?ELEMENT_ID=2300" target="_blank" rel="noopener" class="nc">
+        <div class="nc-img-none">
+          <div class="nc-img-none-inner">
+            <div class="nc-img-none-day">9</div>
+            <div class="nc-img-none-mo">Апреля</div>
+          </div>
+        </div>
+        <div class="nc-body">
+          <div class="nc-tag">Концерты</div>
+          <div class="nc-date">10 апреля 2026</div>
+          <div class="nc-title">Благотворительный концерт в Главном военном клиническом госпитале им. Н.Н. Бурденко</div>
+          <div class="nc-excerpt">9 апреля артисты фонда «Филантроп» выступили перед ранеными военнослужащими. Концертная программа собрала более 200 зрителей — пациентов и сотрудников госпиталя.</div>
+          <span class="nc-more">Подробнее</span>
+        </div>
+      </a>
+      <a href="https://www.filantrop.ru/news/?ELEMENT_ID=2299" target="_blank" rel="noopener" class="nc">
+        <div class="nc-img-none">
+          <div class="nc-img-none-inner">
+            <div class="nc-img-none-day">2</div>
+            <div class="nc-img-none-mo">Апреля</div>
+          </div>
+        </div>
+        <div class="nc-body">
+          <div class="nc-tag">Выставки</div>
+          <div class="nc-date">2 апреля 2026</div>
+          <div class="nc-title">В МПГУ открылась выставка «Диалог в красках»: искусство как диалог мужества и таланта</div>
+          <div class="nc-excerpt">В Московском педагогическом государственном университете начала работу передвижная выставка художников с инвалидностью. Проект объединяет творческие работы из разных регионов России.</div>
+          <span class="nc-more">Подробнее</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- МАРТ 2026 -->
+    <div class="month-label">Март 2026</div>
+
+    <a href="https://www.filantrop.ru/news/?ELEMENT_ID=2295" target="_blank" rel="noopener" class="featured-card">
+      <div class="fc-img-none" style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px;">
+        <div style="position:relative; z-index:1; text-align:center;">
+          <div class="fc-img-none-date" style="font-family:'Cormorant Garamond',serif; font-size:72px; font-weight:300; color:var(--gold); line-height:1;">25</div>
+          <div style="font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:oklch(0.65 0.08 22); margin-top:4px;">Марта 2026</div>
+        </div>
+      </div>
+      <div class="fc-body">
+        <div>
+          <div class="fc-tag">Мероприятия</div>
+          <div class="fc-date">25 марта 2026</div>
+          <div class="fc-title">День работников культуры завершили на высокой ноте!</div>
+          <div class="fc-excerpt">В честь Дня работников культуры фонд «Филантроп» организовал торжественный вечер с участием лауреатов Международной Премии. Артисты с инвалидностью показали, что искусство не знает ограничений — на сцене звучала живая музыка, стихи и песни, а в зале царила атмосфера подлинного праздника культуры.</div>
+        </div>
+        <span class="fc-read">Читать далее</span>
+      </div>
+    </a>
+
+    <div class="news-grid">
+      <a href="https://www.filantrop.ru/news/?ELEMENT_ID=2294" target="_blank" rel="noopener" class="nc">
+        <div class="nc-img">
+          <img src="https://www.filantrop.ru/upload/iblock/cb8/fusvc6193fzs4ju4bevt4l652ziem238.jpg"
+               alt="8 марта поздравление" loading="lazy">
+        </div>
+        <div class="nc-body">
+          <div class="nc-tag">Поздравления</div>
+          <div class="nc-date">8 марта 2026</div>
+          <div class="nc-title">Дорогие женщины! Поздравляем с прекрасным весенним праздником — 8 Марта!</div>
+          <div class="nc-excerpt">Фонд «Филантроп» сердечно поздравляет всех женщин — лауреатов, партнёров, коллег и подопечных. Среди наших героинь — художники, поэты, музыканты, танцоры, чьё творчество вдохновляет тысячи людей.</div>
+          <span class="nc-more">Подробнее</span>
+        </div>
+      </a>
+      <a href="https://www.filantrop.ru/news/?ELEMENT_ID=2293" target="_blank" rel="noopener" class="nc">
+        <div class="nc-img-none">
+          <div class="nc-img-none-inner">
+            <div class="nc-img-none-day">4</div>
+            <div class="nc-img-none-mo">Марта</div>
+          </div>
+        </div>
+        <div class="nc-body">
+          <div class="nc-tag">События</div>
+          <div class="nc-date">4 марта 2026</div>
+          <div class="nc-title">Лариса Анатольевна Лужина отмечает день рождения!</div>
+          <div class="nc-excerpt">Сегодня день рождения отмечает Лариса Анатольевна Лужина — народная артистка РСФСР и бессменный Председатель Жюри Международной Премии «Филантроп». Фонд от всей души поздравляет её с праздником и желает здоровья, радости и новых творческих побед.</div>
+          <span class="nc-more">Подробнее</span>
+        </div>
+      </a>
+      <a href="https://www.filantrop.ru/news/?ELEMENT_ID=2292" target="_blank" rel="noopener" class="nc">
+        <div class="nc-img-none">
+          <div class="nc-img-none-inner">
+            <div class="nc-img-none-day">2</div>
+            <div class="nc-img-none-mo">Марта</div>
+          </div>
+        </div>
+        <div class="nc-body">
+          <div class="nc-tag">Премия</div>
+          <div class="nc-date">2 марта 2026</div>
+          <div class="nc-title">В Москве огласили даты приёма заявок на XIV Международную Премию «Филантроп»</div>
+          <div class="nc-excerpt">Фонд «Филантроп» официально объявил о старте приёма заявок на соискание XIV Международной Премии. Подача документов открыта для участников из всех регионов России и зарубежных стран.</div>
+          <span class="nc-more">Подробнее</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- ФЕВРАЛЬ 2026 -->
+    <div class="month-label">Февраль 2026</div>
+
+    <div class="news-grid">
+      <a href="https://www.filantrop.ru/news/?ELEMENT_ID=2291" target="_blank" rel="noopener" class="nc">
+        <div class="nc-img-none">
+          <div class="nc-img-none-inner">
+            <div class="nc-img-none-day">26</div>
+            <div class="nc-img-none-mo">Февраля</div>
+          </div>
+        </div>
+        <div class="nc-body">
+          <div class="nc-tag">Премия</div>
+          <div class="nc-date">26 февраля 2026</div>
+          <div class="nc-title">Заседание Совета Попечителей, Жюри и Оргкомитета в Конгресс-центре ТПП РФ</div>
+          <div class="nc-excerpt">В Конгресс-центре Торгово-Промышленной Палаты России состоялось ежегодное заседание, на котором были утверждены состав жюри, регламент и даты церемонии XIV Международной Премии «Филантроп».</div>
+          <span class="nc-more">Подробнее</span>
+        </div>
+      </a>
+      <a href="https://www.filantrop.ru/news/?ELEMENT_ID=2290" target="_blank" rel="noopener" class="nc">
+        <div class="nc-img-none">
+          <div class="nc-img-none-inner">
+            <div class="nc-img-none-day">16</div>
+            <div class="nc-img-none-mo">Февраля</div>
+          </div>
+        </div>
+        <div class="nc-body">
+          <div class="nc-tag">Концерты</div>
+          <div class="nc-date">16 февраля 2026</div>
+          <div class="nc-title">Благотворительный концерт для участников СВО в подмосковном реабилитационном центре</div>
+          <div class="nc-excerpt">Накануне Дня защитника Отечества артисты фонда «Филантроп» выступили перед военнослужащими, проходящими лечение и реабилитацию. Концерт прошёл в тёплой, искренней атмосфере.</div>
+          <span class="nc-more">Подробнее</span>
+        </div>
+      </a>
+      <a href="https://www.filantrop.ru/news/?ELEMENT_ID=2289" target="_blank" rel="noopener" class="nc">
+        <div class="nc-img-none">
+          <div class="nc-img-none-inner">
+            <div class="nc-img-none-day">3</div>
+            <div class="nc-img-none-mo">Февраля</div>
+          </div>
+        </div>
+        <div class="nc-body">
+          <div class="nc-tag">Премия</div>
+          <div class="nc-date">3 февраля 2026</div>
+          <div class="nc-title">Дипломантам Нижегородской области торжественно вручены дипломы и знаки Премии «Филантроп»</div>
+          <div class="nc-excerpt">В торжественной церемонии приняли участие лауреаты и дипломанты из Нижегородской области. Каждый получил официальный диплом и нагрудный знак Международной Премии — символ признания таланта.</div>
+          <span class="nc-more">Подробнее</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- ЯНВАРЬ 2026 -->
+    <div class="month-label">Январь 2026</div>
+
+    <a href="https://www.filantrop.ru/news/?ELEMENT_ID=2288" target="_blank" rel="noopener" class="featured-card">
+      <div class="fc-img">
+        <img src="https://www.filantrop.ru/upload/iblock/793/elt4w0afb58ydnevg87bwrs92nna84rk.jpg"
+             alt="Вопросы о приёме заявок на XIV Премию Филантроп" loading="lazy">
+      </div>
+      <div class="fc-body">
+        <div>
+          <div class="fc-tag">Премия</div>
+          <div class="fc-date">26 января 2026</div>
+          <div class="fc-title">В фонд поступают вопросы о старте приёма заявок на XIV Международную Премию «Филантроп»</div>
+          <div class="fc-excerpt">Всё больше участников из разных регионов России и зарубежья обращаются в фонд с вопросами о сроках, номинациях и требованиях к документам XIV Премии. Фонд готовит официальное объявление и благодарит всех за интерес к главной культурной награде для людей с инвалидностью.</div>
+        </div>
+        <span class="fc-read">Читать далее</span>
+      </div>
+    </a>
+
+    <div class="news-grid" style="border-top: none;">
+      <a href="https://www.filantrop.ru/news/?ELEMENT_ID=2287" target="_blank" rel="noopener" class="nc">
+        <div class="nc-img-none">
+          <div class="nc-img-none-inner">
+            <div class="nc-img-none-day">19</div>
+            <div class="nc-img-none-mo">Января</div>
+          </div>
+        </div>
+        <div class="nc-body">
+          <div class="nc-tag">Поздравления</div>
+          <div class="nc-date">19 января 2026</div>
+          <div class="nc-title">Поздравляем всех с Крещением Господним! Желаем счастья, мира и добра!</div>
+          <div class="nc-excerpt">В светлый праздник Крещения фонд «Филантроп» желает всем чистоты помыслов, душевного покоя и вдохновения для новых творческих свершений.</div>
+          <span class="nc-more">Подробнее</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- ДЕКАБРЬ 2025 -->
+    <div class="month-label">Декабрь 2025</div>
+
+    <a href="https://www.filantrop.ru/news/?ELEMENT_ID=2281" target="_blank" rel="noopener" class="featured-card">
+      <div class="fc-img">
+        <img src="https://www.filantrop.ru/upload/iblock/a69/c2i5ivtuzpv204q04kzzhi6aymoqh6su.jpg"
+             alt="После торжественной церемонии награждения" loading="lazy">
+      </div>
+      <div class="fc-body">
+        <div>
+          <div class="fc-tag">Церемония</div>
+          <div class="fc-date">5 декабря 2025</div>
+          <div class="fc-title">После торжественной церемонии награждения и Гала-концерта началась не менее яркая программа</div>
+          <div class="fc-excerpt">XIII церемония вручения Международной Премии «Филантроп» прошла с подлинным театральным размахом. После торжественной части и Гала-концерта лауреаты, гости и организаторы продолжили праздник — встречи, живое общение, обмен впечатлениями между людьми, объединёнными любовью к искусству.</div>
+        </div>
+        <span class="fc-read">Читать далее</span>
+      </div>
+    </a>
+
+    <div class="news-grid">
+      <a href="https://www.filantrop.ru/news/?ELEMENT_ID=2282" target="_blank" rel="noopener" class="nc">
+        <div class="nc-img-none">
+          <div class="nc-img-none-inner">
+            <div class="nc-img-none-day">6</div>
+            <div class="nc-img-none-mo">Декабря</div>
+          </div>
+        </div>
+        <div class="nc-body">
+          <div class="nc-tag">Лауреаты</div>
+          <div class="nc-date">6 декабря 2025</div>
+          <div class="nc-title">Сила духа выше обстоятельств: чествуем лауреатов Премии «Филантроп»!</div>
+          <div class="nc-excerpt">На торжественной церемонии XIII Международной Премии статуэтки и дипломы получили лауреаты из разных уголков страны. Каждая история — это победа таланта над обстоятельствами.</div>
+          <span class="nc-more">Подробнее</span>
+        </div>
+      </a>
+      <a href="https://www.filantrop.ru/news/?ELEMENT_ID=2283" target="_blank" rel="noopener" class="nc">
+        <div class="nc-img-none">
+          <div class="nc-img-none-inner">
+            <div class="nc-img-none-day">9</div>
+            <div class="nc-img-none-mo">Декабря</div>
+          </div>
+        </div>
+        <div class="nc-body">
+          <div class="nc-tag">События</div>
+          <div class="nc-date">9 декабря 2025</div>
+          <div class="nc-title">Сегодняшний вечер зарядил нас вдохновением!</div>
+          <div class="nc-excerpt">Накануне церемонии состоялся предпремиальный вечер с участием жюри, почётных гостей и номинантов. Атмосфера встречи — предвкушение большого праздника искусства.</div>
+          <span class="nc-more">Подробнее</span>
+        </div>
+      </a>
+      <a href="https://www.filantrop.ru/news/?ELEMENT_ID=2284" target="_blank" rel="noopener" class="nc">
+        <div class="nc-img-none">
+          <div class="nc-img-none-inner">
+            <div class="nc-img-none-day">10</div>
+            <div class="nc-img-none-mo">Декабря</div>
+          </div>
+        </div>
+        <div class="nc-body">
+          <div class="nc-tag">Мероприятия</div>
+          <div class="nc-date">10 декабря 2025</div>
+          <div class="nc-title">Любой фестиваль или конкурс начинается с конкретного человека!</div>
+          <div class="nc-excerpt">В рамках программы «Маршрут добра» фонд «Филантроп» рассказывает истории людей, которые стояли у истоков региональных фестивалей для участников с инвалидностью.</div>
+          <span class="nc-more">Подробнее</span>
+        </div>
+      </a>
+      <a href="https://www.filantrop.ru/news/?ELEMENT_ID=2285" target="_blank" rel="noopener" class="nc">
+        <div class="nc-img-none">
+          <div class="nc-img-none-inner">
+            <div class="nc-img-none-day">11</div>
+            <div class="nc-img-none-mo">Декабря</div>
+          </div>
+        </div>
+        <div class="nc-body">
+          <div class="nc-tag">События</div>
+          <div class="nc-date">11 декабря 2025</div>
+          <div class="nc-title">Маршрут добра и признания в действии!</div>
+          <div class="nc-excerpt">Региональные представители фонда посетили города-участники программы. В каждом городе — живая встреча с лауреатами и номинантами, вручение дипломов и знаков Премии на местах.</div>
+          <span class="nc-more">Подробнее</span>
+        </div>
+      </a>
+      <a href="https://www.filantrop.ru/news/?ELEMENT_ID=2286" target="_blank" rel="noopener" class="nc">
+        <div class="nc-img-none">
+          <div class="nc-img-none-inner">
+            <div class="nc-img-none-day">31</div>
+            <div class="nc-img-none-mo">Декабря</div>
+          </div>
+        </div>
+        <div class="nc-body">
+          <div class="nc-tag">Лауреаты</div>
+          <div class="nc-date">31 декабря 2025</div>
+          <div class="nc-title">«В год Красной Лошади» — Анна Демидова, Лауреат Международной Премии «Филантроп»</div>
+          <div class="nc-excerpt">Анна Демидова завершает год новой серией живописных работ. Лауреат Премии рассказывает о своём творческом пути, источниках вдохновения и о том, как искусство стало главной силой в её жизни.</div>
+          <span class="nc-more">Подробнее</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- ПАГИНАЦИЯ -->
+    <div class="pagination-wrap">
+      <div class="pagination">
+        <a href="#" class="pag-btn active">1</a>
+        <a href="https://www.filantrop.ru/news/?PAGEN_1=2" target="_blank" class="pag-btn">2</a>
+        <a href="https://www.filantrop.ru/news/?PAGEN_1=3" target="_blank" class="pag-btn">3</a>
+        <a href="https://www.filantrop.ru/news/?PAGEN_1=4" target="_blank" class="pag-btn">4</a>
+        <a href="https://www.filantrop.ru/news/?PAGEN_1=5" target="_blank" class="pag-btn">5</a>
+        <span class="pag-sep">…</span>
+        <a href="https://www.filantrop.ru/news/?PAGEN_1=36" target="_blank" class="pag-btn">36</a>
+      </div>
+      <a href="https://www.filantrop.ru/news/" target="_blank" class="all-news-link">Полный архив новостей на filantrop.ru</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="logo.png" alt="Фонд Филантроп">
+        <p>Благотворительный фонд содействия социальной реабилитации лиц с инвалидностью. С 1991 года.</p>
+      </div>
+      <div class="footer-col">
+        <h4>О фонде</h4>
+        <ul>
+          <li><a href="index.html#about">История</a></li>
+          <li><a href="#">Команда</a></li>
+          <li><a href="#">Документы</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Программы</h4>
+        <ul>
+          <li><a href="index.html#prize">Международная Премия</a></li>
+          <li><a href="#">Центр реабилитации</a></li>
+          <li><a href="#">Музей «Равновесие»</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Контакты</h4>
+        <ul>
+          <li><a href="tel:+74952441101">+7 (495) 244-11-01</a></li>
+          <li><a href="mailto:fond@filantrop.ru">fond@filantrop.ru</a></li>
+          <li><a href="https://vk.com/club71460075" target="_blank">ВКонтакте</a></li>
+          <li><a href="https://t.me/fund_filantrop" target="_blank">Telegram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 1991–2026 Фонд «Филантроп»</span>
+      <a href="#">Политика конфиденциальности</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
