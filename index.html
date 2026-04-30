@@ -31,7 +31,7 @@
     --ff-sans: 'PT Sans', Arial, sans-serif;
   }
 
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
   body {
     font-family: var(--ff-sans);
     background: var(--cream);
@@ -39,6 +39,7 @@
     font-size: 17px;
     line-height: 1.65;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
 
   .theatre-ornament {
@@ -179,6 +180,35 @@
     flex-shrink: 0;
   }
   .nav-cta:hover { background: var(--gold-deep); color: var(--white); }
+  .mobile-menu-toggle {
+    display: none;
+    width: 44px;
+    height: 44px;
+    border: 1px solid oklch(0.78 0.08 78 / 0.42);
+    background:
+      radial-gradient(circle at 50% 50%, oklch(0.74 0.10 68 / 0.14), transparent 62%),
+      transparent;
+    color: var(--gold-light);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    flex: 0 0 auto;
+  }
+  .mobile-menu-toggle span {
+    display: block;
+    width: 19px;
+    height: 1.5px;
+    background: currentColor;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  body.mobile-menu-open .mobile-menu-toggle span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  body.mobile-menu-open .mobile-menu-toggle span:nth-child(2) { opacity: 0; }
+  body.mobile-menu-open .mobile-menu-toggle span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+  .mobile-menu {
+    display: none;
+  }
 
   /* ── HERO ── */
   .hero {
@@ -934,7 +964,92 @@
 
   @media (max-width: 1120px) {
     .nav-inner { padding: 0 28px; }
-    .nav-links { display: none; }
+    .nav-logo { flex: 1 1 auto; margin-right: 16px; }
+    .nav-links,
+    .language-switcher,
+    .nav-cta { display: none; }
+    .mobile-menu-toggle { display: inline-flex; }
+    .mobile-menu {
+      display: block;
+      position: fixed;
+      inset: 64px 0 auto auto;
+      width: min(390px, calc(100vw - 28px));
+      max-height: calc(100dvh - 80px);
+      overflow-y: auto;
+      transform: translateX(110%);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.24s ease, opacity 0.2s ease;
+      z-index: 95;
+      background:
+        radial-gradient(circle at 75% 10%, oklch(0.72 0.10 68 / 0.16), transparent 28%),
+        linear-gradient(145deg, oklch(0.22 0.11 23), oklch(0.11 0.03 38));
+      border-left: 1px solid oklch(0.72 0.08 78 / 0.32);
+      border-bottom: 1px solid oklch(0.72 0.08 78 / 0.22);
+      box-shadow: -28px 28px 52px oklch(0.03 0.01 38 / 0.45);
+      padding: 28px;
+    }
+    body.mobile-menu-open .mobile-menu {
+      transform: translateX(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+    body.mobile-menu-open::after {
+      content: '';
+      position: fixed;
+      inset: 64px 0 0;
+      background: oklch(0.04 0.01 38 / 0.48);
+      z-index: 90;
+    }
+    .mobile-menu-label {
+      color: var(--gold-light);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    .mobile-menu-links {
+      display: grid;
+      gap: 2px;
+      margin-bottom: 28px;
+    }
+    .mobile-menu-links a {
+      color: var(--white);
+      text-decoration: none;
+      font-family: var(--ff-serif);
+      font-size: 24px;
+      line-height: 1.15;
+      padding: 12px 0;
+      border-bottom: 1px solid oklch(0.75 0.07 78 / 0.16);
+    }
+    .mobile-menu-tools {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    .mobile-menu-tools a {
+      color: oklch(0.88 0.04 78);
+      border: 1px solid oklch(0.65 0.08 78 / 0.34);
+      text-decoration: none;
+      font-size: 12px;
+      line-height: 1;
+      letter-spacing: 0.08em;
+      padding: 9px 11px;
+    }
+    .mobile-menu-cta {
+      display: block;
+      background: var(--gold);
+      color: var(--ink);
+      text-align: center;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 15px 18px;
+    }
     .hero { grid-template-columns: 1fr; }
     .hero-left { min-height: 640px; padding: 56px 48px 42px; }
     .hero-right { min-height: 560px; }
@@ -955,29 +1070,39 @@
   @media (max-width: 700px) {
     body { font-size: 16px; }
     section { padding: 70px 0; }
-    .nav-inner { height: auto; min-height: 62px; padding: 10px 18px; }
-    .nav-logo img { height: 38px; }
-    .nav-brand-note { display: none; }
-    .language-switcher { display: none; }
-    .nav-cta { margin-left: 12px; padding: 9px 12px; font-size: 11px; }
-    .hero-left { min-height: auto; padding: 58px 22px 34px; }
+    .nav-inner { height: 62px; min-height: 62px; padding: 0 16px; }
+    .nav-logo { gap: 10px; }
+    .nav-logo > img:not(.nav-wordmark) { height: 36px; }
+    .nav-brand-note { display: flex; width: 148px; padding-left: 10px; }
+    .nav-wordmark { width: 140px; height: 13px !important; }
+    .mobile-menu-toggle { width: 42px; height: 42px; }
+    .mobile-menu { inset-top: 62px; width: min(360px, calc(100vw - 18px)); padding: 24px; }
+    body.mobile-menu-open::after { inset-top: 62px; }
+    .hero-left { min-height: auto; padding: 46px 22px 34px; }
     .hero-years { font-size: 112px; }
-    .hero-tagline { font-size: 40px; }
+    .hero-tagline { font-size: 42px; line-height: 1.08; max-width: 100%; }
     .hero-sub { font-size: 15px; }
-    .hero-proof { grid-template-columns: 1fr; }
+    .hero-proof { margin-top: 22px; }
+    .hero-proof-list span { font-size: 10.5px; padding: 8px 9px; }
     .foundation-seal { padding: 0 0 0 16px; }
     .foundation-seal-text strong { font-size: 18px; }
     .foundation-seal-text span { font-size: 10.5px; }
     .hero-actions { align-items: stretch; }
     .btn-gold,
     .btn-outline { width: 100%; text-align: center; padding-left: 18px; padding-right: 18px; }
-    .hero-right { min-height: 480px; }
-    .stage-scene { width: 86%; }
-    .stage-kicker { top: 5%; font-size: 10px; white-space: normal; text-align: center; width: 86%; justify-content: center; }
-    .stage-figure { width: 88%; height: 84%; }
-    .stage-caption { font-size: 15px; }
-    .hero-stats { grid-template-columns: 1fr; position: relative; }
+    .hero-right { min-height: 520px; }
+    .stage-scene { width: 94%; aspect-ratio: 0.78; }
+    .stage-kicker { left: 6%; top: 8%; font-size: 9.5px; width: 170px; justify-content: flex-start; }
+    .stage-figure { width: 86%; height: 86%; margin-bottom: 8%; }
+    .stage-caption { left: 6%; bottom: 10%; width: 168px; font-size: 13.5px; }
+    .hero-stats { grid-template-columns: 1fr 1fr 1fr; position: relative; }
     .hero-stat { padding: 18px 22px; border-right: 0; border-bottom: 1px solid oklch(0.30 0.14 22); }
+    .hero-stat-num { font-size: 28px; }
+    .hero-stat-label { font-size: 10.5px; }
+    .ticker { height: 36px; }
+    .ticker-track { gap: 34px; animation-duration: 28s; }
+    .ticker-track span { font-size: 10px; }
+    .ticker-dot { width: 15px; height: 15px; }
     .container { padding: 0 22px; }
     .section-header { display: block; }
     .section-title { font-size: 30px; }
@@ -1033,6 +1158,34 @@
       </div>
     </div>
     <a href="#prize" class="nav-cta">Стать спонсором</a>
+    <button class="mobile-menu-toggle" type="button" aria-label="Открыть меню" aria-controls="mobile-menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-menu-label">Навигация</div>
+    <div class="mobile-menu-links">
+      <a href="#">Новости</a>
+      <a href="#">Премия</a>
+      <a href="#">О фонде</a>
+      <a href="#legacy">История</a>
+      <a href="#programs">Программы</a>
+      <a href="#">Команда</a>
+      <a href="#">Партнёры</a>
+      <a href="#">Контакты</a>
+    </div>
+    <div class="mobile-menu-label">Язык</div>
+    <div class="mobile-menu-tools">
+      <a href="#" lang="ru">RU</a>
+      <a href="#" lang="en">EN</a>
+      <a href="#" lang="he">HE</a>
+      <a href="#" lang="es">ES</a>
+      <a href="#" lang="fr">FR</a>
+      <a href="#" lang="de">DE</a>
+    </div>
+    <a href="#prize" class="mobile-menu-cta">Стать спонсором</a>
   </div>
 </nav>
 
@@ -1466,6 +1619,32 @@
   </div>
 </footer>
 
+<script>
+  const menuButton = document.querySelector('.mobile-menu-toggle');
+  const mobileMenu = document.querySelector('#mobile-menu');
+
+  if (menuButton && mobileMenu) {
+    const closeMobileMenu = () => {
+      document.body.classList.remove('mobile-menu-open');
+      menuButton.setAttribute('aria-expanded', 'false');
+      menuButton.setAttribute('aria-label', 'Открыть меню');
+    };
+
+    menuButton.addEventListener('click', () => {
+      const isOpen = document.body.classList.toggle('mobile-menu-open');
+      menuButton.setAttribute('aria-expanded', String(isOpen));
+      menuButton.setAttribute('aria-label', isOpen ? 'Закрыть меню' : 'Открыть меню');
+    });
+
+    mobileMenu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', closeMobileMenu);
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeMobileMenu();
+    });
+  }
+</script>
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
 </html>
 
