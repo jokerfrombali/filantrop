@@ -618,7 +618,14 @@
     font-size: 12px; font-weight: 700; letter-spacing: 0.1em;
     text-transform: uppercase; color: var(--ink); flex-shrink: 0;
   }
-  .ticker-dot { color: var(--gold-deep); }
+  .ticker-dot {
+    width: 18px;
+    height: 18px;
+    background: url('logo.png') center / contain no-repeat;
+    filter: brightness(0);
+    opacity: 0.82;
+    align-self: center;
+  }
   @keyframes ticker {
     from { transform: translateX(0); }
     to { transform: translateX(-50%); }
@@ -896,7 +903,15 @@
   }
   .footer-brand strong {
     font-family: var(--ff-serif); font-size: 17px; color: var(--white);
-    display: block; margin-bottom: 12px;
+    display: inline-flex; align-items: center; gap: 12px; margin-bottom: 12px;
+  }
+  .footer-brand strong::before {
+    content: '';
+    width: 34px;
+    height: 34px;
+    background: url('logo.png') center / contain no-repeat;
+    filter: brightness(0) invert(1);
+    flex: 0 0 auto;
   }
   .footer-brand p { font-size: 13.5px; line-height: 1.7; max-width: 280px; }
   .footer-col h4 {
@@ -1075,21 +1090,21 @@
 <div class="ticker">
   <div class="ticker-track">
     <span>Международная Премия «Филантроп» 2027</span>
-    <span class="ticker-dot">◆</span>
+    <span class="ticker-dot" aria-hidden="true"></span>
     <span>Приём заявок открыт</span>
-    <span class="ticker-dot">◆</span>
+    <span class="ticker-dot" aria-hidden="true"></span>
     <span>Номинации: музыка · изобразительное искусство · литература · танцевальное искусство · театр</span>
-    <span class="ticker-dot">◆</span>
+    <span class="ticker-dot" aria-hidden="true"></span>
     <span>Лауреаты из России и других стран мира</span>
-    <span class="ticker-dot">◆</span>
+    <span class="ticker-dot" aria-hidden="true"></span>
     <span>Международная Премия «Филантроп» 2027</span>
-    <span class="ticker-dot">◆</span>
+    <span class="ticker-dot" aria-hidden="true"></span>
     <span>Приём заявок открыт</span>
-    <span class="ticker-dot">◆</span>
+    <span class="ticker-dot" aria-hidden="true"></span>
     <span>Номинации: музыка · изобразительное искусство · литература · танцевальное искусство · театр</span>
-    <span class="ticker-dot">◆</span>
+    <span class="ticker-dot" aria-hidden="true"></span>
     <span>Лауреаты из России и других стран мира</span>
-    <span class="ticker-dot">◆</span>
+    <span class="ticker-dot" aria-hidden="true"></span>
   </div>
 </div>
 
