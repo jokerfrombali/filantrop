@@ -16,12 +16,86 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--red)}.nav-i
 footer{background:linear-gradient(135deg,#210003,#120202);color:#d7c2a2;padding:42px 0;font-size:13px}footer strong{display:inline-flex;align-items:center;gap:10px;color:var(--white);font-family:var(--serif);font-size:18px}footer strong::before{content:"";width:28px;height:28px;background:url("logo.png") center/contain no-repeat;filter:brightness(0) invert(1)}
 @media(max-width:800px){body{padding-top:62px}.nav-inner{height:62px;padding:0 18px}.nav-logo{min-width:0}.nav-wordmark{width:150px}.nav-links,.language-current,.nav-cta{display:none}.container{padding:0 22px}.article-hero{padding:34px 0}.article-layout{grid-template-columns:1fr;gap:34px;padding:44px 0}.article-title{font-size:34px}.article-body{font-size:21px}.article-side{border-left:0;border-top:1px solid #e4d3b7;padding:24px 0 0}}
 </style>
+<link rel="stylesheet" href="site-common.css">
 </head>
 <body>
-<nav><div class="nav-inner"><a href="index.html" class="nav-logo"><img src="logo.png" alt="Фонд Филантроп"><span><img class="nav-wordmark" src="filantrop_wordmark_white.png" alt="фонд филантроп"></span></a><div class="nav-links"><a href="news.html">Новости</a><a href="index.html#prize">Премия</a><a href="index.html#about">О фонде</a><a href="index.html#legacy">История</a><a href="index.html#programs">Программы</a><a href="index.html#team">Команда</a><a href="index.html#partners">Партнёры</a><a href="index.html#contacts">Контакты</a></div><button class="language-current" type="button">RU</button><a class="nav-cta" href="index.html#prize">Стать спонсором</a></div></nav>
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="logo.png" alt="Фонд Филантроп">
+      <span class="nav-brand-note">
+        <img class="nav-wordmark" src="filantrop_wordmark_white.png" alt="фонд филантроп">
+      </span>
+    </a>
+    <div class="nav-links">
+      <a href="news.html">Новости</a>
+      <a href="index.html#prize">Премия</a>
+      <a href="index.html#about">О фонде</a>
+      <a href="index.html#legacy">История</a>
+      <a href="index.html#programs">Программы</a>
+      <a href="index.html#team">Команда</a>
+      <a href="index.html#partners">Партнёры</a>
+      <a href="index.html#contacts">Контакты</a>
+    </div>
+    <div class="language-switcher">
+      <button class="language-current" type="button" aria-haspopup="true" aria-expanded="false">RU</button>
+      <div class="language-menu" aria-label="Выбор языка">
+        <a href="#" lang="en">EN</a>
+        <a href="#" lang="ru">RU</a>
+        <a href="#" lang="he">HE</a>
+        <a href="#" lang="es">ES</a>
+        <a href="#" lang="fr">FR</a>
+        <a href="#" lang="de">DE</a>
+      </div>
+    </div>
+    <a href="index.html#prize" class="nav-cta">Стать спонсором</a>
+  </div>
+</nav>
 <section class="article-hero"><div class="container"><div class="crumbs"><a href="news.html">Все новости</a><span>/</span><a href="javascript:history.back()">Назад</a></div><div class="article-date">20 апреля 2026</div><h1 class="article-title">В МРО «Тропарёво-Никулино» МГО ВОИ открылась выставка картин художников</h1><p class="article-lead">Новая экспозиция объединила работы художников с ограниченными возможностями — участников программ фонда «Филантроп».</p></div></section>
 <main class="container article-layout"><article><img class="article-image" src="https://www.filantrop.ru/upload/iblock/5ab/eso46ti9fuxjobgydsxvf1iod6e2ozp0.JPG" alt="Участники выставки в МРО Тропарёво-Никулино"><div class="article-body"><p>В МРО «Тропарёво-Никулино» МГО ВОИ открылась выставка картин художников. Экспозиция стала ещё одним пространством, где авторы могут показать свои работы зрителям и получить живой отклик.</p><p>Фонд «Филантроп» поддерживает творческие инициативы людей с ограниченными возможностями, помогая им выходить на профессиональную и общественную сцену. Такие события делают искусство ближе и дают авторам возможность быть услышанными.</p></div></article><aside class="article-side"><div class="side-title">Навигация</div><div class="side-actions"><a class="btn gold" href="javascript:history.back()">Вернуться назад</a><a class="btn" href="news.html">Все новости</a><a class="btn" href="https://www.filantrop.ru/news/?ELEMENT_ID=2303" target="_blank" rel="noopener">Источник</a></div></aside></main>
-<footer><div class="container"><strong>Фонд «Филантроп»</strong><p>Благотворительный фонд содействия социальной реабилитации лиц с ограниченными возможностями. С 1991 года.</p></div></footer>
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <strong>Фонд «Филантроп»</strong>
+        <p>Благотворительный фонд содействия социальной реабилитации лиц с инвалидностью. С 1991 года.</p>
+      </div>
+      <div class="footer-col">
+        <h4>О фонде</h4>
+        <ul>
+          <li><a href="index.html#legacy">История</a></li>
+          <li><a href="index.html#team">Команда</a></li>
+          <li><a href="#">Документы</a></li>
+          <li><a href="#">Отчёты</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Программы</h4>
+        <ul>
+          <li><a href="index.html#prize">Международная Премия</a></li>
+          <li><a href="#">Центр реабилитации</a></li>
+          <li><a href="#">Музей «Равновесие»</a></li>
+          <li><a href="#">Фестивали</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Контакты</h4>
+        <ul>
+          <li><a href="tel:+74952441101">+7 (495) 244-11-01</a></li>
+          <li><a href="mailto:fond@filantrop.ru">fond@filantrop.ru</a></li>
+          <li><a href="#">Москва, ул. Садовая-Сухаревская, 2/34</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 1991–2026 Фонд «Филантроп». Все права защищены.</p>
+      <p><a href="#">Политика конфиденциальности</a></p>
+    </div>
+  </div>
+</footer>
 </body>
 </html>
+
+
+
 
