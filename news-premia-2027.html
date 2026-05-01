@@ -45,7 +45,7 @@
   </div>
 </nav>
 <section class="article-hero"><div class="container"><div class="crumbs"><a href="news.html">Все новости</a><span>/</span><a href="javascript:history.back()">Назад</a></div><div class="article-date">2 марта 2026</div><h1 class="article-title">В Москве огласили даты приёма заявок на XIV Международную премию «Филантроп»</h1><p class="article-lead">Премия продолжает международную историю признания выдающихся талантов в культуре и искусстве.</p></div></section>
-<main class="container article-layout"><article><div class="article-cover"><div><strong>2027</strong><span>Международная Премия «Филантроп»</span></div></div><div class="article-body"><p>В Москве объявлены даты приёма заявок на XIV Международную премию «Филантроп». Премия объединяет авторов из разных творческих направлений и подчёркивает значение искусства как пространства профессионального признания.</p><p>Номинации охватывают музыку, изобразительное искусство, литературу, танец и театр. Для участников это возможность представить свой талант широкой аудитории и стать частью международного культурного события.</p></div></article><aside class="article-side"><div class="side-title">Навигация</div><div class="side-actions"><a class="btn gold" href="javascript:history.back()">Вернуться назад</a><a class="btn" href="news.html">Все новости</a><a class="btn" href="https://www.filantrop.ru/news/?ELEMENT_ID=2292" target="_blank" rel="noopener">Источник</a></div></aside></main>
+<main class="container article-layout"><article><div class="article-cover"><div><strong>2027</strong><span>Международная Премия «Филантроп»</span></div></div><div class="article-body"><p>В Москве объявлены даты приёма заявок на XIV Международную премию «Филантроп». Премия объединяет авторов из разных творческих направлений и подчёркивает значение искусства как пространства профессионального признания.</p><p>Номинации охватывают музыку, изобразительное искусство, литературу, танец и театр. Для участников это возможность представить свой талант широкой аудитории и стать частью международного культурного события.</p></div></article><aside class="article-side"><div class="side-title">Навигация</div><div class="side-actions"><a class="btn gold" href="javascript:history.back()">Вернуться назад</a><a class="btn" href="news.html">Все новости</a><button class="btn share-btn" type="button" onclick="shareCurrentPage(this)">Поделиться</button></div></aside></main>
 <footer>
   <div class="container">
     <div class="footer-inner">
@@ -86,8 +86,10 @@
     </div>
   </div>
 </footer>
+<script>function shareCurrentPage(btn){const url=location.href;if(navigator.share){navigator.share({title:document.title,url}).catch(()=>{});return;}navigator.clipboard&&navigator.clipboard.writeText(url).then(()=>{const old=btn.textContent;btn.textContent="Ссылка скопирована";setTimeout(()=>btn.textContent=old,1800);});}</script>
 </body>
 </html>
+
 
 
 

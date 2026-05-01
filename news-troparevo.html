@@ -52,7 +52,7 @@ footer{background:linear-gradient(135deg,#210003,#120202);color:#d7c2a2;padding:
   </div>
 </nav>
 <section class="article-hero"><div class="container"><div class="crumbs"><a href="news.html">Все новости</a><span>/</span><a href="javascript:history.back()">Назад</a></div><div class="article-date">20 апреля 2026</div><h1 class="article-title">В МРО «Тропарёво-Никулино» МГО ВОИ открылась выставка картин художников</h1><p class="article-lead">Новая экспозиция объединила работы художников с ограниченными возможностями — участников программ фонда «Филантроп».</p></div></section>
-<main class="container article-layout"><article><img class="article-image" src="https://www.filantrop.ru/upload/iblock/5ab/eso46ti9fuxjobgydsxvf1iod6e2ozp0.JPG" alt="Участники выставки в МРО Тропарёво-Никулино"><div class="article-body"><p>В МРО «Тропарёво-Никулино» МГО ВОИ открылась выставка картин художников. Экспозиция стала ещё одним пространством, где авторы могут показать свои работы зрителям и получить живой отклик.</p><p>Фонд «Филантроп» поддерживает творческие инициативы людей с ограниченными возможностями, помогая им выходить на профессиональную и общественную сцену. Такие события делают искусство ближе и дают авторам возможность быть услышанными.</p></div></article><aside class="article-side"><div class="side-title">Навигация</div><div class="side-actions"><a class="btn gold" href="javascript:history.back()">Вернуться назад</a><a class="btn" href="news.html">Все новости</a><a class="btn" href="https://www.filantrop.ru/news/?ELEMENT_ID=2303" target="_blank" rel="noopener">Источник</a></div></aside></main>
+<main class="container article-layout"><article><img class="article-image" src="https://www.filantrop.ru/upload/iblock/5ab/eso46ti9fuxjobgydsxvf1iod6e2ozp0.JPG" alt="Участники выставки в МРО Тропарёво-Никулино"><div class="article-body"><p>В МРО «Тропарёво-Никулино» МГО ВОИ открылась выставка картин художников. Экспозиция стала ещё одним пространством, где авторы могут показать свои работы зрителям и получить живой отклик.</p><p>Фонд «Филантроп» поддерживает творческие инициативы людей с ограниченными возможностями, помогая им выходить на профессиональную и общественную сцену. Такие события делают искусство ближе и дают авторам возможность быть услышанными.</p></div></article><aside class="article-side"><div class="side-title">Навигация</div><div class="side-actions"><a class="btn gold" href="javascript:history.back()">Вернуться назад</a><a class="btn" href="news.html">Все новости</a><button class="btn share-btn" type="button" onclick="shareCurrentPage(this)">Поделиться</button></div></aside></main>
 <footer>
   <div class="container">
     <div class="footer-inner">
@@ -93,8 +93,10 @@ footer{background:linear-gradient(135deg,#210003,#120202);color:#d7c2a2;padding:
     </div>
   </div>
 </footer>
+<script>function shareCurrentPage(btn){const url=location.href;if(navigator.share){navigator.share({title:document.title,url}).catch(()=>{});return;}navigator.clipboard&&navigator.clipboard.writeText(url).then(()=>{const old=btn.textContent;btn.textContent="Ссылка скопирована";setTimeout(()=>btn.textContent=old,1800);});}</script>
 </body>
 </html>
+
 
 
 
